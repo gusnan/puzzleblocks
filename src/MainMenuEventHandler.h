@@ -7,7 +7,7 @@
  *	events, and the Quit events. (This event is pushed when you press the close
  * window button for example)
  */
-class ExampleEventHandler : public EventHandler
+class MainMenuEventHandler : public EventHandler
 {
 public:
 

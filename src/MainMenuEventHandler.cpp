@@ -23,7 +23,7 @@ using namespace EventLib;
 /**
  * Handle keyboard presses and releases
  */
-bool ExampleEventHandler::handleKeyboard(KeyEvent &keyEvent) {
+bool MainMenuEventHandler::handleKeyboard(KeyEvent &keyEvent) {
 
    // Is it the Escape Button that is pressed? - then quit
    if (keyEvent.getType() == KeyEventPressed) {
@@ -31,6 +31,10 @@ bool ExampleEventHandler::handleKeyboard(KeyEvent &keyEvent) {
          Program::quit = true;
          return true;
       }
+
+      if (keyEvent.getValue() == Key::R) {
+			std::cout << "R." << std::endl;
+		}
    }
    return false;
 }

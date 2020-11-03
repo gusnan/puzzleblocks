@@ -68,7 +68,7 @@ int main(int argc,char **argv)
 		GraphicsHandler::setWindowTitle("PuzzleBlocks");
 
 		// Create an EventHandler for our "custom" events
-		auto eventHandler = std::make_shared<ExampleEventHandler>();
+		auto eventHandler = std::make_shared<MainMenuEventHandler>();
 
 		EventSystem::initEventSystem();
 
