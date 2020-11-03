@@ -43,83 +43,83 @@ using namespace EventLib;
  */
 int main(int argc,char **argv)
 {
-	std::shared_ptr<EventHandler> eventHandler = std::shared_ptr<EventHandler>();
-	Bitmap *mouseBitmap = nullptr;
+   std::shared_ptr<EventHandler> eventHandler = std::shared_ptr<EventHandler>();
+   Bitmap *mouseBitmap = nullptr;
 
-	try {
-		// init the log - this function takes a string (the log file filename) as
-		// indata, if none is inserted, "log.txt" is assumed. If you give the
-		// empty string "" as filename for the log, no log will be used.
-		//
-		// The second indata is a boolean to determine to print the log to
-		// std::cout or not in addition to to the file.
-		LogHandler::initLog("log.txt", true);
+   try {
+      // init the log - this function takes a string (the log file filename) as
+      // indata, if none is inserted, "log.txt" is assumed. If you give the
+      // empty string "" as filename for the log, no log will be used.
+      //
+      // The second indata is a boolean to determine to print the log to
+      // std::cout or not in addition to to the file.
+      LogHandler::initLog("log.txt", true);
 
-		// init system stuff
-		System::initSystem();
+      // init system stuff
+      System::initSystem();
 
-		// Init the graphics stuff
-		GraphicsHandler::initGraphicsHandler();
+      // Init the graphics stuff
+      GraphicsHandler::initGraphicsHandler();
 
-		// set up a screen with resolution of 640x480, and not fullscreen
-		GraphicsHandler::setGraphicsMode(Vector2d(640, 480), false);
+      // set up a screen with resolution of 640x480, and not fullscreen
+      GraphicsHandler::setGraphicsMode(Vector2d(640, 480), false);
 
-		// set a window title
-		GraphicsHandler::setWindowTitle("PuzzleBlocks");
+      // set a window title
+      GraphicsHandler::setWindowTitle("PuzzleBlocks");
 
-		// Create an EventHandler for our "custom" events
-		auto eventHandler = std::make_shared<MainMenuEventHandler>();
+      // Create an EventHandler for our "custom" events
+      auto eventHandler = std::make_shared<MainMenuEventHandler>();
 
-		EventSystem::initEventSystem();
+      EventSystem::initEventSystem();
 
-		// set the used EventHandler to the one we just created.
-		EventSystem::addEventHandler(eventHandler);
+      // set the used EventHandler to the one we just created.
+      EventSystem::addEventHandler(eventHandler);
 
-		mouseBitmap = new Bitmap("mouse.png");
+      mouseBitmap = new Bitmap("mouse.png");
 
-		Mouse::setMouseBitmap(mouseBitmap);
-	}
-	catch (Exception &e)
-	{
-		// If we get any problems with the code in the throw block, it will be
-		// caught here
-		std::cerr << "Exception: " << e.getString() << std::endl;
+      Mouse::setMouseBitmap(mouseBitmap);
+   }
+   catch (Exception &e)
+   {
+      // If we get any problems with the code in the throw block, it will be
+      // caught here
+      std::cerr << "Exception: " << e.getString() << std::endl;
 
-		return EXIT_FAILURE;
-	}
+      return EXIT_FAILURE;
+   }
 
-	LOG("Enter main loop.");
+   LOG("Enter main loop.");
 
-	// the main loop
-	do {
-		// Update the timer
-		Timer::updateFrame();
+   // the main loop
+   do {
+      // Update the timer
+      Timer::updateFrame();
 
-		// Handle events (see the class just above this main
-		EventSystem::handleEvents();
+      // Handle events (see the class just above this main
+      EventSystem::handleEvents();
 
-		// Clear the screen every sync
-		GraphicsHandler::clearScreen();
+      // Clear the screen every sync
+      GraphicsHandler::clearScreen();
 
-		//System::getMouse()->draw();
+      //System::getMouse()->draw();
 
-		// Update the screen
-		GraphicsHandler::updateScreen();
-	} while(!Program::quit);
+      // Update the screen
+      GraphicsHandler::updateScreen();
+   } while(!Program::quit);
 
-	delete mouseBitmap;
+   delete mouseBitmap;
 
-	// Remove our custom eventHandler
-	//delete eventHandler;
+   // Remove our custom eventHandler
+   //delete eventHandler;
 
-	// Remove mouse stuff
-	Mouse::doneMouse();
+   // Remove mouse stuff
+   Mouse::doneMouse();
 
-	// done with system stuff
-	System::doneSystem();
+   // done with system stuff
+   System::doneSystem();
 
-	// done with the Log
-	LogHandler::doneLog();
+   // done with the Log
+   LogHandler::doneLog();
 
-	return EXIT_SUCCESS;
+   return EXIT_SUCCESS;
 }

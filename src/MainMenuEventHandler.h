@@ -11,10 +11,10 @@ class MainMenuEventHandler : public EventHandler
 {
 public:
 
-	/**
-	 * Handle keyboard presses and releases
-	 */
-	virtual bool handleKeyboard(KeyEvent &keyEvent);
+   /**
+    * Handle keyboard presses and releases
+    */
+   virtual bool handleKeyboard(KeyEvent &keyEvent);
 
 };
 

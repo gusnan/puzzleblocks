@@ -33,8 +33,8 @@ bool MainMenuEventHandler::handleKeyboard(KeyEvent &keyEvent) {
       }
 
       if (keyEvent.getValue() == Key::R) {
-			std::cout << "R." << std::endl;
-		}
+         std::cout << "R." << std::endl;
+      }
    }
    return false;
 }
