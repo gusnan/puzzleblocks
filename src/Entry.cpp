@@ -33,34 +33,9 @@ using namespace ExceptionLib;
 using namespace GraphicsLib;
 using namespace EventLib;
 
-bool quit = false;
+#include "MainMenuEventHandler.h"
 
-
-/**
- * This is an Eventhandler that takes care of the keyboard events, mouse motion
- *	events, and the Quit events. (This event is pushed when you press the close
- * window button for example)
- */
-class ExampleEventHandler : public EventHandler
-{
-public:
-
-	/**
-	 * Handle keyboard presses and releases
-	 */
-	virtual bool handleKeyboard(KeyEvent &keyEvent) {
-
-		// Is it the Escape Button that is pressed? - then quit
-		if (keyEvent.getType() == KeyEventPressed) {
-			if (keyEvent.getValue() == Key::Escape) {
-				quit = true;
-				return true;
-			}
-		}
-		return false;
-	}
-
-};
+#include "Program.h"
 
 
 /**
@@ -130,7 +105,7 @@ int main(int argc,char **argv)
 
 		// Update the screen
 		GraphicsHandler::updateScreen();
-	} while(!quit);
+	} while(!Program::quit);
 
 	delete mouseBitmap;
 
