@@ -159,9 +159,12 @@ message (STATUS "Library output path: ${LIBRARY_OUTPUT_PATH}")
 set(SRC_FOLDER src/)
 
 set (SOURCE_FILES
-    ${SRC_FOLDER}/Entry.cpp
-	 ${SRC_FOLDER}/MainMenuEventHandler.cpp
-	 ${SRC_FOLDER}/Program.cpp
+	${SRC_FOLDER}/Entry.cpp
+	${SRC_FOLDER}/MainMenuEventHandler.cpp
+	${SRC_FOLDER}/Program.cpp
+
+	${SRC_FOLDER}/GameMode.cpp
+	${SRC_FOLDER}/GameModeMainMenu.cpp
 )
 
 add_executable(puzzleblocks ${SOURCE_FILES})
