@@ -165,6 +165,7 @@ set (SOURCE_FILES
 	${SRC_FOLDER}/GameMode.cpp
 	${SRC_FOLDER}/GameModeMainMenu.cpp
 	${SRC_FOLDER}/MainMenuEventHandler.cpp
+	${SRC_FOLDER}/GameModeHandler.cpp
 )
 
 add_executable(puzzleblocks ${SOURCE_FILES})
