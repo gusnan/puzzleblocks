@@ -39,6 +39,6 @@ GameMode::~GameMode()
 /**
  *
  */
-void GameMode::Draw()
+void GameMode::draw()
 {
 }

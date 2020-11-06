@@ -27,10 +27,10 @@ public:
    GameMode();
    virtual ~GameMode();
 
-   virtual void EnterGameMode() = 0;
-   virtual void LeaveGameMode() = 0;
+   virtual void enterGameMode() = 0;
+   virtual void leaveGameMode() = 0;
 
-   virtual void Draw();
+   virtual void draw();
 
 protected:
 };
