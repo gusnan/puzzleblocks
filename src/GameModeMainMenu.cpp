@@ -18,6 +18,19 @@
  *	If not, see <http://www.gnu.org/licenses/>.
  *
  */
+#include <memory>
+
+#include <cstdlib>
+#include <iostream>
+#include <sstream>
+#include <list>
+
+#include "GusGame/GusGame.h"
+
+using namespace Gus;
+
+using namespace LogLib;
+
 
 #include "GameMode.h"
 #include "GameModeMainMenu.h"
@@ -44,6 +57,7 @@ GameModeMainMenu::~GameModeMainMenu()
  */
 void GameModeMainMenu::EnterGameMode()
 {
+   LOG("Enter Main Menu Gamemode");
 }
 
 
@@ -52,4 +66,5 @@ void GameModeMainMenu::EnterGameMode()
  */
 void GameModeMainMenu::LeaveGameMode()
 {
+   LOG("Leave Main Menu Gamemode");
 }

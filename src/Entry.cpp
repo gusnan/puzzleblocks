@@ -43,8 +43,10 @@ using namespace EventLib;
  */
 int main(int argc,char **argv)
 {
-   std::shared_ptr<EventHandler> eventHandler = std::shared_ptr<EventHandler>();
+   // std::shared_ptr<EventHandler> eventHandler = std::shared_ptr<EventHandler>();
    Bitmap *mouseBitmap = nullptr;
+
+   std::shared_ptr<MainMenuEventHandler> mainMenuEventHandler;
 
    try {
       // init the log - this function takes a string (the log file filename) as
@@ -62,22 +64,23 @@ int main(int argc,char **argv)
       GraphicsHandler::initGraphicsHandler();
 
       // set up a screen with resolution of 640x480, and not fullscreen
-      GraphicsHandler::setGraphicsMode(Vector2d(640, 480), false);
+      GraphicsHandler::setGraphicsMode(Vector2d(720, 360), false);
 
       // set a window title
       GraphicsHandler::setWindowTitle("PuzzleBlocks");
 
       // Create an EventHandler for our "custom" events
-      auto eventHandler = std::make_shared<MainMenuEventHandler>();
+      mainMenuEventHandler = std::make_shared<MainMenuEventHandler>();
 
       EventSystem::initEventSystem();
 
       // set the used EventHandler to the one we just created.
-      EventSystem::addEventHandler(eventHandler);
+      EventSystem::addEventHandler(mainMenuEventHandler);
 
       mouseBitmap = new Bitmap("mouse.png");
 
       Mouse::setMouseBitmap(mouseBitmap);
+
    }
    catch (Exception &e)
    {
@@ -110,13 +113,18 @@ int main(int argc,char **argv)
    delete mouseBitmap;
 
    // Remove our custom eventHandler
-   //delete eventHandler;
+   mainMenuEventHandler.~shared_ptr();
+
+   // Done with the event system
+   EventSystem::doneEventSystem();
 
    // Remove mouse stuff
    Mouse::doneMouse();
 
    // done with system stuff
    System::doneSystem();
+
+   LOG("All done.");
 
    // done with the Log
    LogHandler::doneLog();

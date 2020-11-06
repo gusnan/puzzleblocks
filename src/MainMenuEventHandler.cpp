@@ -40,6 +40,22 @@ using namespace EventLib;
 
 #include "Program.h"
 
+/**
+ *
+ */
+MainMenuEventHandler::MainMenuEventHandler() : EventHandler()
+{
+}
+
+
+/**
+ *
+ */
+MainMenuEventHandler::~MainMenuEventHandler()
+{
+   LOG("MainMenuEventHandler Destructor");
+}
+
 
 /**
  * Handle keyboard presses and releases
@@ -55,6 +71,7 @@ bool MainMenuEventHandler::handleKeyboard(KeyEvent &keyEvent) {
 
       if (keyEvent.getValue() == Key::R) {
          std::cout << "R." << std::endl;
+         return true;
       }
    }
    return false;

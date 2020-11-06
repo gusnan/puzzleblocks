@@ -160,11 +160,11 @@ set(SRC_FOLDER src/)
 
 set (SOURCE_FILES
 	${SRC_FOLDER}/Entry.cpp
-	${SRC_FOLDER}/MainMenuEventHandler.cpp
 	${SRC_FOLDER}/Program.cpp
 
 	${SRC_FOLDER}/GameMode.cpp
 	${SRC_FOLDER}/GameModeMainMenu.cpp
+	${SRC_FOLDER}/MainMenuEventHandler.cpp
 )
 
 add_executable(puzzleblocks ${SOURCE_FILES})
