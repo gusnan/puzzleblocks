@@ -30,6 +30,8 @@ public:
    virtual void EnterGameMode() = 0;
    virtual void LeaveGameMode() = 0;
 
+   virtual void Draw();
+
 protected:
 };
 

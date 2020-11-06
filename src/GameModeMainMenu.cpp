@@ -68,3 +68,12 @@ void GameModeMainMenu::LeaveGameMode()
 {
    LOG("Leave Main Menu Gamemode");
 }
+
+
+/**
+ *
+ */
+void GameModeMainMenu::Draw()
+{
+
+}

@@ -30,6 +30,7 @@ public:
    virtual void EnterGameMode() override;
    virtual void LeaveGameMode() override;
 
+   virtual void Draw() override;
 protected:
 };
 

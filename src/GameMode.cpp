@@ -34,3 +34,11 @@ GameMode::GameMode()
 GameMode::~GameMode()
 {
 }
+
+
+/**
+ *
+ */
+void GameMode::Draw()
+{
+}
