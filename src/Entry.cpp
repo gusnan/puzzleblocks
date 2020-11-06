@@ -37,6 +37,10 @@ using namespace EventLib;
 
 #include "Program.h"
 
+#include "GameMode.h"
+#include "GameModeMainMenu.h"
+#include "GameModeHandler.h"
+
 
 /**
  * main - the standard c++ program main entry point
@@ -74,6 +78,10 @@ int main(int argc,char **argv)
 
       EventSystem::initEventSystem();
 
+      GameModeHandler::initGameModes();
+
+      GameModeHandler::switchGameMode(GameModeHandler::gameModeMainMenu);
+
       // set the used EventHandler to the one we just created.
       EventSystem::addEventHandler(mainMenuEventHandler);
 
@@ -106,11 +114,15 @@ int main(int argc,char **argv)
 
       //System::getMouse()->draw();
 
+      GameModeHandler::draw();
+
       // Update the screen
       GraphicsHandler::updateScreen();
    } while(!Program::quit);
 
    delete mouseBitmap;
+
+   GameModeHandler::doneGameModes();
 
    // Remove our custom eventHandler
    mainMenuEventHandler.~shared_ptr();
