@@ -31,6 +31,8 @@ using namespace Gus;
 
 using namespace LogLib;
 
+using namespace GraphicsLib;
+
 
 #include "GameMode.h"
 #include "GameModeMainMenu.h"
@@ -41,6 +43,7 @@ using namespace LogLib;
  */
 GameModeMainMenu::GameModeMainMenu() : GameMode()
 {
+   LOG("Game Mode Main Menu Constructor");
 }
 
 
@@ -49,13 +52,14 @@ GameModeMainMenu::GameModeMainMenu() : GameMode()
  */
 GameModeMainMenu::~GameModeMainMenu()
 {
+   LOG("Game Mode Main Menu Destructor");
 }
 
 
 /**
  *
  */
-void GameModeMainMenu::EnterGameMode()
+void GameModeMainMenu::enterGameMode()
 {
    LOG("Enter Main Menu Gamemode");
 }
@@ -64,7 +68,7 @@ void GameModeMainMenu::EnterGameMode()
 /**
  *
  */
-void GameModeMainMenu::LeaveGameMode()
+void GameModeMainMenu::leaveGameMode()
 {
    LOG("Leave Main Menu Gamemode");
 }
@@ -73,7 +77,10 @@ void GameModeMainMenu::LeaveGameMode()
 /**
  *
  */
-void GameModeMainMenu::Draw()
+void GameModeMainMenu::draw()
 {
-
+   for (int co1 = 0; co1 < 10; co1++)
+   for (int co2 = 0; co2 < 10; co2++) {
+      Primitives::rect(Rect(co1*20, co2*20, 20, 20), colorWhite);
+   }
 }

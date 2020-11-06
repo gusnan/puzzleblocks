@@ -27,10 +27,10 @@ public:
    GameModeMainMenu();
    virtual ~GameModeMainMenu();
 
-   virtual void EnterGameMode() override;
-   virtual void LeaveGameMode() override;
+   virtual void enterGameMode() override;
+   virtual void leaveGameMode() override;
 
-   virtual void Draw() override;
+   virtual void draw() override;
 protected:
 };
 
