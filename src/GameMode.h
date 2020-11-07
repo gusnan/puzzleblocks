@@ -27,8 +27,8 @@ public:
    GameMode();
    virtual ~GameMode();
 
-   virtual void enterGameMode() = 0;
-   virtual void leaveGameMode() = 0;
+   virtual void enterGameMode();
+   virtual void leaveGameMode();
 
    virtual void draw();
 

@@ -42,3 +42,20 @@ GameMode::~GameMode()
 void GameMode::draw()
 {
 }
+
+
+/**
+ *
+ */
+void GameMode::enterGameMode()
+{
+   LOG("GameMode::enterGameMode");
+}
+
+
+/**
+ *
+ */
+void GameMode::leaveGameMode()
+{
+}
