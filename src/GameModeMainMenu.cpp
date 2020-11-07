@@ -61,6 +61,7 @@ GameModeMainMenu::~GameModeMainMenu()
  */
 void GameModeMainMenu::enterGameMode()
 {
+   GameMode::enterGameMode();
    LOG("Enter Main Menu Gamemode");
 }
 
@@ -70,6 +71,7 @@ void GameModeMainMenu::enterGameMode()
  */
 void GameModeMainMenu::leaveGameMode()
 {
+   GameMode::leaveGameMode();
    LOG("Leave Main Menu Gamemode");
 }
 
