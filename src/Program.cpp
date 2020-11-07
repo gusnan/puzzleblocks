@@ -36,7 +36,6 @@ using namespace EventLib;
 
 namespace Program
 {
-
    bool quit = false;
 
 };
