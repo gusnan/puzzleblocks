@@ -55,6 +55,8 @@ void GameModeHandler::doneGameModes()
 {
    LOG("Done GameModeHandler...");
    
+   switchGameMode(nullptr);
+
    gameModeMainMenu.~shared_ptr();
    
    currentGameMode.~shared_ptr();
