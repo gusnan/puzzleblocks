@@ -1,6 +1,6 @@
 /**
  *
- *	This file is part of PuzzeBlocks
+ *	This file is part of PuzzleBlocks
  *	Copyright (C) 2020 Andreas Rönnquist
  *
  *	PuzzeBlocks is free software: you can redistribute it and/or
