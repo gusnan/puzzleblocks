@@ -33,6 +33,9 @@ using namespace LogLib;
 
 using namespace GraphicsLib;
 
+using namespace EventLib;
+
+#include "MainMenuEventHandler.h"
 
 #include "GameMode.h"
 #include "GameModeMainMenu.h"
@@ -41,9 +44,10 @@ using namespace GraphicsLib;
 /**
  *
  */
-GameModeMainMenu::GameModeMainMenu() : GameMode()
+GameModeMainMenu::GameModeMainMenu() : GameMode(), mainMenuEventHandler(nullptr)
 {
    LOG("Game Mode Main Menu Constructor");
+   mainMenuEventHandler = std::make_shared<MainMenuEventHandler>();
 }
 
 
@@ -63,6 +67,8 @@ void GameModeMainMenu::enterGameMode()
 {
    GameMode::enterGameMode();
    LOG("GameModeMainMenu::enterGameMode");
+
+   EventSystem::addEventHandler(mainMenuEventHandler);
 }
 
 
@@ -73,6 +79,8 @@ void GameModeMainMenu::leaveGameMode()
 {
    GameMode::leaveGameMode();
    LOG("GameModeMainMenu::leaveGameMode");
+
+   EventSystem::removeEventHandler(mainMenuEventHandler);
 }
 
 

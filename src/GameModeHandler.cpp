@@ -29,6 +29,10 @@ using namespace Gus;
 
 using namespace LogLib;
 
+using namespace EventLib;
+
+#include "MainMenuEventHandler.h"
+
 #include "GameMode.h"
 #include "GameModeGame.h"
 #include "GameModeMainMenu.h"
@@ -62,10 +66,10 @@ void GameModeHandler::doneGameModes()
 
    switchGameMode(nullptr);
 
-   gameModeMainMenu.~shared_ptr();
-   gameModeGame.~shared_ptr();
+   // gameModeMainMenu.~shared_ptr();
+   // gameModeGame.~shared_ptr();
 
-   currentGameMode.~shared_ptr();
+   // currentGameMode.~shared_ptr();
 }
 
 

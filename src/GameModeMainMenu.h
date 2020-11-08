@@ -32,6 +32,10 @@ public:
 
    virtual void draw() override;
 protected:
+
+   std::shared_ptr<MainMenuEventHandler> mainMenuEventHandler;
+
+
 };
 
 

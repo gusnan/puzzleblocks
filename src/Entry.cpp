@@ -52,8 +52,6 @@ int main(int argc,char **argv)
    // std::shared_ptr<EventHandler> eventHandler = std::shared_ptr<EventHandler>();
    Bitmap *mouseBitmap = nullptr;
 
-   std::shared_ptr<MainMenuEventHandler> mainMenuEventHandler;
-
    try {
       // init the log - this function takes a string (the log file filename) as
       // indata, if none is inserted, "log.txt" is assumed. If you give the
@@ -77,17 +75,11 @@ int main(int argc,char **argv)
 
       Primitives::initPrimitives();
 
-      // Create an EventHandler for our "custom" events
-      mainMenuEventHandler = std::make_shared<MainMenuEventHandler>();
-
       EventSystem::initEventSystem();
 
       GameModeHandler::initGameModes();
 
       GameModeHandler::switchGameMode(GameModeHandler::gameModeMainMenu);
-
-      // set the used EventHandler to the one we just created.
-      EventSystem::addEventHandler(mainMenuEventHandler);
 
       mouseBitmap = new Bitmap("mouse.png");
 
@@ -127,9 +119,6 @@ int main(int argc,char **argv)
    delete mouseBitmap;
 
    GameModeHandler::doneGameModes();
-
-   // Remove our custom eventHandler
-   mainMenuEventHandler.~shared_ptr();
 
    // Done with the event system
    // EventSystem::doneEventSystem();
