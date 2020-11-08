@@ -18,7 +18,6 @@
  *	If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
 #include <memory>
 
 #include <cstdlib>
@@ -31,49 +30,59 @@
 using namespace Gus;
 
 using namespace LogLib;
-using namespace ExceptionLib;
+
 using namespace GraphicsLib;
-using namespace EventLib;
 
 
-#include "MainMenuEventHandler.h"
+#include "GameMode.h"
+#include "GameModeGame.h"
 
-#include "Program.h"
 
 /**
  *
  */
-MainMenuEventHandler::MainMenuEventHandler()
+GameModeGame::GameModeGame() : GameMode()
 {
+   LOG("Game Mode Game Constructor");
 }
 
 
 /**
  *
  */
-MainMenuEventHandler::~MainMenuEventHandler()
+GameModeGame::~GameModeGame()
 {
-   LOG("MainMenuEventHandler Destructor");
+   LOG("Game Mode Game Destructor");
 }
 
 
 /**
- * Handle keyboard presses and releases
+ *
  */
-bool MainMenuEventHandler::handleKeyboard(KeyEvent &keyEvent) {
+void GameModeGame::enterGameMode()
+{
+   GameMode::enterGameMode();
+   LOG("GameModeGame::enterGameMode");
+}
 
-   // Is it the Escape Button that is pressed? - then quit
-   if (keyEvent.getType() == KeyEventPressed) {
-      if (keyEvent.getValue() == Key::Escape) {
-         Program::quit = true;
-         return true;
-      }
 
-      if (keyEvent.getValue() == Key::R) {
-         std::cout << "R." << std::endl;
-         return true;
-      }
+/**
+ *
+ */
+void GameModeGame::leaveGameMode()
+{
+   GameMode::leaveGameMode();
+   LOG("GameModeGame::leaveGameMode");
+}
+
+
+/**
+ *
+ */
+void GameModeGame::draw()
+{
+   for (int co1 = 0; co1 < 10; co1++)
+   for (int co2 = 0; co2 < 10; co2++) {
+      Primitives::rect(Rect(co1*20, co2*20, 20, 20), colorWhite);
    }
-   return false;
 }
-

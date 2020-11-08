@@ -39,6 +39,7 @@ using namespace EventLib;
 #include "Program.h"
 
 #include "GameMode.h"
+#include "GameModeGame.h"
 #include "GameModeMainMenu.h"
 #include "GameModeHandler.h"
 

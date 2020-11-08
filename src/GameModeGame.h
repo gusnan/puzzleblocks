@@ -18,24 +18,21 @@
  *	If not, see <http://www.gnu.org/licenses/>.
  *
  */
+#ifndef __HEADER_GAME_MODE_GAME_
+#define __HEADER_GAME_MODE_GAME_
 
-#ifndef __HEADER_GAME_MODE_HANDLER_
-#define __HEADER_GAME_MODE_HANDLER_
-
-namespace GameModeHandler
+class GameModeGame : public GameMode
 {
-   void initGameModes();
-   void doneGameModes();
+public:
+   GameModeGame();
+   virtual ~GameModeGame();
 
-   void switchGameMode(std::shared_ptr<GameMode> gameMode);
+   virtual void enterGameMode() override;
+   virtual void leaveGameMode() override;
 
-   void draw();
-
-   extern std::shared_ptr<GameMode> currentGameMode;
-   
-   extern std::shared_ptr<GameModeMainMenu> gameModeMainMenu;
-   extern std::shared_ptr<GameModeGame> gameModeGame;
-   
+   virtual void draw() override;
+protected:
 };
 
-#endif /*__HEADER_GAME_MODE_HANDLER_*/
+
+#endif /*__HEADER_GAME_MODE_GAME_*/

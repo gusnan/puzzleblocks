@@ -30,6 +30,7 @@ using namespace Gus;
 using namespace LogLib;
 
 #include "GameMode.h"
+#include "GameModeGame.h"
 #include "GameModeMainMenu.h"
 #include "GameModeHandler.h"
 
@@ -37,14 +38,18 @@ std::shared_ptr<GameMode> GameModeHandler::currentGameMode = nullptr;
 
 std::shared_ptr<GameModeMainMenu> GameModeHandler::gameModeMainMenu = nullptr;
 
+std::shared_ptr<GameModeGame> GameModeHandler::gameModeGame = nullptr;
+
 /**
  *
  */
 void GameModeHandler::initGameModes()
 {
    LOG("Init GameModeHandler...");
-   
+
    gameModeMainMenu = std::make_shared<GameModeMainMenu>();
+
+   gameModeGame = std::make_shared<GameModeGame>();
 }
 
 
@@ -54,11 +59,12 @@ void GameModeHandler::initGameModes()
 void GameModeHandler::doneGameModes()
 {
    LOG("Done GameModeHandler...");
-   
+
    switchGameMode(nullptr);
 
    gameModeMainMenu.~shared_ptr();
-   
+   gameModeGame.~shared_ptr();
+
    currentGameMode.~shared_ptr();
 }
 
@@ -73,7 +79,7 @@ void GameModeHandler::switchGameMode(std::shared_ptr<GameMode> inGameMode)
    }
 
    currentGameMode = inGameMode;
-   
+
    if (currentGameMode != nullptr) {
       currentGameMode->enterGameMode();
    }
@@ -86,7 +92,7 @@ void GameModeHandler::switchGameMode(std::shared_ptr<GameMode> inGameMode)
 void GameModeHandler::draw()
 {
    if (currentGameMode != nullptr) {
-      
+
       currentGameMode->draw();
    }
 }
