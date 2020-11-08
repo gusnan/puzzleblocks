@@ -31,7 +31,7 @@ using namespace LogLib;
 
 using namespace EventLib;
 
-#include "MainMenuEventHandler.h"
+#include "EventHandlerMainMenu.h"
 
 #include "GameMode.h"
 #include "GameModeGame.h"

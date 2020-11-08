@@ -34,7 +34,7 @@ using namespace ExceptionLib;
 using namespace GraphicsLib;
 using namespace EventLib;
 
-#include "MainMenuEventHandler.h"
+#include "EventHandlerMainMenu.h"
 
 #include "Program.h"
 

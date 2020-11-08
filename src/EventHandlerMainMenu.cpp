@@ -36,14 +36,14 @@ using namespace GraphicsLib;
 using namespace EventLib;
 
 
-#include "MainMenuEventHandler.h"
+#include "EventHandlerMainMenu.h"
 
 #include "Program.h"
 
 /**
  *
  */
-MainMenuEventHandler::MainMenuEventHandler()
+EventHandlerMainMenu::EventHandlerMainMenu()
 {
 }
 
@@ -51,16 +51,16 @@ MainMenuEventHandler::MainMenuEventHandler()
 /**
  *
  */
-MainMenuEventHandler::~MainMenuEventHandler()
+EventHandlerMainMenu::~EventHandlerMainMenu()
 {
-   LOG("MainMenuEventHandler Destructor");
+   LOG("EventHandlerMainMenu Destructor");
 }
 
 
 /**
  * Handle keyboard presses and releases
  */
-bool MainMenuEventHandler::handleKeyboard(KeyEvent &keyEvent) {
+bool EventHandlerMainMenu::handleKeyboard(KeyEvent &keyEvent) {
 
    // Is it the Escape Button that is pressed? - then quit
    if (keyEvent.getType() == KeyEventPressed) {
