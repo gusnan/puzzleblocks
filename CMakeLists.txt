@@ -185,7 +185,7 @@ set (SOURCE_FILES
 	${SRC_FOLDER}/GameModeMainMenu.cpp
 	${SRC_FOLDER}/GameModeGame.cpp
 	${SRC_FOLDER}/EventHandlerMainMenu.cpp
-	${SRC_FOLDER}/GameEventHandler.cpp
+	${SRC_FOLDER}/EventHandlerGame.cpp
 	${SRC_FOLDER}/GameModeHandler.cpp
 )
 

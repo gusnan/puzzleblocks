@@ -19,20 +19,20 @@
  *
  */
 
-#ifndef __HEADER_GAME_EVENTHANDLER_
-#define __HEADER_GAME_EVENTHANDLER_
+#ifndef __HEADER_EVENTHANDLER_GAME_
+#define __HEADER_EVENTHANDLER_GAME_
 
 /**
  * This is an Eventhandler that takes care of the keyboard events, mouse motion
  *	events, and the Quit events. (This event is pushed when you press the close
  * window button for example)
  */
-class GameEventHandler : public EventHandler /*, std::enable_shared_from_this<EventHandler>*/
+class EventHandlerGame : public EventHandler /*, std::enable_shared_from_this<EventHandler>*/
 {
 public:
 
-   GameEventHandler();
-   virtual ~GameEventHandler();
+   EventHandlerGame();
+   virtual ~EventHandlerGame();
 
    /**
     * Handle keyboard presses and releases
@@ -42,4 +42,4 @@ public:
 };
 
 
-#endif /*__HEADER_GAME_EVENTHANDLER_*/
+#endif /*__HEADER_EVENTHANDLER_GAME_*/
