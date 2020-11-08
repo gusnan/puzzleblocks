@@ -74,6 +74,8 @@ int main(int argc,char **argv)
       // set a window title
       GraphicsHandler::setWindowTitle("PuzzleBlocks");
 
+      Primitives::initPrimitives();
+
       // Create an EventHandler for our "custom" events
       mainMenuEventHandler = std::make_shared<MainMenuEventHandler>();
 
@@ -129,7 +131,11 @@ int main(int argc,char **argv)
    mainMenuEventHandler.~shared_ptr();
 
    // Done with the event system
-   EventSystem::doneEventSystem();
+   // EventSystem::doneEventSystem();
+
+   Primitives::donePrimitives();
+
+   GraphicsHandler::doneGraphicsHandler();
 
    // Remove mouse stuff
    Mouse::doneMouse();
