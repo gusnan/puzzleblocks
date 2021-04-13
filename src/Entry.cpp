@@ -37,7 +37,7 @@ using namespace EventLib;
 using std::cout;
 using std::stringstream;
 
-#include "EventHandlerMainMenu.h"
+#include "EventHandler/EventHandlerMainMenu.h"
 
 #include "Program.h"
 
