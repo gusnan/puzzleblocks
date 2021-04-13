@@ -34,6 +34,9 @@ using namespace ExceptionLib;
 using namespace GraphicsLib;
 using namespace EventLib;
 
+using std::cout;
+using std::stringstream;
+
 #include "EventHandlerMainMenu.h"
 
 #include "Program.h"
@@ -63,6 +66,11 @@ int main(int argc,char **argv)
 
       // init system stuff
       System::initSystem();
+
+      // allegro version
+      stringstream st;
+      st << "Allegro version: " << System::getAllegroVersionString();
+      STLOG(st);
 
       // Init the graphics stuff
       GraphicsHandler::initGraphicsHandler();
