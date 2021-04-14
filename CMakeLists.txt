@@ -181,12 +181,12 @@ set (SOURCE_FILES
 	${SRC_FOLDER}/Entry.cpp
 	${SRC_FOLDER}/Program.cpp
 
-	${SRC_FOLDER}/GameMode.cpp
-	${SRC_FOLDER}/GameModeMainMenu.cpp
-	${SRC_FOLDER}/GameModeGame.cpp
+	${SRC_FOLDER}/GameMode/GameMode.cpp
+	${SRC_FOLDER}/GameMode/GameModeMainMenu.cpp
+	${SRC_FOLDER}/GameMode/GameModeGame.cpp
+	${SRC_FOLDER}/GameMode/GameModeHandler.cpp
 	${SRC_FOLDER}/EventHandler/EventHandlerMainMenu.cpp
 	${SRC_FOLDER}/EventHandler/EventHandlerGame.cpp
-	${SRC_FOLDER}/GameModeHandler.cpp
 )
 
 add_executable(puzzleblocks ${SOURCE_FILES})

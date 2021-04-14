@@ -41,10 +41,10 @@ using std::stringstream;
 
 #include "Program.h"
 
-#include "GameMode.h"
-#include "GameModeGame.h"
-#include "GameModeMainMenu.h"
-#include "GameModeHandler.h"
+#include "GameMode/GameMode.h"
+#include "GameMode/GameModeGame.h"
+#include "GameMode/GameModeMainMenu.h"
+#include "GameMode/GameModeHandler.h"
 
 
 /**
