@@ -24,7 +24,7 @@
 class GameMode
 {
 public:
-   GameMode();
+   GameMode() = default;
    virtual ~GameMode();
 
    virtual void enterGameMode();

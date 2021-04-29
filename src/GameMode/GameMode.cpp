@@ -30,13 +30,6 @@ using namespace LogLib;
 
 #include "GameMode.h"
 
-/**
- *
- */
-GameMode::GameMode()
-{
-}
-
 
 /**
  *
