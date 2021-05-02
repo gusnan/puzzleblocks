@@ -1,7 +1,7 @@
 /**
  *
  *	This file is part of PuzzleBlocks
- *	Copyright (C) 2020 Andreas Rönnquist
+ *	Copyright (C) 2020-2021 Andreas Rönnquist
  *
  *	PuzzleBlocks is free software: you can redistribute it and/or
  *	modify it under the terms of the GNU General Public License as published
@@ -65,7 +65,7 @@ bool EventHandlerMainMenu::handleKeyboard(KeyEvent &keyEvent) {
    // Is it the Escape Button that is pressed? - then quit
    if (keyEvent.getType() == KeyEventPressed) {
       if (keyEvent.getValue() == Key::Escape) {
-         Program::quit = true;
+         Program::instance()->setQuit();
          return true;
       }
 

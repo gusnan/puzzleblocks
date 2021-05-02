@@ -1,7 +1,7 @@
 /**
  *
  *	This file is part of PuzzleBlocks
- *	Copyright (C) 2020 Andreas Rönnquist
+ *	Copyright (C) 2020-2021 Andreas Rönnquist
  *
  *	PuzzleBlocks is free software: you can redistribute it and/or
  *	modify it under the terms of the GNU General Public License as published
@@ -22,10 +22,32 @@
 #define __HEADER_PROGRAM_
 
 
-namespace Program
+class Program
 {
+public:
+   static Program *instance();
 
-   extern bool quit;
+   virtual ~Program() = default;
+
+   bool getQuit();
+   void setQuit(bool inQuit = true);
+
+   void doneProgram();
+
+   void mainLoop();
+
+protected:
+   Program();
+   bool m_Quit;
+
+private:
+   static Program *_instance;
+
+   Program(const Program &inProgram);
+
+   Program &operator=(const Program &inProgram);
+
+   Bitmap *mouseBitmap = nullptr;
 
 };
 

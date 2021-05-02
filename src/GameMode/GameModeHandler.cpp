@@ -66,8 +66,8 @@ void GameModeHandler::doneGameModes()
 
    switchGameMode(nullptr);
 
-   // gameModeMainMenu.~shared_ptr();
-   // gameModeGame.~shared_ptr();
+   gameModeMainMenu.~shared_ptr();
+   gameModeGame.~shared_ptr();
 
    // currentGameMode.~shared_ptr();
 }

@@ -1,7 +1,7 @@
 /**
  *
  *	This file is part of PuzzleBlocks
- *	Copyright (C) 2020 Andreas Rönnquist
+ *	Copyright (C) 2020-2021 Andreas Rönnquist
  *
  *	PuzzleBlocks is free software: you can redistribute it and/or
  *	modify it under the terms of the GNU General Public License as published
@@ -35,17 +35,8 @@ using namespace GraphicsLib;
 using namespace EventLib;
 
 using std::cout;
-using std::stringstream;
-
-#include "EventHandler/EventHandlerMainMenu.h"
 
 #include "Program.h"
-
-#include "GameMode/GameMode.h"
-#include "GameMode/GameModeGame.h"
-#include "GameMode/GameModeMainMenu.h"
-#include "GameMode/GameModeHandler.h"
-
 
 /**
  * main - the standard c++ program main entry point
@@ -53,46 +44,9 @@ using std::stringstream;
 int main(int argc,char **argv)
 {
    // std::shared_ptr<EventHandler> eventHandler = std::shared_ptr<EventHandler>();
-   Bitmap *mouseBitmap = nullptr;
 
    try {
-      // init the log - this function takes a string (the log file filename) as
-      // indata, if none is inserted, "log.txt" is assumed. If you give the
-      // empty string "" as filename for the log, no log will be used.
-      //
-      // The second indata is a boolean to determine to print the log to
-      // std::cout or not in addition to to the file.
-      LogHandler::initLog("log.txt", true);
-
-      // init system stuff
-      System::initSystem();
-
-      // allegro version
-      stringstream st;
-      st << "Allegro version: " << System::getAllegroVersionString();
-      STLOG(st);
-
-      // Init the graphics stuff
-      GraphicsHandler::initGraphicsHandler();
-
-      // set up a screen with resolution of 640x480, and not fullscreen
-      GraphicsHandler::setGraphicsMode(Vector2d(720, 360), false);
-
-      // set a window title
-      GraphicsHandler::setWindowTitle("PuzzleBlocks");
-
-      Primitives::initPrimitives();
-
-      EventSystem::initEventSystem();
-
-      GameModeHandler::initGameModes();
-
-      GameModeHandler::switchGameMode(GameModeHandler::gameModeMainMenu);
-
-      mouseBitmap = new Bitmap("mouse.png");
-
-      Mouse::setMouseBitmap(mouseBitmap);
-
+      Program::instance();
    }
    catch (Exception &e)
    {
@@ -105,46 +59,9 @@ int main(int argc,char **argv)
 
    LOG("Enter main loop.");
 
-   // the main loop
-   do {
-      // Update the timer
-      Timer::updateFrame();
+   Program::instance()->mainLoop();
 
-      // Handle events (see the class just above this main
-      EventSystem::handleEvents();
-
-      // Clear the screen every sync
-      GraphicsHandler::clearScreen();
-
-      //System::getMouse()->draw();
-
-      GameModeHandler::draw();
-
-      // Update the screen
-      GraphicsHandler::updateScreen();
-   } while(!Program::quit);
-
-   delete mouseBitmap;
-
-   GameModeHandler::doneGameModes();
-
-   // Done with the event system
-   // EventSystem::doneEventSystem();
-
-   Primitives::donePrimitives();
-
-   GraphicsHandler::doneGraphicsHandler();
-
-   // Remove mouse stuff
-   Mouse::doneMouse();
-
-   // done with system stuff
-   System::doneSystem();
-
-   LOG("All done.");
-
-   // done with the Log
-   LogHandler::doneLog();
+   Program::instance()->doneProgram();
 
    return EXIT_SUCCESS;
 }
