@@ -68,7 +68,7 @@ Program &Program::operator=(const Program &inProgram)
    return *this;
 }
 
-Program::Program() : m_Quit(false), mouseBitmap(nullptr)
+Program::Program() : m_Quit(false), m_MouseBitmap(nullptr)
 {
    try {
       // init the log - this function takes a string (the log file filename) as
@@ -104,9 +104,9 @@ Program::Program() : m_Quit(false), mouseBitmap(nullptr)
 
       GameModeHandler::switchGameMode(GameModeHandler::gameModeMainMenu);
 
-      mouseBitmap = new Bitmap("mouse.png");
+      m_MouseBitmap = new Bitmap("mouse.png");
 
-      Mouse::setMouseBitmap(mouseBitmap);
+      Mouse::setMouseBitmap(m_MouseBitmap);
 
    }
    catch (Exception &e)
@@ -127,7 +127,7 @@ void Program::setQuit(bool iQuit) {
 
 void Program::doneProgram()
 {
-   delete mouseBitmap;
+   delete m_MouseBitmap;
 
    GameModeHandler::doneGameModes();
 

@@ -38,7 +38,6 @@ public:
 
 protected:
    Program();
-   bool m_Quit;
 
 private:
    static Program *_instance;
@@ -47,7 +46,8 @@ private:
 
    Program &operator=(const Program &inProgram);
 
-   Bitmap *mouseBitmap = nullptr;
+   Bitmap *m_MouseBitmap = nullptr;
+   bool m_Quit;
 
 };
 
