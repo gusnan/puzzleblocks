@@ -59,9 +59,7 @@ int main(int argc,char **argv)
 
    LOG("Enter main loop.");
 
-   Program::instance()->mainLoop();
-
-   Program::instance()->doneProgram();
+   Program::instance().mainLoop();
 
    return EXIT_SUCCESS;
 }

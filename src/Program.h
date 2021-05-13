@@ -25,26 +25,24 @@
 class Program
 {
 public:
-   static Program *instance();
-
-   virtual ~Program() = default;
+   static Program &instance();
 
    bool getQuit();
    void setQuit(bool inQuit = true);
-
-   void doneProgram();
 
    void mainLoop();
 
 protected:
    Program();
 
-private:
-   static Program *_instance;
+   virtual ~Program();
 
+private:
    Program(const Program &inProgram);
 
    Program &operator=(const Program &inProgram);
+
+   void doneProgram();
 
    Bitmap *m_MouseBitmap = nullptr;
    bool m_Quit;

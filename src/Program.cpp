@@ -46,19 +46,21 @@ using namespace EventLib;
 #include "GameMode/GameModeHandler.h"
 
 
-Program *Program::_instance = nullptr;
 
-
-Program *Program::instance()
+Program &Program::instance()
 {
-   if (_instance == nullptr) {
-      _instance = new Program();
-   }
-   return _instance;
+   static Program instance;
+
+   return instance;
 }
 
 Program::Program(const Program &inProgram) : m_Quit(inProgram.m_Quit)
 {
+}
+
+Program::~Program()
+{
+   doneProgram();
 }
 
 Program &Program::operator=(const Program &inProgram)
