@@ -113,7 +113,7 @@ Program::Program() : m_Quit(false), m_MouseBitmap(nullptr)
    }
    catch (Exception &e)
    {
-      throw e;
+      throw;
    }
 }
 
