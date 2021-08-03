@@ -43,7 +43,7 @@ using namespace EventLib;
 /**
  *
  */
-EventHandlerGame::EventHandlerGame()
+EventHandlerGame::EventHandlerGame() : EventHandler()
 {
 }
 
