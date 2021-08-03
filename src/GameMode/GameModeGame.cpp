@@ -33,6 +33,9 @@ using namespace LogLib;
 
 using namespace GraphicsLib;
 
+using namespace EventLib;
+
+#include "EventHandler/EventHandlerGame.h"
 
 #include "GameMode.h"
 #include "GameModeGame.h"
@@ -41,9 +44,11 @@ using namespace GraphicsLib;
 /**
  *
  */
-GameModeGame::GameModeGame() : GameMode()
+GameModeGame::GameModeGame() : GameMode(), gameEventHandler(nullptr)
 {
    LOG("Game Mode Game Constructor");
+
+   gameEventHandler = std::make_shared<EventHandlerGame>();
 }
 
 

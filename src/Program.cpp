@@ -37,6 +37,7 @@ using namespace GraphicsLib;
 using namespace EventLib;
 
 #include "EventHandler/EventHandlerMainMenu.h"
+#include "EventHandler/EventHandlerGame.h"
 
 #include "Program.h"
 
