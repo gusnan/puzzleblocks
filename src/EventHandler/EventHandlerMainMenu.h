@@ -31,7 +31,7 @@ class EventHandlerMainMenu : public EventHandler /*, std::enable_shared_from_thi
 {
 public:
 
-   EventHandlerMainMenu();
+   EventHandlerMainMenu() = default;
    virtual ~EventHandlerMainMenu();
 
    /**

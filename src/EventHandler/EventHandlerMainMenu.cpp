@@ -40,13 +40,6 @@ using namespace EventLib;
 
 #include "Program.h"
 
-/**
- *
- */
-EventHandlerMainMenu::EventHandlerMainMenu()
-{
-}
-
 
 /**
  *
