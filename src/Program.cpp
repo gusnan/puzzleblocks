@@ -171,6 +171,6 @@ void Program::mainLoop()
 
       // Update the screen
       GraphicsHandler::updateScreen();
-   } while(!m_Quit);
+   } while(!getQuit());
 
 }
