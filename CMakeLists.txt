@@ -104,8 +104,6 @@ endif(WIN32)
 find_package(OpenGL REQUIRED)
 find_package(GusGame REQUIRED)
 
-# find_package(Boost REQUIRED )
-
 message(STATUS "GusGame Library: ${GUSGAME_LIBRARY}")
 
 
@@ -190,3 +188,5 @@ set (SOURCE_FILES
 )
 
 add_executable(puzzleblocks ${SOURCE_FILES})
+
+target_link_libraries(puzzleblocks ${ALL_LIBS})
