@@ -70,7 +70,7 @@ void GameModeHandler::doneGameModes()
    gameModeMainMenu.~shared_ptr();
    gameModeGame.~shared_ptr();
 
-   // currentGameMode.~shared_ptr();
+   currentGameMode.~shared_ptr();
 }
 
 
