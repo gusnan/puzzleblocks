@@ -1,5 +1,7 @@
 
 
+This program requires the gusgame library, and Allegro 5.2.
+
 Program.cpp:
 
 You cannot delete the mouse bitmap before calling Mouse::doneMouse(), that
