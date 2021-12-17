@@ -55,9 +55,8 @@ Program &Program::instance()
    return instance;
 }
 
-Program::Program(const Program &inProgram) : m_Quit(inProgram.m_Quit)
+Program::Program(const Program &inProgram) : m_Quit(inProgram.m_Quit), m_MouseBitmap(inProgram.m_MouseBitmap->makeCopy())
 {
-   m_MouseBitmap = inProgram.m_MouseBitmap->makeCopy();
 }
 
 Program::~Program()
