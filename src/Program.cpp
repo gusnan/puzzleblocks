@@ -145,7 +145,7 @@ void Program::doneProgram()
    // Remove mouse stuff
    Mouse::doneMouse();
 
-   // Delete mouse after we remove mouse functionality.
+   // Delete mouse after we remove mouse functionality in Mouse::doneMouse.
    // if (m_MouseBitmap != nullptr) delete m_MouseBitmap;
    m_MouseBitmap.reset();
 
