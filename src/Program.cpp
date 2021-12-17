@@ -57,6 +57,7 @@ Program &Program::instance()
 
 Program::Program(const Program &inProgram) : m_Quit(inProgram.m_Quit)
 {
+   m_MouseBitmap = inProgram.m_MouseBitmap->makeCopy();
 }
 
 Program::~Program()
@@ -67,6 +68,8 @@ Program::~Program()
 Program &Program::operator=(const Program &inProgram)
 {
    this->setQuit(inProgram.m_Quit);
+   
+   this->m_MouseBitmap = inProgram.m_MouseBitmap->makeCopy();
 
    return *this;
 }
@@ -130,12 +133,11 @@ void Program::setQuit(bool iQuit) {
 
 void Program::doneProgram()
 {
-   delete m_MouseBitmap;
 
    GameModeHandler::doneGameModes();
 
    // Done with the event system
-   // EventSystem::doneEventSystem();
+   EventSystem::doneEventSystem();
 
    Primitives::donePrimitives();
 
@@ -143,6 +145,8 @@ void Program::doneProgram()
 
    // Remove mouse stuff
    Mouse::doneMouse();
+   
+   if (m_MouseBitmap != nullptr) delete m_MouseBitmap;
 
    // done with system stuff
    System::doneSystem();
