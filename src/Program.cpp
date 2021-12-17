@@ -110,7 +110,7 @@ Program::Program() : m_Quit(false), m_MouseBitmap(nullptr)
 
       GameModeHandler::switchGameMode(GameModeHandler::gameModeMainMenu);
 
-      m_MouseBitmap = new Bitmap("mouse.png");
+      m_MouseBitmap = std::make_shared<Bitmap>("mouse.png");
 
       Mouse::setMouseBitmap(m_MouseBitmap);
 
@@ -147,7 +147,8 @@ void Program::doneProgram()
    Mouse::doneMouse();
 
    // Delete mouse after we remove mouse functionality.
-   if (m_MouseBitmap != nullptr) delete m_MouseBitmap;
+   // if (m_MouseBitmap != nullptr) delete m_MouseBitmap;
+   m_MouseBitmap.reset();
 
    // done with system stuff
    System::doneSystem();

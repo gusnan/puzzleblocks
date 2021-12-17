@@ -44,7 +44,7 @@ private:
 
    void doneProgram();
 
-   Bitmap *m_MouseBitmap = nullptr;
+   std::shared_ptr<Bitmap> m_MouseBitmap = nullptr;
    bool m_Quit;
 
 };
