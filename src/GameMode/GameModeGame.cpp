@@ -68,6 +68,8 @@ void GameModeGame::enterGameMode()
 {
    GameMode::enterGameMode();
    LOG("GameModeGame::enterGameMode");
+
+   EventSystem::addEventHandler(gameEventHandler);
 }
 
 
@@ -78,6 +80,8 @@ void GameModeGame::leaveGameMode()
 {
    GameMode::leaveGameMode();
    LOG("GameModeGame::leaveGameMode");
+
+   EventSystem::removeEventHandler(gameEventHandler);
 }
 
 

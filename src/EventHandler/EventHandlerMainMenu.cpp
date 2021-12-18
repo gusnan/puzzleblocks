@@ -35,8 +35,15 @@ using namespace ExceptionLib;
 using namespace GraphicsLib;
 using namespace EventLib;
 
-
+#include "EventHandlerGame.h"
 #include "EventHandlerMainMenu.h"
+
+#include "../GameMode/GameMode.h"
+#include "../GameMode/GameModeGame.h"
+#include "../GameMode/GameModeMainMenu.h"
+#include "../GameMode/GameModeHandler.h"
+
+
 
 #include "Program.h"
 
@@ -64,6 +71,11 @@ bool EventHandlerMainMenu::handleKeyboard(KeyEvent &keyEvent) {
 
       if (keyEvent.getValue() == Key::R) {
          std::cout << "R." << std::endl;
+         return true;
+      }
+
+      if (keyEvent.getValue() == Key::K) {
+         GameModeHandler::switchGameMode(GameModeHandler::gameModeGame);
          return true;
       }
    }

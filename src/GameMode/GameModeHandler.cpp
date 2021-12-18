@@ -67,10 +67,10 @@ void GameModeHandler::doneGameModes()
 
    switchGameMode(nullptr);
 
-   gameModeMainMenu.~shared_ptr();
-   gameModeGame.~shared_ptr();
+   gameModeMainMenu.reset();
+   gameModeGame.reset();
 
-   currentGameMode.~shared_ptr();
+   // currentGameMode.~shared_ptr();
 }
 
 
