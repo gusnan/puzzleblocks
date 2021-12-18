@@ -6,31 +6,3 @@
 #  valgrind --leak-check=full --gen-suppressions=all ./puzzleblocks 
 #
 
-{
-   GameModeHandler_Supp1
-   Memcheck:Addr4
-   fun:__exchange_and_add
-   fun:__exchange_and_add_dispatch
-   fun:_ZNSt16_Sp_counted_baseILN9__gnu_cxx12_Lock_policyE2EE10_M_releaseEv
-   fun:_ZNSt14__shared_countILN9__gnu_cxx12_Lock_policyE2EED1Ev
-   fun:_ZNSt12__shared_ptrI12GameModeGameLN9__gnu_cxx12_Lock_policyE2EED1Ev
-   fun:_ZNSt10shared_ptrI12GameModeGameED1Ev
-   fun:__run_exit_handlers
-   fun:exit
-   fun:(below main)
-}
-
-
-{
-   GameModeHandler_Supp2
-   Memcheck:Addr4
-   fun:__exchange_and_add
-   fun:__exchange_and_add_dispatch
-   fun:_ZNSt16_Sp_counted_baseILN9__gnu_cxx12_Lock_policyE2EE10_M_releaseEv
-   fun:_ZNSt14__shared_countILN9__gnu_cxx12_Lock_policyE2EED1Ev
-   fun:_ZNSt12__shared_ptrI16GameModeMainMenuLN9__gnu_cxx12_Lock_policyE2EED1Ev
-   fun:_ZNSt10shared_ptrI16GameModeMainMenuED1Ev
-   fun:__run_exit_handlers
-   fun:exit
-   fun:(below main)
-}
