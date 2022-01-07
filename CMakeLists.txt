@@ -179,6 +179,12 @@ set (SOURCE_FILES
 	${SRC_FOLDER}/Entry.cpp
 	${SRC_FOLDER}/Program.cpp
 
+	${SRC_FOLDER}/Map.h
+	${SRC_FOLDER}/Map.cpp
+
+	${SRC_FOLDER}/Block.cpp
+	${SRC_FOLDER}/Block.h
+
 	${SRC_FOLDER}/GameMode/GameMode.cpp
 	${SRC_FOLDER}/GameMode/GameModeMainMenu.cpp
 	${SRC_FOLDER}/GameMode/GameModeGame.cpp
