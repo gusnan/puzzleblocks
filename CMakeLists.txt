@@ -32,28 +32,28 @@ option (DEBUG "Build Debug executable" off)
 find_package(Allegro5 REQUIRED)
 
 if (DEBUG)
-	message(STATUS "Building Debug executable")
-	set(CMAKE_BUILD_TYPE "Debug")
-	add_definitions(-D_DEBUG)
-	#add_definitions(-Wwrite-strings
-			#-Wextra
-			#-Wall
-			#-Winit-self
-			#-O
-			#-Wno-uninitialized
-			#-Wno-unused-parameter
-			#-Wno-switch
-			#-w
-			#-Wreturn-type
-			#-Weffc++
-		#)
-	# Cpp only flags: (Will not be applied to C files.)
-	set(CMAKE_CXX_FLAGS -Weffc++)
+   message(STATUS "Building Debug executable")
+   set(CMAKE_BUILD_TYPE "Debug")
+   add_definitions(-D_DEBUG)
+   #add_definitions(-Wwrite-strings
+         #-Wextra
+         #-Wall
+         #-Winit-self
+         #-O
+         #-Wno-uninitialized
+         #-Wno-unused-parameter
+         #-Wno-switch
+         #-w
+         #-Wreturn-type
+         #-Weffc++
+      #)
+   # Cpp only flags: (Will not be applied to C files.)
+   set(CMAKE_CXX_FLAGS -Weffc++)
 
 else (DEBUG)
-	message(STATUS "Building Release executable")
-	#add_definitions(-fomit-frame-pointer)
-	set(CMAKE_BUILD_TYPE "Release")
+   message(STATUS "Building Release executable")
+   #add_definitions(-fomit-frame-pointer)
+   set(CMAKE_BUILD_TYPE "Release")
 
 endif (DEBUG)
 
@@ -64,7 +64,7 @@ set(BUILD_SHARED_LIBS on)
 SET(CMAKE_SHARED_LIBRARY_CXX_FLAGS "${CMAKE_SHARED_LIBRARY_CXX_FLAGS} -DBUILDING_GUSGAME_DLL")
 
 if (MSYS)
-	set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-enable-auto-import")
+   set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-enable-auto-import")
 endif (MSYS)
 
 
@@ -93,11 +93,11 @@ include_directories(include ${LUA_INCLUDE_DIR})
 
 
 if (WIN32)
-	if (MSYS)
-		Set (WINGL_LIBS glu32)
-	else (MSYS)
-		Set (WINGL_LIBS glu32)
-	endif (MSYS)
+   if (MSYS)
+      Set (WINGL_LIBS glu32)
+   else (MSYS)
+      Set (WINGL_LIBS glu32)
+   endif (MSYS)
 
 endif(WIN32)
 
@@ -114,14 +114,14 @@ include_directories(include ${GUSGAME_INCLUDE_DIR})
 include_directories(include ${Boost_INCLUDE_DIR})
 
 if (MSYS)
-	message(STATUS "MingDir: $ENV{MINGDIR}")
+   message(STATUS "MingDir: $ENV{MINGDIR}")
 endif (MSYS)
 
 message(STATUS "Boost INCLUDE_DIR: ${Boost_INCLUDE_DIR}")
 message(STATUS "GUSGAME_INCLUDE_DIR: ${GUSGAME_INCLUDE_DIR}")
 
 if (NOT ALLEGRO_FOUND)
-	message(FATAL_ERROR "Allegro not found!")
+   message(FATAL_ERROR "Allegro not found!")
 endif (NOT ALLEGRO_FOUND)
 
 # And some libs:
@@ -137,27 +137,27 @@ message(STATUS "GUSGAME_LIBRARY: ${GUSGAME_LIBRARY}")
 message(STATUS "Boost_LIBRARIES: ${Boost_LIBRARIES}")
 
 if (USE_GLEW)
-	set (MY_GLEW_LIB ${GLEW_LIBRARY})
+   set (MY_GLEW_LIB ${GLEW_LIBRARY})
 else (USE_GLEW)
-	set (MY_GLEW_LIB )
+   set (MY_GLEW_LIB )
 endif (USE_GLEW)
 
 if (MSYS)
-	set (GL_LIBS ${OPENGL_LIBRARY} ${OPENGL_LIBRARIES})
+   set (GL_LIBS ${OPENGL_LIBRARY} ${OPENGL_LIBRARIES})
 else (MSYS)
-	set (GL_LIBS ${OPENGL_LIBRARY})
+   set (GL_LIBS ${OPENGL_LIBRARY})
 endif (MSYS)
 
 set(ALL_LIBS
 
-	${LUA_LIBRARIES}
-	${GL_LIBS}
-	${GLUT_LIBRARY}
-	${WINGL_LIBS}
-	${MY_GLEW_LIB}
-	${Boost_LIBRARIES}
-	${GUSGAME_LIBRARIES}
-	${ALLEGRO_LIBRARIES}
+   ${LUA_LIBRARIES}
+   ${GL_LIBS}
+   ${GLUT_LIBRARY}
+   ${WINGL_LIBS}
+   ${MY_GLEW_LIB}
+   ${Boost_LIBRARIES}
+   ${GUSGAME_LIBRARIES}
+   ${ALLEGRO_LIBRARIES}
 )
 
 
@@ -176,21 +176,21 @@ message (STATUS "Library output path: ${LIBRARY_OUTPUT_PATH}")
 set(SRC_FOLDER src/)
 
 set (SOURCE_FILES
-	${SRC_FOLDER}/Entry.cpp
-	${SRC_FOLDER}/Program.cpp
+   ${SRC_FOLDER}/Entry.cpp
+   ${SRC_FOLDER}/Program.cpp
 
-	${SRC_FOLDER}/Map.h
-	${SRC_FOLDER}/Map.cpp
+   ${SRC_FOLDER}/Map.h
+   ${SRC_FOLDER}/Map.cpp
 
-	${SRC_FOLDER}/Block.cpp
-	${SRC_FOLDER}/Block.h
+   ${SRC_FOLDER}/Block.cpp
+   ${SRC_FOLDER}/Block.h
 
-	${SRC_FOLDER}/GameMode/GameMode.cpp
-	${SRC_FOLDER}/GameMode/GameModeMainMenu.cpp
-	${SRC_FOLDER}/GameMode/GameModeGame.cpp
-	${SRC_FOLDER}/GameMode/GameModeHandler.cpp
-	${SRC_FOLDER}/EventHandler/EventHandlerMainMenu.cpp
-	${SRC_FOLDER}/EventHandler/EventHandlerGame.cpp
+   ${SRC_FOLDER}/GameMode/GameMode.cpp
+   ${SRC_FOLDER}/GameMode/GameModeMainMenu.cpp
+   ${SRC_FOLDER}/GameMode/GameModeGame.cpp
+   ${SRC_FOLDER}/GameMode/GameModeHandler.cpp
+   ${SRC_FOLDER}/EventHandler/EventHandlerMainMenu.cpp
+   ${SRC_FOLDER}/EventHandler/EventHandlerGame.cpp
 )
 
 add_executable(puzzleblocks ${SOURCE_FILES})
