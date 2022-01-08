@@ -37,6 +37,9 @@ using namespace EventLib;
 
 #include "EventHandler/EventHandlerGame.h"
 
+#include "../Block.h"
+#include "../Map.h"
+
 #include "GameMode.h"
 #include "GameModeGame.h"
 
