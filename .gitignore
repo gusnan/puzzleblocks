@@ -1,5 +1,6 @@
 build/
 data/Namnlös.xcf
+data/in_progress
 
 valgrind.supp*
 valgrind.supp
