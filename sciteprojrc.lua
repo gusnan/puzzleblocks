@@ -26,7 +26,8 @@
 hide_filter = {
 	"lib",
 	"build",
-	".git"
+	".git",
+   "data/in_progress"
 }
 
 
