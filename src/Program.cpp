@@ -48,6 +48,9 @@ using namespace EventLib;
 
 
 
+/**
+ *
+ */
 Program &Program::instance()
 {
    static Program instance;
@@ -55,15 +58,27 @@ Program &Program::instance()
    return instance;
 }
 
+
+/**
+ *
+ */
 Program::Program(const Program &inProgram) : m_Quit(inProgram.m_Quit), m_MouseBitmap(inProgram.m_MouseBitmap->makeCopy())
 {
 }
 
+
+/**
+ *
+ */
 Program::~Program()
 {
    doneProgram();
 }
 
+
+/**
+ *
+ */
 Program &Program::operator=(const Program &inProgram)
 {
    this->setQuit(inProgram.m_Quit);
@@ -73,6 +88,10 @@ Program &Program::operator=(const Program &inProgram)
    return *this;
 }
 
+
+/**
+ *
+ */
 Program::Program() : m_Quit(false), m_MouseBitmap(nullptr)
 {
    try {
@@ -120,16 +139,27 @@ Program::Program() : m_Quit(false), m_MouseBitmap(nullptr)
    }
 }
 
+
+/**
+ *
+ */
 bool Program::getQuit()
 {
    return m_Quit;
 }
 
+
+/**
+ *
+ */
 void Program::setQuit(bool iQuit) {
    m_Quit = iQuit;
 }
 
 
+/**
+ *
+ */
 void Program::doneProgram()
 {
 
@@ -158,6 +188,10 @@ void Program::doneProgram()
    LogHandler::doneLog();
 }
 
+
+/**
+ *
+ */
 void Program::mainLoop()
 {
    // the main loop
