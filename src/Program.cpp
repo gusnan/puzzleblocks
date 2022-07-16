@@ -152,8 +152,8 @@ bool Program::getQuit()
 /**
  *
  */
-void Program::setQuit(bool iQuit) {
-   m_Quit = iQuit;
+void Program::setQuit(bool inQuit) {
+   m_Quit = inQuit;
 }
 
 
