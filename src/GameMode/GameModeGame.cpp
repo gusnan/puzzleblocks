@@ -40,8 +40,6 @@ using namespace EventLib;
 #include "../Block.h"
 #include "../Map.h"
 
-#include "../Ball.h"
-
 #include "GameMode.h"
 #include "GameModeGame.h"
 

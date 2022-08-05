@@ -21,6 +21,8 @@
 #ifndef __HEADER_GAME_MODE_GAME_
 #define __HEADER_GAME_MODE_GAME_
 
+#include "Ball.h"
+
 class GameModeGame : public GameMode
 {
 public:
