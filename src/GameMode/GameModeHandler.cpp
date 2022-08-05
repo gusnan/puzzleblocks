@@ -34,6 +34,8 @@ using namespace EventLib;
 #include "EventHandler/EventHandlerMainMenu.h"
 #include "EventHandler/EventHandlerGame.h"
 
+#include "../Ball.h"
+
 #include "GameMode.h"
 #include "GameModeGame.h"
 #include "GameModeMainMenu.h"

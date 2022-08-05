@@ -34,6 +34,8 @@ public:
 protected:
 
    std::shared_ptr<EventHandlerGame> gameEventHandler;
+
+   std::list<Ball> ballList;
 };
 
 
