@@ -26,6 +26,8 @@ class Block
 public:
    Block();
    virtual ~Block();
+
+   void update();
    
 protected:
    

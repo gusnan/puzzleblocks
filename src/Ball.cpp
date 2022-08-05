@@ -18,21 +18,13 @@
  *	If not, see <http://www.gnu.org/licenses/>.
  *
  */
+#include "Ball.h"
 
-
-#include "Block.h"
 
 /**
  *
  */
-Block::Block()
-{
-}
-
-/**
- *
- */
-Block::~Block()
+Ball::Ball()
 {
 }
 
@@ -40,7 +32,7 @@ Block::~Block()
 /**
  *
  */
-void Block::update()
+Ball::~Ball()
 {
-   
 }
+

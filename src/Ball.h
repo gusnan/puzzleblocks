@@ -18,29 +18,18 @@
  *	If not, see <http://www.gnu.org/licenses/>.
  *
  */
+#ifndef __HEADER_BALL_
+#define __HEADER_BALL_
 
-
-#include "Block.h"
-
-/**
- *
- */
-Block::Block()
+class Ball
 {
-}
+public:
+   Ball();
+   virtual ~Ball();
 
-/**
- *
- */
-Block::~Block()
-{
-}
-
-
-/**
- *
- */
-void Block::update()
-{
+protected:
    
-}
+};
+
+#endif /*__HEADER_BALL_*/
+

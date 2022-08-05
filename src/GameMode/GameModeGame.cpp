@@ -43,6 +43,8 @@ using namespace EventLib;
 #include "GameMode.h"
 #include "GameModeGame.h"
 
+#include "../Ball.h"
+
 
 /**
  *
