@@ -34,6 +34,10 @@ public:
 
    void draw();
 
+private:
+
+   int m_SizeX, m_SizeY;
+
 };
 
 #endif
