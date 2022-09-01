@@ -41,7 +41,7 @@ using namespace EventLib;
 
 #include "Program.h"
 
-#include "Ball.h"
+#include "Map.h"
 
 #include "GameMode/GameMode.h"
 #include "GameMode/GameModeGame.h"

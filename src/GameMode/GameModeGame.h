@@ -21,7 +21,7 @@
 #ifndef __HEADER_GAME_MODE_GAME_
 #define __HEADER_GAME_MODE_GAME_
 
-#include "Ball.h"
+#include "../Map.h"
 
 class GameModeGame : public GameMode
 {
@@ -37,7 +37,7 @@ protected:
 
    std::shared_ptr<EventHandlerGame> gameEventHandler;
 
-   std::list<Ball> ballList;
+   std::shared_ptr<Map> map;
 };
 
 

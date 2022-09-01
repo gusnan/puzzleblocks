@@ -52,8 +52,8 @@ GameModeGame::GameModeGame() : GameMode(), gameEventHandler(nullptr)
    LOG("Game Mode Game Constructor");
 
    gameEventHandler = std::make_shared<EventHandlerGame>();
-
-   ballList.clear();
+   
+   map = std::make_shared<Map>();
 }
 
 
