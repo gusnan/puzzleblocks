@@ -32,6 +32,8 @@ public:
    Map();
    virtual ~Map();
 
+   void draw();
+
 };
 
 #endif

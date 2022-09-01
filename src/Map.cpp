@@ -18,6 +18,20 @@
  *	If not, see <http://www.gnu.org/licenses/>.
  *
  */
+#include <memory>
+
+#include <cstdlib>
+#include <iostream>
+#include <sstream>
+#include <list>
+
+#include "GusGame/GusGame.h"
+
+using namespace Gus;
+
+using namespace LogLib;
+
+using namespace GraphicsLib;
 
 #include "Map.h"
 
@@ -34,4 +48,18 @@ Map::Map()
  */
 Map::~Map()
 {
+   LOG("Map destructor");
+}
+
+
+/**
+ *
+ */
+void Map::draw()
+{
+
+   for (int co1 = 0; co1 < 10; co1++)
+   for (int co2 = 0; co2 < 10; co2++) {
+      Primitives::rect(Rect(co1*20, co2*20, 20, 20), colorWhite);
+   }
 }

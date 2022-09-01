@@ -52,9 +52,7 @@ GameModeGame::GameModeGame() : GameMode(), gameEventHandler(nullptr)
    LOG("Game Mode Game Constructor");
 
    gameEventHandler = std::make_shared<EventHandlerGame>();
-   
-   map = std::make_shared<Map>();
-}
+ }
 
 
 /**
@@ -75,6 +73,8 @@ void GameModeGame::enterGameMode()
    LOG("GameModeGame::enterGameMode");
 
    EventSystem::addEventHandler(gameEventHandler);
+   
+   map = std::make_shared<Map>();
 }
 
 
@@ -87,6 +87,8 @@ void GameModeGame::leaveGameMode()
    LOG("GameModeGame::leaveGameMode");
 
    EventSystem::removeEventHandler(gameEventHandler);
+   
+   map.reset();
 }
 
 
@@ -95,8 +97,5 @@ void GameModeGame::leaveGameMode()
  */
 void GameModeGame::draw()
 {
-   for (int co1 = 0; co1 < 10; co1++)
-   for (int co2 = 0; co2 < 10; co2++) {
-      Primitives::rect(Rect(co1*20, co2*20, 20, 20), colorWhite);
-   }
+   map->draw();
 }
