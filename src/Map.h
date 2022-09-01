@@ -21,6 +21,8 @@
 #ifndef __HEADER_MAP_
 #define __HEADER_MAP_
 
+#include "Block.h"
+
 /**
  *
  */
