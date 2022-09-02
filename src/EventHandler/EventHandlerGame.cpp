@@ -71,7 +71,7 @@ bool EventHandlerGame::handleKeyboard(KeyEvent &keyEvent) {
    // Is it the Escape Button that is pressed? - then quit
    if (keyEvent.getType() == KeyEventPressed) {
       if (keyEvent.getValue() == Key::Escape) {
-         Program::instance().setQuit();
+         GameModeHandler::switchGameMode(GameModeHandler::gameModeMainMenu);
          return true;
       }
 
@@ -81,7 +81,11 @@ bool EventHandlerGame::handleKeyboard(KeyEvent &keyEvent) {
       }
 
       if (keyEvent.getValue() == Key::K) {
-         GameModeHandler::switchGameMode(GameModeHandler::gameModeMainMenu);
+         return true;
+      }
+
+      if ((keyEvent.getValue() == Key::X) && (keyEvent.getCtrlPressed())) {
+         Program::instance().setQuit();
          return true;
       }
    }

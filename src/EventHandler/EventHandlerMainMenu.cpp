@@ -64,7 +64,7 @@ bool EventHandlerMainMenu::handleKeyboard(KeyEvent &keyEvent) {
 
    // Is it the Escape Button that is pressed? - then quit
    if (keyEvent.getType() == KeyEventPressed) {
-      if (keyEvent.getValue() == Key::Escape) {
+      if ((keyEvent.getValue() == Key::X) && (keyEvent.getCtrlPressed())) {
          Program::instance().setQuit();
          return true;
       }
