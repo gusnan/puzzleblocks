@@ -185,6 +185,9 @@ set (SOURCE_FILES
    ${SRC_FOLDER}/Block.cpp
    ${SRC_FOLDER}/Block.h
 
+   ${SRC_FOLDER}/Data.cpp
+   ${SRC_FOLDER}/Data.h
+
    ${SRC_FOLDER}/GameMode/GameMode.cpp
    ${SRC_FOLDER}/GameMode/GameModeMainMenu.cpp
    ${SRC_FOLDER}/GameMode/GameModeGame.cpp
