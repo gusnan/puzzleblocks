@@ -84,7 +84,7 @@ bool EventHandlerGame::handleKeyboard(KeyEvent &keyEvent) {
          return true;
       }
 
-      if ((keyEvent.getValue() == Key::X) && (keyEvent.getCtrlPressed())) {
+      if ((keyEvent.getValue() == Key::X) && (keyEvent.getCtrlPressed()) && (keyEvent.getAltPressed())) {
          Program::instance().setQuit();
          return true;
       }
