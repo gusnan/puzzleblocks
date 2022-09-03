@@ -1,0 +1,8 @@
+
+
+# Cppcheck gives the following error on Debian bullseye:
+# Checking ../src/Entry.cpp ...
+# /usr/include/x86_64-linux-gnu/c++/10/bits/c++config.h:674:0: error: failed to evaluate #if condition [preprocessorErrorDirective]
+# #if __has_include(<pstl/pstl_config.h>)
+# ^
+preprocessorErrorDirective:/usr/include/x86_64-linux-gnu/c++/10/bits/c++config.h
