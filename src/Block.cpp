@@ -44,3 +44,11 @@ void Block::update()
 {
    
 }
+
+
+/**
+ *
+ */
+void Block::draw()
+{
+}

@@ -28,9 +28,13 @@ public:
    virtual ~Block();
 
    void update();
+
+   void draw();
    
 protected:
    
+   int m_Xpos, m_Ypos;
+
 };
 
 #endif /*__HEADER_BLOCK_*/
