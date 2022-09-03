@@ -39,7 +39,7 @@ using namespace GraphicsLib;
 /**
  *
  */
-Map::Map()
+Map::Map() : m_SizeX(0), m_SizeY(0)
 {
 }
 
