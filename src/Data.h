@@ -21,10 +21,16 @@
 #ifndef __HEADER_DATA_
 #define __HEADER_DATA_
 
- class Data
- {
+class Data
+{
+public:
+   Data();
+   virtual ~Data();
+
+private:
+protected:
     
- };
+};
  
  #endif /*__HEADER_DATA_*/
  
