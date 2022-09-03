@@ -68,7 +68,7 @@ EventHandlerGame::~EventHandlerGame()
  */
 bool EventHandlerGame::handleKeyboard(KeyEvent &keyEvent) {
 
-   // Is it the Escape Button that is pressed? - then quit
+   // Is it the Escape Button that is pressed? - then exit to main menu
    if (keyEvent.getType() == KeyEventPressed) {
       if (keyEvent.getValue() == Key::Escape) {
          GameModeHandler::switchGameMode(GameModeHandler::gameModeMainMenu);
