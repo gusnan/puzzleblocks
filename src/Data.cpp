@@ -99,7 +99,7 @@ void Data::initData()
  */
 void Data::doneData()
 {
-
+   LOG("Done Data");
    // Delete mouse after we remove mouse functionality in Mouse::doneMouse.
    // if (m_MouseBitmap != nullptr) delete m_MouseBitmap;
    if (mouseBitmap != nullptr) {
