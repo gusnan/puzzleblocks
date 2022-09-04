@@ -1,5 +1,14 @@
 
 
+# Command used:
+#
+# cppcheck ../src/ --enable=all --suppressions-list=../cppcheck-suppressions.txt --check-config -I/usr/include/lua5.3 -I/home/gusnan/kod/puzzle/puzzle/src -I/usr/local/include -I/usr/include/ -I/usr/include/c++/10/ -I/usr/include/x86_64-linux-gnu/c++/10/
+#
+#
+
+
+
+
 # Cppcheck gives the following error on Debian bullseye:
 # Checking ../src/Entry.cpp ...
 # /usr/include/x86_64-linux-gnu/c++/10/bits/c++config.h:674:0: error: failed to evaluate #if condition [preprocessorErrorDirective]
