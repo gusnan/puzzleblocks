@@ -18,6 +18,22 @@
  *	If not, see <http://www.gnu.org/licenses/>.
  *
  */
+#include <memory>
+
+#include <cstdlib>
+#include <iostream>
+#include <sstream>
+#include <list>
+
+#include "GusGame/GusGame.h"
+
+using std::stringstream;
+
+using namespace Gus;
+
+using namespace LogLib;
+using namespace ExceptionLib;
+using namespace GraphicsLib;
 
 #include "Data.h"
 
@@ -34,7 +50,7 @@ Data &Data::instance()
 /**
  *
  */
-Data::Data(const Data &inData)
+Data::Data(const Data &inData) : mouseBitmap(inData.mouseBitmap->makeCopy())
 {
 }
 
@@ -45,6 +61,7 @@ Data::Data(const Data &inData)
  */
 Data::~Data()
 {
+   doneData();
 }
 
 
@@ -53,6 +70,8 @@ Data::~Data()
  */
 Data &Data::operator=(const Data &inData)
 {
+   this->mouseBitmap = inData.mouseBitmap->makeCopy();
+
    return *this;
 }
 
@@ -60,8 +79,9 @@ Data &Data::operator=(const Data &inData)
 /**
  *
  */
-Data::Data()
+Data::Data() : mouseBitmap(nullptr)
 {
+   initData();
 }
 
 
@@ -70,6 +90,7 @@ Data::Data()
  */
 void Data::initData()
 {
+   mouseBitmap = std::make_shared<Bitmap>("mouse.png");
 }
 
 
@@ -78,4 +99,11 @@ void Data::initData()
  */
 void Data::doneData()
 {
+
+   // Delete mouse after we remove mouse functionality in Mouse::doneMouse.
+   // if (m_MouseBitmap != nullptr) delete m_MouseBitmap;
+   if (mouseBitmap != nullptr) {
+      mouseBitmap.reset();
+      mouseBitmap = nullptr;
+   }
 }

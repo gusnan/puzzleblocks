@@ -26,6 +26,10 @@ class Data
 public:
    static Data &instance();
 
+   std::shared_ptr<Bitmap> mouseBitmap;
+
+   void doneData();
+
 protected:
    Data();
    virtual ~Data();
@@ -36,7 +40,6 @@ private:
    Data &operator=(const Data &inData);
 
    void initData();
-   void doneData();
 
 
 };

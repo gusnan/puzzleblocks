@@ -36,6 +36,8 @@ using namespace ExceptionLib;
 using namespace GraphicsLib;
 using namespace EventLib;
 
+#include "Data.h"
+
 #include "EventHandler/EventHandlerMainMenu.h"
 #include "EventHandler/EventHandlerGame.h"
 
@@ -62,7 +64,7 @@ Program &Program::instance()
 /**
  *
  */
-Program::Program(const Program &inProgram) : m_Quit(inProgram.m_Quit), m_MouseBitmap(inProgram.m_MouseBitmap->makeCopy())
+Program::Program(const Program &inProgram) : m_Quit(inProgram.m_Quit)
 {
 }
 
@@ -82,8 +84,6 @@ Program::~Program()
 Program &Program::operator=(const Program &inProgram)
 {
    this->setQuit(inProgram.m_Quit);
-   
-   this->m_MouseBitmap = inProgram.m_MouseBitmap->makeCopy();
 
    return *this;
 }
@@ -92,7 +92,7 @@ Program &Program::operator=(const Program &inProgram)
 /**
  *
  */
-Program::Program() : m_Quit(false), m_MouseBitmap(nullptr)
+Program::Program() : m_Quit(false)
 {
    try {
       // init the log - this function takes a string (the log file filename) as
@@ -128,9 +128,9 @@ Program::Program() : m_Quit(false), m_MouseBitmap(nullptr)
 
       GameModeHandler::switchGameMode(GameModeHandler::gameModeMainMenu);
 
-      m_MouseBitmap = std::make_shared<Bitmap>("mouse.png");
+      Data::instance();
 
-      Mouse::setMouseBitmap(m_MouseBitmap);
+      Mouse::setMouseBitmap(Data::instance().mouseBitmap);
 
    }
    catch (Exception &e)
@@ -175,9 +175,7 @@ void Program::doneProgram()
    // Remove mouse stuff
    Mouse::doneMouse();
 
-   // Delete mouse after we remove mouse functionality in Mouse::doneMouse.
-   // if (m_MouseBitmap != nullptr) delete m_MouseBitmap;
-   m_MouseBitmap.reset();
+   Data::instance().doneData();
 
    // done with system stuff
    System::doneSystem();
