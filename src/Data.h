@@ -24,13 +24,22 @@
 class Data
 {
 public:
+   static Data &instance();
+
+protected:
    Data();
    virtual ~Data();
 
 private:
-protected:
-    
+
+   Data(const Data &inData);
+   Data &operator=(const Data &inData);
+
+   void initData();
+   void doneData();
+
+
 };
  
- #endif /*__HEADER_DATA_*/
+#endif /*__HEADER_DATA_*/
  

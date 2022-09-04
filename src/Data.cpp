@@ -21,10 +21,61 @@
 
 #include "Data.h"
 
+/**
+ *
+ */
+Data &Data::instance()
+{
+   static Data instance;
+   return instance;
+}
+
+
+/**
+ *
+ */
+Data::Data(const Data &inData)
+{
+}
+
+
+
+/**
+ *
+ */
+Data::~Data()
+{
+}
+
+
+/**
+ *
+ */
+Data &Data::operator=(const Data &inData)
+{
+   return *this;
+}
+
+
+/**
+ *
+ */
 Data::Data()
 {
 }
 
-Data::~Data()
+
+/**
+ *
+ */
+void Data::initData()
+{
+}
+
+
+/**
+ *
+ */
+void Data::doneData()
 {
 }
