@@ -37,6 +37,8 @@ using namespace GraphicsLib;
 
 #include "Data.h"
 
+#define REMOVE(a) if (a != nullptr) { a.reset(); a = nullptr; }
+
 /**
  *
  */
@@ -102,8 +104,5 @@ void Data::doneData()
    LOG("Done Data");
    // Delete mouse after we remove mouse functionality in Mouse::doneMouse.
    // if (m_MouseBitmap != nullptr) delete m_MouseBitmap;
-   if (mouseBitmap != nullptr) {
-      mouseBitmap.reset();
-      mouseBitmap = nullptr;
-   }
+   REMOVE(mouseBitmap);
 }
