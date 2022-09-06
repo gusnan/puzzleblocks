@@ -46,6 +46,14 @@ Map::Map() : m_SizeX(0), m_SizeY(0)
 /**
  *
  */
+Map::Map(int xsize, int ysize) : m_SizeX(xsize), m_SizeY(ysize)
+{
+}
+
+
+/**
+ *
+ */
 Map::~Map()
 {
    LOG("Map destructor");

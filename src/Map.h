@@ -30,6 +30,8 @@ class Map
 {
 public:
    Map();
+   Map(int xsize, int ysize);
+
    virtual ~Map();
 
    void draw();

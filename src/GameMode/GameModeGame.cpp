@@ -74,7 +74,7 @@ void GameModeGame::enterGameMode()
 
    EventSystem::addEventHandler(gameEventHandler);
    
-   map = std::make_shared<Map>();
+   map = std::make_shared<Map>(10, 10);
 }
 
 
