@@ -32,7 +32,11 @@ public:
    Map();
    Map(int xsize, int ysize);
 
+   Map(const Map &inMap);
+
    virtual ~Map();
+
+   Map &operator=(const Map &inData);
 
    void draw();
 

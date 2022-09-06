@@ -39,16 +39,36 @@ using namespace GraphicsLib;
 /**
  *
  */
-Map::Map() : m_SizeX(0), m_SizeY(0)
+Map::Map() : m_SizeX(0), m_SizeY(0), m_MapData(nullptr)
 {
 }
 
 /**
  *
  */
-Map::Map(int xsize, int ysize) : m_SizeX(xsize), m_SizeY(ysize)
+Map::Map(int xsize, int ysize) : m_SizeX(xsize), m_SizeY(ysize), m_MapData(nullptr)
 {
    initMap();
+}
+
+
+/**
+ *
+ */
+Map::Map(const Map &source) : m_SizeX(0), m_SizeY(0), m_MapData(nullptr)
+{
+
+}
+
+
+/**
+ *
+ */
+Map &Map::operator=(const Map &inData)
+{
+   //this->mouseBitmap = inData.mouseBitmap->makeCopy();
+
+   return *this;
 }
 
 
