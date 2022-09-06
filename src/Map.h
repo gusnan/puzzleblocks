@@ -40,6 +40,11 @@ private:
 
    int m_SizeX, m_SizeY;
 
+   void initMap();
+   void doneMap();
+
+   std::shared_ptr<Block> *m_MapData;
+
 };
 
 #endif

@@ -48,6 +48,7 @@ Map::Map() : m_SizeX(0), m_SizeY(0)
  */
 Map::Map(int xsize, int ysize) : m_SizeX(xsize), m_SizeY(ysize)
 {
+   initMap();
 }
 
 
@@ -57,6 +58,8 @@ Map::Map(int xsize, int ysize) : m_SizeX(xsize), m_SizeY(ysize)
 Map::~Map()
 {
    LOG("Map destructor");
+
+   doneMap();
 }
 
 
@@ -70,4 +73,29 @@ void Map::draw()
    for (int co2 = 0; co2 < 10; co2++) {
       Primitives::rect(Rect(co1*20, co2*20, 20, 20), colorWhite);
    }
+}
+
+
+/**
+ *
+ */
+void Map::initMap()
+{
+   LOG("Init Map");
+   int totalsize = m_SizeX *m_SizeY;
+
+   m_MapData = new std::shared_ptr<Block>[totalsize];
+
+   for (int co = 0; co < totalsize; co++) {
+      m_MapData[co] = std::make_shared<Block>();
+   }
+}
+
+/**
+ *
+ */
+void Map::doneMap()
+{
+   LOG("Done Map");
+   delete [] m_MapData;
 }
