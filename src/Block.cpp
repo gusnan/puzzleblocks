@@ -18,6 +18,18 @@
  *	If not, see <http://www.gnu.org/licenses/>.
  *
  */
+#include <memory>
+
+#include <cstdlib>
+#include <iostream>
+#include <sstream>
+#include <list>
+
+#include "GusGame/GusGame.h"
+
+using namespace Gus;
+
+using namespace LogLib;
 
 
 #include "Block.h"
