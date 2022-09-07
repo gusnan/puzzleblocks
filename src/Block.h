@@ -29,7 +29,7 @@ public:
 
    void update();
 
-   void draw();
+   void draw(int xpos, int ypos);
    
 protected:
    

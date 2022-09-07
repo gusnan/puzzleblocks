@@ -31,6 +31,8 @@ using namespace Gus;
 
 using namespace LogLib;
 
+using namespace GraphicsLib;
+
 
 #include "Block.h"
 
@@ -61,6 +63,7 @@ void Block::update()
 /**
  *
  */
-void Block::draw()
+void Block::draw(int xpos, int ypos)
 {
+   Primitives::rect(Rect(xpos, ypos, 20, 20), colorWhite);
 }
