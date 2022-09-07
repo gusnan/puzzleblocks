@@ -52,7 +52,7 @@ GameModeGame::GameModeGame() : GameMode(), gameEventHandler(nullptr), map(nullpt
    LOG("Game Mode Game Constructor");
 
    gameEventHandler = std::make_shared<EventHandlerGame>();
- }
+}
 
 
 /**
