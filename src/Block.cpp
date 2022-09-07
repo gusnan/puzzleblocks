@@ -37,7 +37,7 @@ using namespace LogLib;
 /**
  *
  */
-Block::Block()
+Block::Block() : m_Xpos(0), m_Ypos(0)
 {
 }
 

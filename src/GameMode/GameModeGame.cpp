@@ -47,7 +47,7 @@ using namespace EventLib;
 /**
  *
  */
-GameModeGame::GameModeGame() : GameMode(), gameEventHandler(nullptr)
+GameModeGame::GameModeGame() : GameMode(), gameEventHandler(nullptr), map(nullptr)
 {
    LOG("Game Mode Game Constructor");
 
