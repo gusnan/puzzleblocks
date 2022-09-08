@@ -120,3 +120,11 @@ void Map::doneMap()
    LOG("Done Map");
    delete [] m_MapData;
 }
+
+
+/**
+ *
+ */
+void Map::update()
+{
+}

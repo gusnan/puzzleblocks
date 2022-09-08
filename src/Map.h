@@ -40,6 +40,8 @@ public:
 
    void draw();
 
+   void update();
+
 private:
 
    int m_SizeX, m_SizeY;
