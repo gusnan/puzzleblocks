@@ -35,8 +35,6 @@ public:
    Vector2d getPosition();
    
 protected:
-   
-   //int m_Xpos, m_Ypos;
 
    Vector2d m_Position;
 
