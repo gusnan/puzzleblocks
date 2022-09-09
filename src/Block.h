@@ -29,11 +29,16 @@ public:
 
    void update();
 
-   void draw(int xpos, int ypos);
+   void draw();
+
+   void setPosition(const Vector2d &pos);
+   Vector2d getPosition();
    
 protected:
    
-   int m_Xpos, m_Ypos;
+   //int m_Xpos, m_Ypos;
+
+   Vector2d m_Position;
 
 };
 

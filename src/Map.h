@@ -49,7 +49,9 @@ private:
    void initMap();
    void doneMap();
 
-   std::shared_ptr<Block> *m_MapData;
+   // std::shared_ptr<Block> *m_MapData;
+
+   std::list<std::shared_ptr<Block>> *m_BlockList;
 
 };
 

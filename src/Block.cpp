@@ -39,7 +39,7 @@ using namespace GraphicsLib;
 /**
  *
  */
-Block::Block() : m_Xpos(0), m_Ypos(0)
+Block::Block() : m_Position(0, 0)
 {
 }
 
@@ -48,6 +48,7 @@ Block::Block() : m_Xpos(0), m_Ypos(0)
  */
 Block::~Block()
 {
+   LOG("Block destructor");
 }
 
 
@@ -63,7 +64,25 @@ void Block::update()
 /**
  *
  */
-void Block::draw(int xpos, int ypos)
+void Block::draw()
 {
-   Primitives::rect(Rect(xpos, ypos, 20, 20), colorWhite);
+   Primitives::rectFill(Rect(m_Position, Vector2d(20, 20)), colorRed);
+   Primitives::rect(Rect(m_Position, Vector2d(20, 20)), colorWhite);
+}
+
+/**
+ *
+ */
+void Block::setPosition(const Vector2d &pos)
+{
+   m_Position = pos;
+}
+
+
+/**
+ *
+ */
+Vector2d Block::getPosition()
+{
+   return m_Position;
 }

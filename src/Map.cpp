@@ -39,14 +39,14 @@ using namespace GraphicsLib;
 /**
  *
  */
-Map::Map() : m_SizeX(0), m_SizeY(0), m_MapData(nullptr)
+Map::Map() : m_SizeX(0), m_SizeY(0), m_BlockList(nullptr)
 {
 }
 
 /**
  *
  */
-Map::Map(int xsize, int ysize) : m_SizeX(xsize), m_SizeY(ysize), m_MapData(nullptr)
+Map::Map(int xsize, int ysize) : m_SizeX(xsize), m_SizeY(ysize), m_BlockList(nullptr)
 {
    initMap();
 }
@@ -55,7 +55,7 @@ Map::Map(int xsize, int ysize) : m_SizeX(xsize), m_SizeY(ysize), m_MapData(nullp
 /**
  *
  */
-Map::Map(const Map &source) : m_SizeX(0), m_SizeY(0), m_MapData(nullptr)
+Map::Map(const Map &source) : m_SizeX(0), m_SizeY(0), m_BlockList(nullptr)
 {
    LOG("Map copy constructor");
 }
@@ -91,8 +91,19 @@ void Map::draw()
 
    for (int co1 = 0; co1 < 10; co1++)
    for (int co2 = 0; co2 < 10; co2++) {
-      // Primitives::rect(Rect(co1*20, co2*20, 20, 20), colorWhite);
-      m_MapData[co2 * m_SizeX + co1]->draw(co1 * 20, co2 * 20);
+      Primitives::rect(Rect(co1*20, co2*20, 20, 20), colorWhite);
+      // m_MapData[co2 * m_SizeX + co1]->draw(co1 * 20, co2 * 20);
+   }
+
+   std::list<std::shared_ptr<Block> >::iterator iter;
+
+   for (iter = m_BlockList->begin(); iter != m_BlockList->end(); ) {
+
+      std::shared_ptr<Block> temp = (*iter);
+
+      temp->draw();
+
+      ++iter;
    }
 }
 
@@ -105,11 +116,24 @@ void Map::initMap()
    LOG("Init Map");
    int totalsize = m_SizeX *m_SizeY;
 
-   m_MapData = new std::shared_ptr<Block>[totalsize];
+   m_BlockList = new std::list<std::shared_ptr<Block>>();
 
+   m_BlockList->clear();
+
+   // m_MapData = new std::shared_ptr<Block>[totalsize];
+
+   /*
    for (int co = 0; co < totalsize; co++) {
       m_MapData[co] = std::make_shared<Block>();
    }
+   */
+
+   std::shared_ptr<Block> block = std::make_shared<Block>();
+
+   block->setPosition(Vector2d(5, 1));
+
+   m_BlockList->push_back(block);
+
 }
 
 /**
@@ -118,7 +142,8 @@ void Map::initMap()
 void Map::doneMap()
 {
    LOG("Done Map");
-   delete [] m_MapData;
+
+   delete m_BlockList;
 }
 
 
