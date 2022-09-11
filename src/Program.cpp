@@ -122,6 +122,8 @@ Program::Program() : m_Quit(false)
 
       Primitives::initPrimitives();
 
+      Timer::initTimer();
+
       EventSystem::initEventSystem();
 
       GameModeHandler::initGameModes();
@@ -176,6 +178,8 @@ void Program::doneProgram()
    Mouse::doneMouse();
 
    Data::instance().doneData();
+
+   Timer::doneTimer();
 
    // done with system stuff
    System::doneSystem();
