@@ -38,6 +38,9 @@ protected:
 
    Vector2d m_Position;
 
+   double m_TempPosition;
+   double m_DeltaPosition;
+
 };
 
 #endif /*__HEADER_BLOCK_*/
