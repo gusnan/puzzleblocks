@@ -63,3 +63,12 @@ void GameMode::leaveGameMode()
 {
    LOG("GameMode::leaveGameMode");
 }
+
+
+/**
+ *
+ */
+void GameMode::update()
+{
+
+}

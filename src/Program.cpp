@@ -204,6 +204,8 @@ void Program::mainLoop()
       // Handle events (see the class just above this main
       EventSystem::handleEvents();
 
+      GameModeHandler::update();
+
       // Clear the screen every sync
       GraphicsHandler::clearScreen();
 

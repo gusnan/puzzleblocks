@@ -31,6 +31,8 @@ namespace GameModeHandler
 
    void draw();
 
+   void update();
+
    extern std::shared_ptr<GameMode> currentGameMode;
    
    extern std::shared_ptr<GameModeMainMenu> gameModeMainMenu;

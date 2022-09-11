@@ -99,3 +99,12 @@ void GameModeGame::draw()
 {
    map->draw();
 }
+
+
+/**
+ *
+ */
+void GameModeGame::update()
+{
+   map->update();
+}

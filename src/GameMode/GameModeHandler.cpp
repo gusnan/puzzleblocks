@@ -103,3 +103,17 @@ void GameModeHandler::draw()
       currentGameMode->draw();
    }
 }
+
+
+/**
+ *
+ */
+void GameModeHandler::update()
+{
+   if (currentGameMode != nullptr) {
+
+      currentGameMode->update();
+   }
+}
+
+

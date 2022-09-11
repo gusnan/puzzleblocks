@@ -33,6 +33,8 @@ public:
    virtual void leaveGameMode() override;
 
    virtual void draw() override;
+
+   virtual void update() override;
 protected:
 
    std::shared_ptr<EventHandlerGame> gameEventHandler;
