@@ -152,4 +152,16 @@ void Map::doneMap()
  */
 void Map::update()
 {
+
+   std::list<std::shared_ptr<Block> >::iterator iter;
+
+   for (iter = m_BlockList->begin(); iter != m_BlockList->end(); ) {
+
+      std::shared_ptr<Block> temp = (*iter);
+
+      temp->update();
+
+      ++iter;
+   }
+
 }
