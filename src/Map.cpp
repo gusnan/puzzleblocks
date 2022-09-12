@@ -129,12 +129,17 @@ void Map::initMap()
    */
 
    std::shared_ptr<Block> block = std::make_shared<Block>();
-
    block->setMovable(false);
-
    block->setPosition(Vector2d(1, 1));
-
    m_BlockList->push_back(block);
+
+   for (int co = 0; co < 10; co++) {
+      std::shared_ptr<Block> tempBlock = std::make_shared<Block>();
+      tempBlock->setPosition(Vector2d(co, 9));
+      tempBlock->setMovable(false);
+
+      m_BlockList->push_back(tempBlock);
+   }
 
 }
 
