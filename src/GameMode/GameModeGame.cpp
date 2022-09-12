@@ -70,6 +70,7 @@ GameModeGame::~GameModeGame()
 void GameModeGame::enterGameMode()
 {
    GameMode::enterGameMode();
+   LOG("---------------------------");
    LOG("GameModeGame::enterGameMode");
 
    EventSystem::addEventHandler(gameEventHandler);
