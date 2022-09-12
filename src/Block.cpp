@@ -39,7 +39,7 @@ using namespace GraphicsLib;
 /**
  *
  */
-Block::Block() : m_Position(0, 0), m_TempPosition(0.0f), m_DeltaPosition(1.0f)
+Block::Block() : m_Position(0, 0), m_TempPosition(0.0f), m_DeltaPosition(1.0f), m_Moveable(true)
 {
 }
 
@@ -96,4 +96,21 @@ void Block::setPosition(const Vector2d &pos)
 Vector2d Block::getPosition()
 {
    return m_Position;
+}
+
+
+/**
+ *
+ */
+bool Block::getMovable()
+{
+   return m_Moveable;
+}
+
+/**
+ *
+ */
+void Block::setMovable(bool moveable)
+{
+   m_Moveable = moveable;
 }

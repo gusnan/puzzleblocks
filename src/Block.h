@@ -33,6 +33,9 @@ public:
 
    void setPosition(const Vector2d &pos);
    Vector2d getPosition();
+
+   bool getMovable();
+   void setMovable(bool moveable);
    
 protected:
 
@@ -40,6 +43,8 @@ protected:
 
    double m_TempPosition;
    double m_DeltaPosition;
+
+   bool m_Moveable;
 
 };
 
