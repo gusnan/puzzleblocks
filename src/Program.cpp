@@ -128,7 +128,8 @@ Program::Program() : m_Quit(false)
 
       GameModeHandler::initGameModes();
 
-      GameModeHandler::switchGameMode(GameModeHandler::gameModeMainMenu);
+      // GameModeHandler::switchGameMode(GameModeHandler::gameModeMainMenu);
+      GameModeHandler::switchGameMode(GameModeHandler::gameModeGame);
 
       Data::instance();
 
