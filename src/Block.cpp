@@ -58,17 +58,19 @@ Block::~Block()
 void Block::update()
 {
 
-   m_TempPosition += m_DeltaPosition * Timer::getDeltaTime() * 20.0f;
+   if (m_Moveable) {
 
-   if (m_TempPosition < 0.0f) {
-      m_TempPosition = 0.0f;
-      m_DeltaPosition = 1.0f;
-   }
-   if (m_TempPosition >= 100.0f) {
-      m_TempPosition = 99.0f;
-      m_DeltaPosition = -1.0f;
-   }
+      m_TempPosition += m_DeltaPosition * Timer::getDeltaTime() * 20.0f;
 
+      if (m_TempPosition < 0.0f) {
+         m_TempPosition = 0.0f;
+         m_DeltaPosition = 1.0f;
+      }
+      if (m_TempPosition >= 100.0f) {
+         m_TempPosition = 99.0f;
+         m_DeltaPosition = -1.0f;
+      }
+   }
 }
 
 
@@ -77,8 +79,8 @@ void Block::update()
  */
 void Block::draw()
 {
-   Primitives::rectFill(Rect(m_Position + Vector2d(m_TempPosition, 0), Vector2d(20, 20)), colorRed);
-   Primitives::rect(Rect(m_Position + Vector2d(m_TempPosition, 0), Vector2d(20, 20)), colorWhite);
+   Primitives::rectFill(Rect((m_Position * Vector2d(20, 20)) + Vector2d(m_TempPosition, 0), Vector2d(20, 20)), colorRed);
+   Primitives::rect(Rect((m_Position * Vector2d(20, 20)) + Vector2d(m_TempPosition, 0), Vector2d(20, 20)), colorWhite);
 }
 
 /**
