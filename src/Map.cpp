@@ -68,6 +68,24 @@ Map &Map::operator=(const Map &inData)
 {
    //this->mouseBitmap = inData.mouseBitmap->makeCopy();
 
+   if (this != &inData) {
+
+      m_SizeX = inData.m_SizeX;
+      m_SizeY = inData.m_SizeY;
+
+      m_BlockList = new std::list<std::shared_ptr<Block>>();
+
+      m_BlockList->clear();
+
+      std::list<std::shared_ptr<Block> >::iterator iter;
+
+      for (iter = inData.m_BlockList->begin(); iter != inData.m_BlockList->end(); ) {
+         std::shared_ptr<Block> tempBlock = std::make_shared<Block>();
+         m_BlockList->push_back(tempBlock);
+      }
+
+   }
+
    return *this;
 }
 
