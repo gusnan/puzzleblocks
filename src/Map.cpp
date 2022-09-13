@@ -114,7 +114,7 @@ void Map::draw()
 void Map::initMap()
 {
    LOG("Init Map");
-   int totalsize = m_SizeX *m_SizeY;
+   int totalsize = m_SizeX * m_SizeY;
 
    m_BlockList = new std::list<std::shared_ptr<Block>>();
 
