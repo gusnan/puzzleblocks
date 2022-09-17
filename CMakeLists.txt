@@ -79,13 +79,16 @@ cmake_policy(SET CMP0072 NEW)
 find_package(OpenGL REQUIRED)
 
 find_package(GusGame REQUIRED)
+find_package(GusGui REQUIRED)
 find_package(Allegro5 REQUIRED)
 find_package(Lua REQUIRED)
 find_package(Boost REQUIRED COMPONENTS system filesystem thread)
 
 message(STATUS "GusGame Library: ${GUSGAME_LIBRARY}")
+message(STATUS "GusGui Library: ${GUSGUI_LIBRARY}")
 
 include_directories(include ${GUSGAME_INCLUDE_DIR})
+include_directories(include ${GUSGUI_INCLUDE_DIR})
 
 include_directories(include ${CMAKE_SOURCE_DIR}/include)
 include_directories(include ${ALLEGRO_INCLUDE_DIR})
@@ -103,14 +106,17 @@ endif(WIN32)
 
 find_package(OpenGL REQUIRED)
 find_package(GusGame REQUIRED)
+find_package(GusGui REQUIRED)
 
 message(STATUS "GusGame Library: ${GUSGAME_LIBRARY}")
+message(STATUS "GusGui Library: ${GUSGAME_LIBRARY}")
 
 
 include_directories(include ${CMAKE_SOURCE_DIR}/src)
 include_directories(include ${CMAKE_SOURCE_DIR}/src/Objects)
 
 include_directories(include ${GUSGAME_INCLUDE_DIR})
+include_directories(include ${GUSGUI_INCLUDE_DIR})
 include_directories(include ${Boost_INCLUDE_DIR})
 
 if (MSYS)
@@ -119,6 +125,7 @@ endif (MSYS)
 
 message(STATUS "Boost INCLUDE_DIR: ${Boost_INCLUDE_DIR}")
 message(STATUS "GUSGAME_INCLUDE_DIR: ${GUSGAME_INCLUDE_DIR}")
+message(STATUS "GUSGUI_INCLUDE_DIR: ${GUSGUI_INCLUDE_DIR}")
 
 if (NOT ALLEGRO_FOUND)
    message(FATAL_ERROR "Allegro not found!")
@@ -133,6 +140,7 @@ message(STATUS "OPENGL_LIBRARIES: ${OPENGL_LIBRARIES}")
 message(STATUS "GLUT_LIBRARY: ${GLUT_LIBRARY}")
 
 message(STATUS "GUSGAME_LIBRARY: ${GUSGAME_LIBRARY}")
+message(STATUS "GUSGUI_LIBRARY: ${GUSGUI_LIBRARY}")
 
 message(STATUS "Boost_LIBRARIES: ${Boost_LIBRARIES}")
 
@@ -161,10 +169,11 @@ set(ALL_LIBS
 )
 
 
-link_libraries(${ALL_LIBS} ${GUSGAME_LIBRARY})
+link_libraries(${ALL_LIBS} ${GUSGUI_LIBRARY} ${GUSGAME_LIBRARY})
 
 include_directories(include "/usr/local/include")
 include_directories(include ${GUSGAME_INCLUDE})
+include_directories(include ${GUSGUI_INCLUDE})
 
 # LINK_DIRECTORIES( ${LINK_DIRECTORIES} ${LIBRARY_OUTPUT_PATH})
 
@@ -194,6 +203,9 @@ set (SOURCE_FILES
    ${SRC_FOLDER}/GameMode/GameModeHandler.cpp
    ${SRC_FOLDER}/EventHandler/EventHandlerMainMenu.cpp
    ${SRC_FOLDER}/EventHandler/EventHandlerGame.cpp
+
+   ${SRC_FOLDER}/Gui/MainMenuPanel.cpp
+   ${SRC_FOLDER}/Gui/MainMenuPanel.h
 )
 
 add_executable(puzzleblocks ${SOURCE_FILES})
