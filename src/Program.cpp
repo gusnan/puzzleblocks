@@ -133,6 +133,9 @@ Program::Program() : m_Quit(false)
 
       Data::instance();
 
+      LOG("Init Font Handler");
+      FontHandler::initFontHandler();
+
       Mouse::setMouseBitmap(Data::instance().mouseBitmap);
 
    }
@@ -170,6 +173,9 @@ void Program::doneProgram()
 
    // Done with the event system
    EventSystem::doneEventSystem();
+
+   LOG("Done Font Handler");
+   FontHandler::doneFontHandler();
 
    Primitives::donePrimitives();
 
