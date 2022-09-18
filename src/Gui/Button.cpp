@@ -45,12 +45,12 @@ using namespace GusGui;
 #include "MainMenuPanel.h"
 #include "Button.h"
 
-using namespace MainMenu;
+namespace MainMenu {
 
 /**
  *
  */
-MainMenu::Button::Button(const Rect &rect, std::string text) : GusGui::Button(rect, text)
+Button::Button(const Rect &rect, std::string text) : GusGui::Button(rect, text)
 {
 }
 
@@ -58,6 +58,9 @@ MainMenu::Button::Button(const Rect &rect, std::string text) : GusGui::Button(re
 /**
  *
  */
-MainMenu::Button::~Button()
+Button::~Button()
 {
 }
+
+// namespace MainMenu
+};
