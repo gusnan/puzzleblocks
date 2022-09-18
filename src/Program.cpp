@@ -228,6 +228,8 @@ void Program::mainLoop()
 
       GameModeHandler::draw();
 
+      GuiHandler::instance()->draw();
+
       // Update the screen
       GraphicsHandler::updateScreen();
    } while(!getQuit());
