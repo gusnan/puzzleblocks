@@ -18,24 +18,46 @@
  *	If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef __HEADER_MAINMENUPANEL_
-#define __HEADER_MAINMENUPANEL_
 
+#include <cstdlib>
+#include <iostream>
+#include <sstream>
+#include <vector>
+#include <list>
+#include <memory>
 
-namespace MainMenu {
-};
+#include "GusGame/GusGame.h"
+
+#include "GusGame/EventLib.h"
+#include "GusGame/EventSystem.h"
+
+using namespace Gus;
+
+using namespace LogLib;
+using namespace ExceptionLib;
+using namespace GraphicsLib;
+using namespace EventLib;
+
+#include "GusGui/GusGui.h"
+
+using namespace GusGui;
+
+#include "MainMenuPanel.h"
+#include "Button.h"
+
+using namespace MainMenu;
+
+/**
+ *
+ */
+MainMenu::Button::Button(const Rect &rect, std::string text) : GusGui::Button(rect, text)
+{
+}
 
 
 /**
  *
  */
-class MainMenuPanel : public Panel {
-public:
-   MainMenuPanel();
-   virtual ~MainMenuPanel();
-
-protected:
-
-};
-
-#endif /*__HEADER_MAINMENUPANEL_*/
+MainMenu::Button::~Button()
+{
+}

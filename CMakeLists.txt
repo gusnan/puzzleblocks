@@ -206,6 +206,8 @@ set (SOURCE_FILES
 
    ${SRC_FOLDER}/Gui/MainMenuPanel.cpp
    ${SRC_FOLDER}/Gui/MainMenuPanel.h
+   ${SRC_FOLDER}/Gui/Button.cpp
+   ${SRC_FOLDER}/Gui/Button.h
 )
 
 add_executable(puzzleblocks ${SOURCE_FILES})

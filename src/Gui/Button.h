@@ -18,24 +18,24 @@
  *	If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef __HEADER_MAINMENUPANEL_
-#define __HEADER_MAINMENUPANEL_
+#ifndef __HEADER_BUTTON_MAINMENU_
+#define __HEADER_BUTTON_MAINMENU_
 
 
 namespace MainMenu {
-};
-
 
 /**
  *
  */
-class MainMenuPanel : public Panel {
+class Button : public GusGui::Button {
 public:
-   MainMenuPanel();
-   virtual ~MainMenuPanel();
+   Button(const Rect &rect, std::string text);
+   virtual ~Button();
 
 protected:
 
 };
 
-#endif /*__HEADER_MAINMENUPANEL_*/
+};
+
+#endif /*__HEADER_BUTTON_MAINMENU_*/
