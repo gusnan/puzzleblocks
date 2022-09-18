@@ -25,6 +25,7 @@
 #include <iostream>
 #include <sstream>
 #include <list>
+#include <vector>
 
 #include "GusGame/GusGame.h"
 
@@ -34,6 +35,13 @@ using namespace LogLib;
 using namespace ExceptionLib;
 using namespace GraphicsLib;
 using namespace EventLib;
+
+#include "GusGui/GusGui.h"
+
+using namespace GusGui;
+
+#include "../Gui/Button.h"
+#include "../Gui/MainMenuPanel.h"
 
 #include "EventHandlerGame.h"
 #include "EventHandlerMainMenu.h"

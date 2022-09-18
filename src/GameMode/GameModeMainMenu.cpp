@@ -24,6 +24,7 @@
 #include <iostream>
 #include <sstream>
 #include <list>
+#include <vector>
 
 #include "GusGame/GusGame.h"
 
@@ -35,11 +36,18 @@ using namespace GraphicsLib;
 
 using namespace EventLib;
 
+#include "GusGui/GusGui.h"
+
+using namespace GusGui;
+
 #include "EventHandler/EventHandlerMainMenu.h"
 
 #include "GameMode.h"
 #include "GameModeMainMenu.h"
 
+
+#include "../Gui/Button.h"
+#include "../Gui/MainMenuPanel.h"
 
 /**
  *

@@ -24,6 +24,7 @@
 #include <iostream>
 #include <sstream>
 #include <list>
+#include <vector>
 
 #include "GusGame/GusGame.h"
 
@@ -35,10 +36,17 @@ using namespace GraphicsLib;
 
 using namespace EventLib;
 
+#include "GusGui/GusGui.h"
+
+using namespace GusGui;
+
 #include "EventHandler/EventHandlerGame.h"
 
 #include "../Block.h"
 #include "../Map.h"
+
+#include "../Gui/Button.h"
+#include "../Gui/MainMenuPanel.h"
 
 #include "GameMode.h"
 #include "GameModeGame.h"
@@ -74,8 +82,11 @@ void GameModeGame::enterGameMode()
    LOG("GameModeGame::enterGameMode");
 
    EventSystem::addEventHandler(gameEventHandler);
-   
+
    map = std::make_shared<Map>(10, 10);
+
+   m_MainMenuPanel = std::make_shared<MainMenuPanel>();
+
 }
 
 
@@ -88,8 +99,10 @@ void GameModeGame::leaveGameMode()
    LOG("GameModeGame::leaveGameMode");
 
    EventSystem::removeEventHandler(gameEventHandler);
-   
+
    map.reset();
+
+   m_MainMenuPanel.reset();
 }
 
 

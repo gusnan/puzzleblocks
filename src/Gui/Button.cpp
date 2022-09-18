@@ -42,8 +42,8 @@ using namespace EventLib;
 
 using namespace GusGui;
 
-#include "MainMenuPanel.h"
 #include "Button.h"
+#include "MainMenuPanel.h"
 
 namespace MainMenu {
 

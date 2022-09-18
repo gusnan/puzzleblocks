@@ -38,8 +38,8 @@ public:
 
 protected:
 
-   std::shared_ptr<Button> m_NewGameButton;
-   std::shared_ptr<Button> m_QuitButton;
+   std::shared_ptr<MainMenu::Button> m_NewGameButton;
+   std::shared_ptr<MainMenu::Button> m_QuitButton;
 
 };
 

@@ -38,4 +38,4 @@ protected:
 
 };
 
-#endif /*__HEADER_BUTTON_MAINMENU_*/
+#endif /*__HEADER_BUTTON_BUTTON_*/
