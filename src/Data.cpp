@@ -52,7 +52,7 @@ Data &Data::instance()
 /**
  *
  */
-Data::Data(const Data &inData) : mouseBitmap(inData.mouseBitmap->makeCopy())
+Data::Data(const Data &inData) : mouseBitmap(inData.mouseBitmap->makeCopy()), font(nullptr)
 {
 }
 
@@ -74,6 +74,8 @@ Data &Data::operator=(const Data &inData)
 {
    this->mouseBitmap = inData.mouseBitmap->makeCopy();
 
+   font = nullptr;
+
    return *this;
 }
 
@@ -81,7 +83,7 @@ Data &Data::operator=(const Data &inData)
 /**
  *
  */
-Data::Data() : mouseBitmap(nullptr)
+Data::Data() : mouseBitmap(nullptr), font(nullptr)
 {
    initData();
 }
@@ -92,7 +94,11 @@ Data::Data() : mouseBitmap(nullptr)
  */
 void Data::initData()
 {
+   LOG("Init data");
+
    mouseBitmap = std::make_shared<Bitmap>("mouse.png");
+
+   font = std::make_shared<Font>("FreeSans.ttf", 12, true);
 }
 
 
@@ -105,4 +111,6 @@ void Data::doneData()
    // Delete mouse after we remove mouse functionality in Mouse::doneMouse.
    // if (m_MouseBitmap != nullptr) delete m_MouseBitmap;
    REMOVE(mouseBitmap);
+
+   REMOVE(font);
 }

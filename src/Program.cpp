@@ -131,10 +131,10 @@ Program::Program() : m_Quit(false)
       // GameModeHandler::switchGameMode(GameModeHandler::gameModeMainMenu);
       GameModeHandler::switchGameMode(GameModeHandler::gameModeGame);
 
-      Data::instance();
-
       LOG("Init Font Handler");
       FontHandler::initFontHandler();
+
+      Data::instance();
 
       Mouse::setMouseBitmap(Data::instance().mouseBitmap);
 
@@ -174,9 +174,6 @@ void Program::doneProgram()
    // Done with the event system
    EventSystem::doneEventSystem();
 
-   LOG("Done Font Handler");
-   FontHandler::doneFontHandler();
-
    Primitives::donePrimitives();
 
    GraphicsHandler::doneGraphicsHandler();
@@ -185,6 +182,9 @@ void Program::doneProgram()
    Mouse::doneMouse();
 
    Data::instance().doneData();
+
+   LOG("Done Font Handler");
+   FontHandler::doneFontHandler();
 
    Timer::doneTimer();
 

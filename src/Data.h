@@ -28,6 +28,9 @@ public:
 
    std::shared_ptr<Bitmap> mouseBitmap;
 
+
+   std::shared_ptr<Font> font;
+
    void doneData();
 
 protected:
