@@ -35,8 +35,6 @@ public:
 
    void doneData();
 
-   std::shared_ptr<UserEvent> getEventEnterGame();
-
 protected:
    Data();
    virtual ~Data();

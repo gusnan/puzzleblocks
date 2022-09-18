@@ -104,11 +104,6 @@ void Data::initData()
    eventEnterGame = std::make_shared<UserEvent>();
 }
 
-std::shared_ptr<UserEvent> Data::getEventEnterGame()
-{
-   return eventEnterGame;
-}
-
 
 /**
  *
