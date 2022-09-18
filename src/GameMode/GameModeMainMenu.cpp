@@ -75,9 +75,11 @@ void GameModeMainMenu::enterGameMode()
    GameMode::enterGameMode();
    LOG("GameModeMainMenu::enterGameMode");
 
-   EventSystem::addEventHandler(mainMenuEventHandler);
-
    m_MainMenuPanel = std::make_shared<MainMenuPanel>();
+
+   GuiHandler::instance()->addGuiObject(m_MainMenuPanel);
+
+   EventSystem::addEventHandler(mainMenuEventHandler);
 
 }
 
@@ -90,9 +92,12 @@ void GameModeMainMenu::leaveGameMode()
    GameMode::leaveGameMode();
    LOG("GameModeMainMenu::leaveGameMode");
 
-   EventSystem::removeEventHandler(mainMenuEventHandler);
+   GuiHandler::instance()->removeGuiObject(m_MainMenuPanel);
 
    m_MainMenuPanel.reset();
+
+   EventSystem::removeEventHandler(mainMenuEventHandler);
+
 }
 
 
