@@ -27,7 +27,7 @@
  *	events, and the Quit events. (This event is pushed when you press the close
  * window button for example)
  */
-class EventHandlerMainMenu : public EventHandler /*, std::enable_shared_from_this<EventHandler>*/
+class EventHandlerMainMenu : public GuiEventHandler /*, std::enable_shared_from_this<EventHandler>*/
 {
 public:
 
