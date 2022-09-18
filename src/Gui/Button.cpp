@@ -60,6 +60,7 @@ Button::Button(const Rect &rect, std::string text) : GusGui::Button(rect, text)
  */
 Button::~Button()
 {
+   LOG("Button destructor");
 }
 
 // namespace MainMenu
