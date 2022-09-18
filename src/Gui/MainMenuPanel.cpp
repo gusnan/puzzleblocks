@@ -50,6 +50,7 @@ using namespace GusGui;
  */
 MainMenuPanel::MainMenuPanel() : Panel(), m_NewGameButton(nullptr), m_QuitButton(nullptr)
 {
+   LOG("MainMenuPanel constructor");
 }
 
 
@@ -58,4 +59,5 @@ MainMenuPanel::MainMenuPanel() : Panel(), m_NewGameButton(nullptr), m_QuitButton
  */
 MainMenuPanel::~MainMenuPanel()
 {
+   LOG("MainMenuPanel destructor");
 }
