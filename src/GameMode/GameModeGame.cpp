@@ -55,7 +55,7 @@ using namespace GusGui;
 /**
  *
  */
-GameModeGame::GameModeGame() : GameMode(), gameEventHandler(nullptr), map(nullptr)
+GameModeGame::GameModeGame() : GameMode(), gameEventHandler(nullptr), map(nullptr), m_MainMenuPanel(nullptr)
 {
    LOG("Game Mode Game Constructor");
 
