@@ -39,6 +39,8 @@ public:
     */
    virtual bool handleKeyboard(KeyEvent &keyEvent);
 
+   virtual bool handleUserEvent(UserEvent &inUserEvent);
+
 };
 
 

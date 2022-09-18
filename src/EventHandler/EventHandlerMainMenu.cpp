@@ -55,6 +55,8 @@ using namespace GusGui;
 
 #include "Program.h"
 
+#include "../Data.h"
+
 
 /**
  *
@@ -89,4 +91,20 @@ bool EventHandlerMainMenu::handleKeyboard(KeyEvent &keyEvent) {
    }
    return false;
 }
+
+
+/**
+ *
+ */
+bool EventHandlerMainMenu::handleUserEvent(UserEvent &inUserEvent)
+{
+   LOG("User event..");
+
+   if (inUserEvent == *Data::instance().getEventEnterGame()) {
+      GameModeHandler::switchGameMode(GameModeHandler::gameModeGame);
+      return true;
+   }
+   return GuiEventHandler::handleUserEvent(inUserEvent);
+}
+
 

@@ -34,6 +34,7 @@ using namespace Gus;
 using namespace LogLib;
 using namespace ExceptionLib;
 using namespace GraphicsLib;
+using namespace EventLib;
 
 #include "Data.h"
 
@@ -99,6 +100,13 @@ void Data::initData()
    mouseBitmap = std::make_shared<Bitmap>("mouse.png");
 
    font = std::make_shared<Font>("FreeSans.ttf", 12, true);
+
+   eventEnterGame = std::make_shared<UserEvent>();
+}
+
+std::shared_ptr<UserEvent> Data::getEventEnterGame()
+{
+   return eventEnterGame;
 }
 
 
@@ -113,4 +121,6 @@ void Data::doneData()
    REMOVE(mouseBitmap);
 
    REMOVE(font);
+
+   REMOVE(eventEnterGame);
 }

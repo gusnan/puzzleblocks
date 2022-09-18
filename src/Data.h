@@ -31,7 +31,11 @@ public:
 
    std::shared_ptr<Font> font;
 
+   std::shared_ptr<UserEvent> eventEnterGame;
+
    void doneData();
+
+   std::shared_ptr<UserEvent> getEventEnterGame();
 
 protected:
    Data();
