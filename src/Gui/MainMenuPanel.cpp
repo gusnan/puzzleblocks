@@ -48,9 +48,16 @@ using namespace GusGui;
 /**
  *
  */
-MainMenuPanel::MainMenuPanel() : Panel(), m_NewGameButton(nullptr), m_QuitButton(nullptr)
+MainMenuPanel::MainMenuPanel() : Panel(Rect(10, 10, 400, 100), "Text"), m_NewGameButton(nullptr), m_QuitButton(nullptr)
 {
    LOG("MainMenuPanel constructor");
+
+   m_NewGameButton = std::make_shared<MainMenu::Button>(Rect(10, 10, 100, 20), "New Game");
+   addGuiObject(m_NewGameButton);
+
+   m_QuitButton = std::make_shared<MainMenu::Button>(Rect(10, 40, 100, 20), "Quit");
+   addGuiObject(m_QuitButton);
+
 }
 
 
@@ -60,4 +67,19 @@ MainMenuPanel::MainMenuPanel() : Panel(), m_NewGameButton(nullptr), m_QuitButton
 MainMenuPanel::~MainMenuPanel()
 {
    LOG("MainMenuPanel destructor");
+}
+
+
+/**
+ *
+ */
+void MainMenuPanel::draw(const Vector2d &pos, float opacity)
+{
+   // Draw a white outline on the panel
+   Rect newRect = getRect() + pos;
+
+   Primitives::rect(newRect, colorWhite);
+
+   // Make the Panel class which we inherit from draw the gui objects
+   Panel::draw(pos, opacity);
 }

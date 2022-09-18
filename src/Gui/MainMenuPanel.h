@@ -36,6 +36,8 @@ public:
    MainMenuPanel();
    virtual ~MainMenuPanel();
 
+   void draw(const Vector2d &pos, float opacity = 1.0);
+
 protected:
 
    std::shared_ptr<MainMenu::Button> m_NewGameButton;
