@@ -40,8 +40,6 @@ protected:
    std::shared_ptr<EventHandlerGame> gameEventHandler;
 
    std::shared_ptr<Map> map;
-
-   std::shared_ptr<MainMenuPanel> m_MainMenuPanel;
 };
 
 

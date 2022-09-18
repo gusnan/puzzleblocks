@@ -42,17 +42,16 @@ using namespace GusGui;
 
 #include "EventHandler/EventHandlerMainMenu.h"
 
-#include "GameMode.h"
-#include "GameModeMainMenu.h"
-
-
 #include "../Gui/Button.h"
 #include "../Gui/MainMenuPanel.h"
+
+#include "GameMode.h"
+#include "GameModeMainMenu.h"
 
 /**
  *
  */
-GameModeMainMenu::GameModeMainMenu() : GameMode(), mainMenuEventHandler(nullptr)
+GameModeMainMenu::GameModeMainMenu() : GameMode(), mainMenuEventHandler(nullptr), m_MainMenuPanel(nullptr)
 {
    LOG("Game Mode Main Menu Constructor");
    mainMenuEventHandler = std::make_shared<EventHandlerMainMenu>();
@@ -77,6 +76,9 @@ void GameModeMainMenu::enterGameMode()
    LOG("GameModeMainMenu::enterGameMode");
 
    EventSystem::addEventHandler(mainMenuEventHandler);
+
+   m_MainMenuPanel = std::make_shared<MainMenuPanel>();
+
 }
 
 
@@ -89,6 +91,8 @@ void GameModeMainMenu::leaveGameMode()
    LOG("GameModeMainMenu::leaveGameMode");
 
    EventSystem::removeEventHandler(mainMenuEventHandler);
+
+   m_MainMenuPanel.reset();
 }
 
 

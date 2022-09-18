@@ -35,7 +35,7 @@ protected:
 
    std::shared_ptr<EventHandlerMainMenu> mainMenuEventHandler;
 
-
+   std::shared_ptr<MainMenuPanel> m_MainMenuPanel;
 };
 
 

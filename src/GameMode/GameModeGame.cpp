@@ -55,7 +55,7 @@ using namespace GusGui;
 /**
  *
  */
-GameModeGame::GameModeGame() : GameMode(), gameEventHandler(nullptr), map(nullptr), m_MainMenuPanel(nullptr)
+GameModeGame::GameModeGame() : GameMode(), gameEventHandler(nullptr), map(nullptr)
 {
    LOG("Game Mode Game Constructor");
 
@@ -85,8 +85,6 @@ void GameModeGame::enterGameMode()
 
    map = std::make_shared<Map>(10, 10);
 
-   m_MainMenuPanel = std::make_shared<MainMenuPanel>();
-
 }
 
 
@@ -101,8 +99,6 @@ void GameModeGame::leaveGameMode()
    EventSystem::removeEventHandler(gameEventHandler);
 
    map.reset();
-
-   m_MainMenuPanel.reset();
 }
 
 
