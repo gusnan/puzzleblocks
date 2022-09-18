@@ -63,5 +63,27 @@ Button::~Button()
    LOG("Button destructor");
 }
 
+
+/**
+ *
+ */
+
+void Button::draw(const Vector2d& pos, float alpha)
+{
+   // Gray for standard button
+   Primitives::rectFill(getRect() + pos, colorLightGray);
+   if (getMouseOver()) {
+
+      // red when hovered
+      Primitives::rectFill(getRect() + pos, colorRed);
+      if (getDown()) {
+         // and white when pressed
+         Primitives::rectFill(getRect() + pos, colorWhite);
+      }
+   }
+}
+
+
+
 // namespace MainMenu
 };

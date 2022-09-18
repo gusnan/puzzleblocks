@@ -32,6 +32,7 @@ public:
    Button(const Rect &rect, std::string text);
    virtual ~Button();
 
+   void draw(const Vector2d& pos, float alpha = 1.0);
 protected:
 
 };
