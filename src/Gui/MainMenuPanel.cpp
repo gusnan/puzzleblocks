@@ -47,7 +47,7 @@ using namespace GusGui;
 /**
  *
  */
-MainMenuPanel::MainMenuPanel() : Panel()
+MainMenuPanel::MainMenuPanel() : Panel(), m_NewGameButton(nullptr), m_QuitButton(nullptr)
 {
 }
 

@@ -25,6 +25,8 @@
 namespace MainMenu {
 };
 
+using namespace MainMenu;
+
 
 /**
  *
@@ -35,6 +37,9 @@ public:
    virtual ~MainMenuPanel();
 
 protected:
+
+   std::shared_ptr<Button> m_NewGameButton;
+   std::shared_ptr<Button> m_QuitButton;
 
 };
 
