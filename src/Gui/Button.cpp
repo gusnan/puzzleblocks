@@ -50,7 +50,7 @@ namespace MainMenu {
 /**
  *
  */
-Button::Button(const Rect &rect, std::string text) : GusGui::Button(rect, text)
+Button::Button(const Rect &rect, const std::string &text) : GusGui::Button(rect, text)
 {
 }
 
