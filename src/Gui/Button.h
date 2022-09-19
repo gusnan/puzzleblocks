@@ -37,6 +37,7 @@ protected:
 
 };
 
+// end of namespace MainMenu
 };
 
 #endif /*__HEADER_BUTTON_BUTTON_*/
