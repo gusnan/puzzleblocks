@@ -26,7 +26,7 @@ class Events
 public:
    static Events &instance();
 
-   std::shared_ptr<UserEvent> eventEnterGame;
+   std::shared_ptr<UserEvent> eventNewGame;
    std::shared_ptr<UserEvent> eventQuitGame;
 
    void doneEvents();

@@ -101,7 +101,7 @@ bool EventHandlerMainMenu::handleUserEvent(UserEvent &inUserEvent)
 {
    LOG("User event..");
 
-   if (inUserEvent == *Events::instance().eventEnterGame) {
+   if (inUserEvent == *Events::instance().eventNewGame) {
       GameModeHandler::switchGameMode(GameModeHandler::gameModeGame);
       return true;
    } else if (inUserEvent == *Events::instance().eventQuitGame) {

@@ -53,7 +53,7 @@ Events &Events::instance()
 /**
  *
  */
-Events::Events(const Events &inEvents) : eventEnterGame(nullptr), eventQuitGame(nullptr)
+Events::Events(const Events &inEvents) : eventNewGame(nullptr), eventQuitGame(nullptr)
 {
 }
 
@@ -80,7 +80,7 @@ Events &Events::operator=(const Events &inEvents)
 /**
  *
  */
-Events::Events() : eventEnterGame(nullptr), eventQuitGame(nullptr)
+Events::Events() : eventNewGame(nullptr), eventQuitGame(nullptr)
 {
    initEvents();
 }
@@ -93,7 +93,7 @@ void Events::initEvents()
 {
    LOG("Init Events");
 
-   eventEnterGame = std::make_shared<UserEvent>();
+   eventNewGame = std::make_shared<UserEvent>();
    eventQuitGame = std::make_shared<UserEvent>();
 }
 
@@ -105,7 +105,7 @@ void Events::doneEvents()
 {
    LOG("Done Events");
 
-   REMOVE(eventEnterGame);
+   REMOVE(eventNewGame);
    
    REMOVE(eventQuitGame);
 }

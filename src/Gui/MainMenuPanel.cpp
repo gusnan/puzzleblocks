@@ -56,7 +56,7 @@ MainMenuPanel::MainMenuPanel() : Panel(Rect(10, 10, 400, 100), "Text"), m_NewGam
    LOG("MainMenuPanel constructor");
 
    m_NewGameButton = std::make_shared<MainMenu::Button>(Rect(10, 10, 100, 20), "New Game");
-   m_NewGameButton->setPressEvent(Events::instance().eventEnterGame);
+   m_NewGameButton->setPressEvent(Events::instance().eventNewGame);
    addGuiObject(m_NewGameButton);
 
    m_QuitButton = std::make_shared<MainMenu::Button>(Rect(10, 40, 100, 20), "Quit");
