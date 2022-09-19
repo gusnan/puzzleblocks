@@ -42,6 +42,7 @@ using namespace EventLib;
 using namespace GusGui;
 
 #include "Data.h"
+#include "Events.h"
 
 #include "EventHandler/EventHandlerMainMenu.h"
 #include "EventHandler/EventHandlerGame.h"
@@ -144,6 +145,8 @@ Program::Program() : m_Quit(false)
 
       Data::instance();
 
+      Events::instance();
+
       Mouse::setMouseBitmap(Data::instance().mouseBitmap);
 
    }
@@ -190,6 +193,7 @@ void Program::doneProgram()
    Mouse::doneMouse();
 
    Data::instance().doneData();
+   Events::instance().doneEvents();
 
    LOG("Done Font Handler");
    FontHandler::doneFontHandler();
