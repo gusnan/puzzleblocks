@@ -18,32 +18,32 @@
  *	If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#ifndef __HEADER_DATA_
-#define __HEADER_DATA_
+#ifndef __HEADER_EVENTS_
+#define __HEADER_EVENTS_
 
-class Data
+class Events
 {
 public:
-   static Data &instance();
+   static Events &instance();
 
-   std::shared_ptr<Bitmap> mouseBitmap;
-   std::shared_ptr<Font> font;
+   std::shared_ptr<UserEvent> eventEnterGame;
+   std::shared_ptr<UserEvent> eventQuitGame;
 
-   void doneData();
+   void doneEvents();
 
 protected:
-   Data();
-   virtual ~Data();
+   Events();
+   virtual ~Events();
 
 private:
 
-   Data(const Data &inData);
-   Data &operator=(const Data &inData);
+   Events(const Events &inEvents);
+   Events &operator=(const Events &inEvents);
 
-   void initData();
+   void initEvents();
 
 
 };
  
-#endif /*__HEADER_DATA_*/
+#endif /*__HEADER_EVENTS_*/
  

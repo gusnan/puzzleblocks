@@ -197,6 +197,9 @@ set (SOURCE_FILES
    ${SRC_FOLDER}/Data.cpp
    ${SRC_FOLDER}/Data.h
 
+   ${SRC_FOLDER}/Events.cpp
+   ${SRC_FOLDER}/Events.h
+
    ${SRC_FOLDER}/GameMode/GameMode.cpp
    ${SRC_FOLDER}/GameMode/GameModeMainMenu.cpp
    ${SRC_FOLDER}/GameMode/GameModeGame.cpp

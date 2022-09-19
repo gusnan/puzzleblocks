@@ -18,7 +18,7 @@
  *	If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include <memory>
+ #include <memory>
 
 #include <cstdlib>
 #include <iostream>
@@ -36,16 +36,16 @@ using namespace ExceptionLib;
 using namespace GraphicsLib;
 using namespace EventLib;
 
-#include "Data.h"
+#include "Events.h"
 
 #define REMOVE(a) if (a != nullptr) { a.reset(); a = nullptr; }
 
 /**
  *
  */
-Data &Data::instance()
+Events &Events::instance()
 {
-   static Data instance;
+   static Events instance;
    return instance;
 }
 
@@ -53,7 +53,7 @@ Data &Data::instance()
 /**
  *
  */
-Data::Data(const Data &inData) : mouseBitmap(inData.mouseBitmap->makeCopy()), font(nullptr)
+Events::Events(const Events &inEvents) : eventEnterGame(nullptr), eventQuitGame(nullptr)
 {
 }
 
@@ -62,21 +62,17 @@ Data::Data(const Data &inData) : mouseBitmap(inData.mouseBitmap->makeCopy()), fo
 /**
  *
  */
-Data::~Data()
+Events::~Events()
 {
-   doneData();
+   doneEvents();
 }
 
 
 /**
  *
  */
-Data &Data::operator=(const Data &inData)
+Events &Events::operator=(const Events &inEvents)
 {
-   this->mouseBitmap = inData.mouseBitmap->makeCopy();
-
-   font = nullptr;
-
    return *this;
 }
 
@@ -84,34 +80,32 @@ Data &Data::operator=(const Data &inData)
 /**
  *
  */
-Data::Data() : mouseBitmap(nullptr), font(nullptr)
+Events::Events() : eventEnterGame(nullptr), eventQuitGame(nullptr)
 {
-   initData();
+   initEvents();
 }
 
 
 /**
  *
  */
-void Data::initData()
+void Events::initEvents()
 {
-   LOG("Init data");
+   LOG("Init Events");
 
-   mouseBitmap = std::make_shared<Bitmap>("mouse.png");
-
-   font = std::make_shared<Font>("FreeSans.ttf", 12, true);
+   eventEnterGame = std::make_shared<UserEvent>();
+   eventQuitGame = std::make_shared<UserEvent>();
 }
 
 
 /**
  *
  */
-void Data::doneData()
+void Events::doneEvents()
 {
-   LOG("Done Data");
-   // Delete mouse after we remove mouse functionality in Mouse::doneMouse.
-   // if (m_MouseBitmap != nullptr) delete m_MouseBitmap;
-   REMOVE(mouseBitmap);
+   LOG("Done Events");
 
-   REMOVE(font);
+   REMOVE(eventEnterGame);
+   
+   REMOVE(eventQuitGame);
 }

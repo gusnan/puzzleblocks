@@ -56,6 +56,7 @@ using namespace GusGui;
 #include "Program.h"
 
 #include "../Data.h"
+#include "../Events.h"
 
 
 /**
@@ -100,8 +101,11 @@ bool EventHandlerMainMenu::handleUserEvent(UserEvent &inUserEvent)
 {
    LOG("User event..");
 
-   if (inUserEvent == *Data::instance().eventEnterGame) {
+   if (inUserEvent == *Events::instance().eventEnterGame) {
       GameModeHandler::switchGameMode(GameModeHandler::gameModeGame);
+      return true;
+   } else if (inUserEvent == *Events::instance().eventQuitGame) {
+      Program::instance().setQuit();
       return true;
    }
    return GuiEventHandler::handleUserEvent(inUserEvent);
