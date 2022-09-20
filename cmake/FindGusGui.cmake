@@ -7,9 +7,14 @@
 # GUSGUI_LIBRARY
 #
 
+set(_pf_x86 "ProgramFiles\(x86\)")
+
+MESSAGE(STATUS "Found _pf_x86: $ENV{${_pf_x86}}")
+
 IF (WIN32)
    FIND_PATH( GUSGUI_INCLUDE_DIR GusGui/GusGui.h
       $ENV{PROGRAMFILES}/GusGui/include
+      $ENV{${_pf_x86}}/gusgui/include
       $ENV{MINGDIR}/include/
       $ENV{MINGDIR}/include/GusGui
       $ENV{MINGDIR}
@@ -27,6 +32,7 @@ IF (WIN32)
       NAMES GUSGUI gusgui GusGui gusgui.a GusGui.a libgusgui.a libgusgui
       PATHS
       $ENV{PROGRAMFILES}/GusGui/lib
+      $ENV{${_pf_x86}}/gusgui/lib
       $ENV{MINGDIR}/GusGui/lib/
       #$ENV{MINGDIR}/lib/GL
       $ENV{MINGDIR}/
