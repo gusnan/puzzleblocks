@@ -123,8 +123,14 @@ Program::Program() : m_Quit(false)
       // Init the graphics stuff
       GraphicsHandler::initGraphicsHandler();
 
+      LOG("Setting graphics mode...");
+
       // set up a screen with resolution of 640x480, and not fullscreen
-      GraphicsHandler::setGraphicsMode(Vector2d(720, 360), false);
+      if (GraphicsHandler::setGraphicsMode(Vector2d(720, 360), false) == SET_GRAPHICS_RESULT_NO_OPEN_GL) {
+         LOG("Graphics Mode: No Open GL");
+      } else {
+         LOG("Graphics Mode: Standard");
+      }
 
       // set a window title
       GraphicsHandler::setWindowTitle("PuzzleBlocks");
