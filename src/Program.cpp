@@ -121,19 +121,19 @@ Program::Program() : m_Quit(false)
       STLOG(st);
 
       // Init the graphics stuff
-      GraphicsHandler::initGraphicsHandler();
+      GraphicsHandler::instance().initGraphicsHandler();
 
       LOG("Setting graphics mode...");
 
       // set up a screen with resolution of 640x480, and not fullscreen
-      if (GraphicsHandler::setGraphicsMode(Vector2d(720, 360), false) == SET_GRAPHICS_RESULT_NO_OPEN_GL) {
+      if (GraphicsHandler::instance().setGraphicsMode(Vector2d(720, 360), false) == SET_GRAPHICS_RESULT_NO_OPEN_GL) {
          LOG("Graphics Mode: No Open GL");
       } else {
          LOG("Graphics Mode: Standard");
       }
 
       // set a window title
-      GraphicsHandler::setWindowTitle("PuzzleBlocks");
+      GraphicsHandler::instance().setWindowTitle("PuzzleBlocks");
 
       Primitives::initPrimitives();
 
@@ -193,7 +193,7 @@ void Program::doneProgram()
 
    Primitives::donePrimitives();
 
-   GraphicsHandler::doneGraphicsHandler();
+   GraphicsHandler::instance().doneGraphicsHandler();
 
    // Remove mouse stuff
    Mouse::doneMouse();
@@ -232,7 +232,7 @@ void Program::mainLoop()
       GameModeHandler::update();
 
       // Clear the screen every sync
-      GraphicsHandler::clearScreen();
+      GraphicsHandler::instance().clearScreen();
 
       //System::getMouse()->draw();
 
@@ -241,7 +241,7 @@ void Program::mainLoop()
       GuiHandler::instance()->draw();
 
       // Update the screen
-      GraphicsHandler::updateScreen();
+      GraphicsHandler::instance().updateScreen();
    } while(!getQuit());
 
 }
