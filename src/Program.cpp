@@ -193,6 +193,7 @@ void Program::doneProgram()
 
    Primitives::donePrimitives();
 
+   LOG("Done Graphics handler");
    GraphicsHandler::instance().doneGraphicsHandler();
 
    // Remove mouse stuff
