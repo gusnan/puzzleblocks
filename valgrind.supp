@@ -6,3 +6,83 @@
 #  valgrind --leak-check=full --gen-suppressions=all ./puzzleblocks 
 #
 
+{
+   nvidia_1
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:calloc
+   obj:/usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/nvidia/current/libGLX_nvidia.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/nvidia/current/libGLX_nvidia.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/nvidia/current/libGLX_nvidia.so.470.141.03
+}
+
+
+{
+   nvidia_2
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:calloc
+   obj:/usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/nvidia/current/libGLX_nvidia.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/nvidia/current/libGLX_nvidia.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/nvidia/current/libGLX_nvidia.so.470.141.03
+}
+
+
+{
+   nvidia_3
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:calloc
+   obj:/usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/nvidia/current/libGLX_nvidia.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/nvidia/current/libGLX_nvidia.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/nvidia/current/libGLX_nvidia.so.470.141.03
+}
+
+
+{
+   nvidia_4
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:realloc
+   obj:/usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/nvidia/current/libGLX_nvidia.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/nvidia/current/libGLX_nvidia.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/nvidia/current/libGLX_nvidia.so.470.141.03
+}
+
+
+{
+   allegro_install_system_1
+   Memcheck:Param
+   sendmsg(msg.msg_iov[0])
+   fun:__libc_sendmsg
+   fun:sendmsg
+   obj:/usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+   obj:/usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+   fun:xcb_flush
+   obj:/usr/lib/x86_64-linux-gnu/nvidia/current/libGLX_nvidia.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/nvidia/current/libGLX_nvidia.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/nvidia/current/libGLX_nvidia.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/nvidia/current/libGLX_nvidia.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/nvidia/current/libGLX_nvidia.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/nvidia/current/libGLX_nvidia.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.470.141.03
+   obj:/usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.470.141.03
+}
