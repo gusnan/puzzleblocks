@@ -188,6 +188,8 @@ void Program::doneProgram()
 
    GameModeHandler::doneGameModes();
 
+   GuiHandler::destroy();
+
    // Done with the event system
    EventSystem::doneEventSystem();
 
