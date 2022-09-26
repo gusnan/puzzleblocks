@@ -27,6 +27,9 @@ public:
    Block();
    virtual ~Block();
 
+   Block(const Block &source);
+   Block &operator=(const Block &source);
+
    void update();
 
    void draw();

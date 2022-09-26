@@ -80,7 +80,10 @@ Map &Map::operator=(const Map &inData)
       std::list<std::shared_ptr<Block> >::iterator iter;
 
       for (iter = inData.m_BlockList->begin(); iter != inData.m_BlockList->end(); ) {
-         std::shared_ptr<Block> tempBlock = std::make_shared<Block>();
+
+         std::shared_ptr<Block> iterblock = *iter;
+
+         std::shared_ptr<Block> tempBlock = std::make_shared<Block>(*iterblock);
          m_BlockList->push_back(tempBlock);
       }
 

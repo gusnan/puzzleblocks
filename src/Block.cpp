@@ -55,6 +55,35 @@ Block::~Block()
 /**
  *
  */
+Block::Block(const Block &source) : m_Position(source.m_Position),
+                                    m_TempPosition(source.m_TempPosition),
+                                    m_DeltaPosition(source.m_DeltaPosition), 
+                                    m_Moveable(source.m_Moveable)
+{
+}
+
+
+/**
+ *
+ */
+Block &Block::operator=(const Block &source)
+{
+   if (this != &source) {
+      m_Position = source.m_Position;
+
+      m_TempPosition = source.m_TempPosition;
+      m_DeltaPosition = source.m_DeltaPosition;
+
+      m_Moveable = source.m_Moveable;
+   }
+
+   return *this;
+}
+
+
+/**
+ *
+ */
 void Block::update()
 {
 
