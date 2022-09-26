@@ -67,6 +67,7 @@ Map::Map(const Map &source) : m_SizeX(0), m_SizeY(0), m_BlockList(nullptr)
 Map &Map::operator=(const Map &inData)
 {
    //this->mouseBitmap = inData.mouseBitmap->makeCopy();
+   LOG("Map copy");
 
    if (this != &inData) {
 
