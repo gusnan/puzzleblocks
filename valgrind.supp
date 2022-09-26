@@ -10,7 +10,7 @@
 
 
 {
-   1
+   <insert_a_suppression_name_here>
    Memcheck:Leak
    match-leak-kinds: reachable
    fun:malloc
@@ -28,7 +28,7 @@
 }
 
 {
-   2
+   <insert_a_suppression_name_here>
    Memcheck:Leak
    match-leak-kinds: reachable
    fun:malloc
@@ -46,7 +46,7 @@
 }
 
 {
-   3
+   <insert_a_suppression_name_here>
    Memcheck:Leak
    match-leak-kinds: definite
    fun:realloc
