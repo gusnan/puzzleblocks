@@ -43,7 +43,10 @@ Block::Block() : m_Position(0, 0),
                  m_TempPosition(0.0f),
                  m_DeltaPosition(1.0f),
                  m_Moveable(true),
-                 m_Speed(20.0f)
+                 m_Speed(20.0f),
+                 m_Falling(false),
+                 m_HowLongCanWeFall(0, 0),
+                 m_PixelsWeCanFall(0)
 {
 }
 
@@ -63,7 +66,10 @@ Block::Block(const Block &source) : m_Position(source.m_Position),
                                     m_TempPosition(source.m_TempPosition),
                                     m_DeltaPosition(source.m_DeltaPosition),
                                     m_Moveable(source.m_Moveable),
-                                    m_Speed(20.0f)
+                                    m_Speed(20.0f),
+                                    m_Falling(false),
+                                    m_HowLongCanWeFall(0, 0),
+                                    m_PixelsWeCanFall(0)
 {
 }
 
@@ -94,25 +100,42 @@ void Block::update()
 
    if (m_Moveable) {
 
-      m_TempPosition += m_DeltaPosition * Timer::getDeltaTime() * m_Speed;
+      if (m_Falling) {
 
-      m_Speed = m_Speed + 2.0f;
+         m_TempPosition += m_DeltaPosition * Timer::getDeltaTime() * m_Speed;
 
-      if (m_TempPosition < 0.0f) {
-         m_TempPosition = 0.0f;
-         m_DeltaPosition = 1.0f;
-      }
-      if (m_TempPosition >= 19.0f) {
-         m_TempPosition = 19.0f;
-         m_DeltaPosition = -1.0f;
+         m_Speed = m_Speed + 3.0f;
 
-         // We need to check if we cannot fall any further
+         if (m_TempPosition < 0.0f) {
+            m_TempPosition = 0.0f;
+            m_DeltaPosition = 1.0f;
+         }
+         if (m_TempPosition >= (m_PixelsWeCanFall - 1.0f)) {
+            // m_TempPosition = 19.0f;
+            m_DeltaPosition = -1.0f;
 
-         m_Moveable = false;
+            // We need to check if we cannot fall any further
 
-         m_Position = Vector2d(m_Position.x, m_Position.y + 1);
+            m_Moveable = false;
 
-         m_TempPosition = 0.0f;
+            m_Position = Vector2d(m_Position.x, m_Position.y + 1);
+
+            m_TempPosition = 0.0f;
+
+         }
+      } else {
+         // not falling
+
+         // we should calculate here how long we can fall
+
+         Vector2d tempPos = m_Position;
+         int currentY = tempPos.y;
+
+         int targetY = m_HowLongCanWeFall.y;
+
+         m_PixelsWeCanFall = ((float)targetY - (float)currentY) * 20.0f;
+
+         m_Falling = true;
       }
    }
 }
@@ -161,4 +184,12 @@ bool Block::getMovable()
 void Block::setMovable(bool moveable)
 {
    m_Moveable = moveable;
+}
+
+/**
+ *
+ */
+void Block::setHowLongCanWeFall(const Vector2d &pos)
+{
+   m_HowLongCanWeFall = pos;
 }

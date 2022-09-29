@@ -150,11 +150,6 @@ void Map::initMap()
    }
    */
 
-   std::shared_ptr<Block> block = std::make_shared<Block>();
-   block->setMovable(true);
-   block->setPosition(Vector2d(1, 1));
-   m_BlockList->push_back(block);
-
    for (int co = 0; co < 10; co++) {
       std::shared_ptr<Block> tempBlock = std::make_shared<Block>();
       tempBlock->setPosition(Vector2d(co, 9));
@@ -162,6 +157,13 @@ void Map::initMap()
 
       m_BlockList->push_back(tempBlock);
    }
+
+   std::shared_ptr<Block> block = std::make_shared<Block>();
+   block->setMovable(true);
+   block->setPosition(Vector2d(1, 1));
+
+   block->setHowLongCanWeFall(howLongCanWeFall(block->getPosition()));
+   m_BlockList->push_back(block);
 
 }
 
@@ -193,4 +195,30 @@ void Map::update()
       ++iter;
    }
 
+}
+
+/**
+ *
+ */
+Vector2d Map::howLongCanWeFall(const Vector2d &pos)
+{
+   Vector2d res(pos);
+
+   int check_x = pos.x;
+
+   std::list<std::shared_ptr<Block> >::iterator iter;
+   for (iter = m_BlockList->begin(); iter != m_BlockList->end(); ) {
+
+      std::shared_ptr<Block> temp = (*iter);
+
+      if (pos.x == temp->getPosition().x) {
+
+         if (res.y <= temp->getPosition().y) {
+            res = temp->getPosition() - Vector2d(0, 1);
+         }
+      }
+      ++iter;
+   }
+
+   return res;
 }

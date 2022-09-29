@@ -39,6 +39,8 @@ public:
 
    bool getMovable();
    void setMovable(bool moveable);
+
+   void setHowLongCanWeFall(const Vector2d &pos);
    
 protected:
 
@@ -50,6 +52,12 @@ protected:
    bool m_Moveable;
 
    double m_Speed;
+
+   bool m_Falling;
+
+   Vector2d m_HowLongCanWeFall;
+
+   double m_PixelsWeCanFall;
 
 };
 

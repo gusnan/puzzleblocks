@@ -42,6 +42,8 @@ public:
 
    void update();
 
+   Vector2d howLongCanWeFall(const Vector2d &inPosition);
+
 private:
 
    int m_SizeX, m_SizeY;
