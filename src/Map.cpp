@@ -222,3 +222,25 @@ Vector2d Map::howLongCanWeFall(const Vector2d &pos)
 
    return res;
 }
+
+
+/**
+ *
+ */
+void Map::createBlock(const Vector2d &position)
+{
+   std::shared_ptr<Block> block = std::make_shared<Block>();
+   block->setMovable(true);
+   block->setPosition(position);
+
+   block->setHowLongCanWeFall(howLongCanWeFall(block));
+   m_BlockList->push_back(block);
+
+   Vector2d temp = howLongCanWeFall(block);
+
+   std::stringstream st;
+
+   st << "How: " << temp;
+
+   STLOG(st);
+}
