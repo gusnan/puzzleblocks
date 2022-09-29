@@ -50,7 +50,24 @@ Block::Block() : m_Position(0, 0),
                  m_Speed(20.0f),
                  m_Falling(false),
                  m_HowLongCanWeFall(-1, -1),
-                 m_PixelsWeCanFall(0)
+                 m_PixelsWeCanFall(0),
+                 m_Color(0)
+{
+}
+
+
+/**
+ *
+ */
+Block::Block(int inColor) : m_Position(0, 0),
+                            m_TempPosition(0.0f),
+                            m_DeltaPosition(1.0f),
+                            m_Moveable(true),
+                            m_Speed(20.0f),
+                            m_Falling(false),
+                            m_HowLongCanWeFall(-1, -1),
+                            m_PixelsWeCanFall(0),
+                            m_Color(inColor)
 {
 }
 
@@ -73,7 +90,8 @@ Block::Block(const Block &source) : m_Position(source.m_Position),
                                     m_Speed(20.0f),
                                     m_Falling(false),
                                     m_HowLongCanWeFall(-1, -1),
-                                    m_PixelsWeCanFall(0)
+                                    m_PixelsWeCanFall(0),
+                                    m_Color(0)
 {
 }
 
@@ -90,6 +108,8 @@ Block &Block::operator=(const Block &source)
       m_DeltaPosition = source.m_DeltaPosition;
 
       m_Moveable = source.m_Moveable;
+
+      m_Color = source.m_Color;
    }
 
    return *this;
@@ -104,6 +124,10 @@ bool Block::operator==(const Block &inBlock)
    }
 
    if (inBlock.m_Position.y != this->m_Position.y) {
+      result = false;
+   }
+
+   if (inBlock.m_Color != this->m_Color) {
       result = false;
    }
 
@@ -181,7 +205,7 @@ void Block::draw()
    // Primitives::rectFill(Rect((m_Position * Vector2d(BLOCK_SIZE, BLOCK_SIZE)) + newTemp, Vector2d(BLOCK_SIZE, BLOCK_SIZE)), colorRed);
    // Primitives::rect(Rect((m_Position * Vector2d(BLOCK_SIZE, BLOCK_SIZE)) + newTemp, Vector2d(BLOCK_SIZE, BLOCK_SIZE)), colorWhite);
 
-   Data::instance().blocksBitmap->blit(Rect(0, 0, BLOCK_SIZE, BLOCK_SIZE), m_Position * Vector2d(BLOCK_SIZE, BLOCK_SIZE) + newTemp);
+   Data::instance().blocksBitmap->blit(Rect(m_Color * BLOCK_SIZE, 0, BLOCK_SIZE, BLOCK_SIZE), m_Position * Vector2d(BLOCK_SIZE, BLOCK_SIZE) + newTemp);
 }
 
 /**

@@ -25,6 +25,7 @@ class Block
 {
 public:
    Block();
+   Block(int inColor);
    virtual ~Block();
 
    Block(const Block &source);
@@ -62,6 +63,8 @@ protected:
    Vector2d m_HowLongCanWeFall;
 
    double m_PixelsWeCanFall;
+
+   int m_Color;
 
 };
 

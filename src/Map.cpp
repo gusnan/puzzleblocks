@@ -160,11 +160,11 @@ void Map::initMap()
       m_BlockList->push_back(tempBlock);
    }
 
-   createBlock(Vector2d(1, 2));
-   createBlock(Vector2d(1, 1));
-   createBlock(Vector2d(3, 2));
-   createBlock(Vector2d(8, 7));
-   createBlock(Vector2d(8, 5));
+   createBlock(Vector2d(1, 2), 0);
+   createBlock(Vector2d(1, 1), 1);
+   createBlock(Vector2d(3, 2), 2);
+   createBlock(Vector2d(8, 7), 3);
+   createBlock(Vector2d(8, 5), 4);
 
 }
 
@@ -245,9 +245,9 @@ Vector2d Map::howLongCanWeFall(std::shared_ptr<Block> block)
 /**
  *
  */
-void Map::createBlock(const Vector2d &position)
+void Map::createBlock(const Vector2d &position, int inColor)
 {
-   std::shared_ptr<Block> block = std::make_shared<Block>();
+   std::shared_ptr<Block> block = std::make_shared<Block>(inColor);
    block->setMovable(true);
    block->setPosition(position);
 
