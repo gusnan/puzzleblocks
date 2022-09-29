@@ -53,7 +53,7 @@ Data &Data::instance()
 /**
  *
  */
-Data::Data(const Data &inData) : mouseBitmap(inData.mouseBitmap->makeCopy()), font(nullptr)
+Data::Data(const Data &inData) : mouseBitmap(inData.mouseBitmap->makeCopy()), font(nullptr), blocksBitmap(inData.blocksBitmap->makeCopy())
 {
 }
 
@@ -84,7 +84,7 @@ Data &Data::operator=(const Data &inData)
 /**
  *
  */
-Data::Data() : mouseBitmap(nullptr), font(nullptr)
+Data::Data() : mouseBitmap(nullptr), font(nullptr), blocksBitmap(nullptr)
 {
    initData();
 }
@@ -100,6 +100,8 @@ void Data::initData()
    mouseBitmap = std::make_shared<Bitmap>("mouse.png");
 
    font = std::make_shared<Font>("FreeSans.ttf", 12, true);
+
+   blocksBitmap = std::make_shared<Bitmap>("blocks.png");
 }
 
 
@@ -114,4 +116,6 @@ void Data::doneData()
    REMOVE(mouseBitmap);
 
    REMOVE(font);
+
+   REMOVE(blocksBitmap);
 }
