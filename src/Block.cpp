@@ -45,7 +45,7 @@ Block::Block() : m_Position(0, 0),
                  m_Moveable(true),
                  m_Speed(20.0f),
                  m_Falling(false),
-                 m_HowLongCanWeFall(0, 0),
+                 m_HowLongCanWeFall(-1, -1),
                  m_PixelsWeCanFall(0)
 {
 }
@@ -68,7 +68,7 @@ Block::Block(const Block &source) : m_Position(source.m_Position),
                                     m_Moveable(source.m_Moveable),
                                     m_Speed(20.0f),
                                     m_Falling(false),
-                                    m_HowLongCanWeFall(0, 0),
+                                    m_HowLongCanWeFall(-1, -1),
                                     m_PixelsWeCanFall(0)
 {
 }
@@ -91,13 +91,36 @@ Block &Block::operator=(const Block &source)
    return *this;
 }
 
+bool Block::operator==(const Block &inBlock)
+{
+   bool result = true;
+
+   if (inBlock.m_Position.x != this->m_Position.x) {
+      result = false;
+   }
+
+   if (inBlock.m_Position.y != this->m_Position.y) {
+      result = false;
+   }
+
+   return result;
+}
+
+
+/**
+ *
+ */
+bool Block::operator!=(const Block &inBlock)
+{
+   return (this != &inBlock);
+}
+
 
 /**
  *
  */
 void Block::update()
 {
-
    if (m_Moveable) {
 
       if (m_Falling) {
@@ -118,7 +141,8 @@ void Block::update()
 
             m_Moveable = false;
 
-            m_Position = Vector2d(m_Position.x, m_Position.y + 1);
+            // m_Position = Vector2d(m_Position.x, m_Position.y + 1);
+            m_Position = Vector2d(m_HowLongCanWeFall.x, m_HowLongCanWeFall.y);
 
             m_TempPosition = 0.0f;
 
@@ -132,6 +156,8 @@ void Block::update()
          int currentY = tempPos.y;
 
          int targetY = m_HowLongCanWeFall.y;
+
+         // if (m_HowLongCanWeFall.y == -1) targetY = currentY;
 
          m_PixelsWeCanFall = ((float)targetY - (float)currentY) * 20.0f;
 
@@ -192,4 +218,13 @@ void Block::setMovable(bool moveable)
 void Block::setHowLongCanWeFall(const Vector2d &pos)
 {
    m_HowLongCanWeFall = pos;
+}
+
+
+/**
+ *
+ */
+Vector2d Block::getHowLongCanWeFall()
+{
+   return m_HowLongCanWeFall;
 }

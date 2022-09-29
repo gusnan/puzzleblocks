@@ -86,6 +86,8 @@ Map &Map::operator=(const Map &inData)
 
          std::shared_ptr<Block> tempBlock = std::make_shared<Block>(*iterblock);
          m_BlockList->push_back(tempBlock);
+
+         ++iter;
       }
 
    }
@@ -158,12 +160,11 @@ void Map::initMap()
       m_BlockList->push_back(tempBlock);
    }
 
-   std::shared_ptr<Block> block = std::make_shared<Block>();
-   block->setMovable(true);
-   block->setPosition(Vector2d(1, 1));
-
-   block->setHowLongCanWeFall(howLongCanWeFall(block->getPosition()));
-   m_BlockList->push_back(block);
+   createBlock(Vector2d(1, 2));
+   createBlock(Vector2d(1, 1));
+   createBlock(Vector2d(3, 2));
+   createBlock(Vector2d(8, 7));
+   createBlock(Vector2d(8, 5));
 
 }
 
@@ -200,24 +201,41 @@ void Map::update()
 /**
  *
  */
-Vector2d Map::howLongCanWeFall(const Vector2d &pos)
+Vector2d Map::howLongCanWeFall(std::shared_ptr<Block> block)
 {
-   Vector2d res(pos);
+   Vector2d pos;
+   Vector2d res;
 
-   int check_x = pos.x;
+   if (block != nullptr) {
+      pos = block->getPosition();
 
-   std::list<std::shared_ptr<Block> >::iterator iter;
-   for (iter = m_BlockList->begin(); iter != m_BlockList->end(); ) {
+      res = pos;
 
-      std::shared_ptr<Block> temp = (*iter);
+      int check_x = pos.x;
 
-      if (pos.x == temp->getPosition().x) {
+      std::list<std::shared_ptr<Block> >::iterator iter;
+      for (iter = m_BlockList->begin(); iter != m_BlockList->end(); ) {
 
-         if (res.y <= temp->getPosition().y) {
-            res = temp->getPosition() - Vector2d(0, 1);
+         std::shared_ptr<Block> temp = (*iter);
+
+         if (temp != block) {
+
+            Vector2d howLong = temp->getHowLongCanWeFall();
+
+            if ((howLong.x == -1) && (howLong.y == -1)) {
+               howLong.x = temp->getPosition().x;
+               howLong.y = temp->getPosition().y;
+            }
+
+            if (pos.x == howLong.x) {
+
+               if (res.y <= howLong.y) {
+                  res = howLong - Vector2d(0, 1);
+               }
+            }
          }
+         ++iter;
       }
-      ++iter;
    }
 
    return res;

@@ -30,6 +30,9 @@ public:
    Block(const Block &source);
    Block &operator=(const Block &source);
 
+   bool operator!=(const Block &inBlock);
+   bool operator==(const Block &inBlock);
+
    void update();
 
    void draw();
@@ -41,6 +44,7 @@ public:
    void setMovable(bool moveable);
 
    void setHowLongCanWeFall(const Vector2d &pos);
+   Vector2d getHowLongCanWeFall();
    
 protected:
 
