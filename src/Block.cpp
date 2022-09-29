@@ -39,7 +39,11 @@ using namespace GraphicsLib;
 /**
  *
  */
-Block::Block() : m_Position(0, 0), m_TempPosition(0.0f), m_DeltaPosition(1.0f), m_Moveable(true)
+Block::Block() : m_Position(0, 0),
+                 m_TempPosition(0.0f),
+                 m_DeltaPosition(1.0f),
+                 m_Moveable(true),
+                 m_Speed(20.0f)
 {
 }
 
@@ -57,8 +61,9 @@ Block::~Block()
  */
 Block::Block(const Block &source) : m_Position(source.m_Position),
                                     m_TempPosition(source.m_TempPosition),
-                                    m_DeltaPosition(source.m_DeltaPosition), 
-                                    m_Moveable(source.m_Moveable)
+                                    m_DeltaPosition(source.m_DeltaPosition),
+                                    m_Moveable(source.m_Moveable),
+                                    m_Speed(20.0f)
 {
 }
 
@@ -89,15 +94,25 @@ void Block::update()
 
    if (m_Moveable) {
 
-      m_TempPosition += m_DeltaPosition * Timer::getDeltaTime() * 20.0f;
+      m_TempPosition += m_DeltaPosition * Timer::getDeltaTime() * m_Speed;
+
+      m_Speed = m_Speed + 2.0f;
 
       if (m_TempPosition < 0.0f) {
          m_TempPosition = 0.0f;
          m_DeltaPosition = 1.0f;
       }
-      if (m_TempPosition >= 100.0f) {
-         m_TempPosition = 99.0f;
+      if (m_TempPosition >= 19.0f) {
+         m_TempPosition = 19.0f;
          m_DeltaPosition = -1.0f;
+
+         // We need to check if we cannot fall any further
+
+         m_Moveable = false;
+
+         m_Position = Vector2d(m_Position.x, m_Position.y + 1);
+
+         m_TempPosition = 0.0f;
       }
    }
 }
@@ -108,8 +123,10 @@ void Block::update()
  */
 void Block::draw()
 {
-   Primitives::rectFill(Rect((m_Position * Vector2d(20, 20)) + Vector2d(m_TempPosition, 0), Vector2d(20, 20)), colorRed);
-   Primitives::rect(Rect((m_Position * Vector2d(20, 20)) + Vector2d(m_TempPosition, 0), Vector2d(20, 20)), colorWhite);
+   Vector2d newTemp = Vector2d(0, m_TempPosition);
+
+   Primitives::rectFill(Rect((m_Position * Vector2d(20, 20)) + newTemp, Vector2d(20, 20)), colorRed);
+   Primitives::rect(Rect((m_Position * Vector2d(20, 20)) + newTemp, Vector2d(20, 20)), colorWhite);
 }
 
 /**

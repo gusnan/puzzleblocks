@@ -151,7 +151,7 @@ void Map::initMap()
    */
 
    std::shared_ptr<Block> block = std::make_shared<Block>();
-   block->setMovable(false);
+   block->setMovable(true);
    block->setPosition(Vector2d(1, 1));
    m_BlockList->push_back(block);
 

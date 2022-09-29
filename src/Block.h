@@ -49,6 +49,8 @@ protected:
 
    bool m_Moveable;
 
+   double m_Speed;
+
 };
 
 #endif /*__HEADER_BLOCK_*/
