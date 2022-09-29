@@ -87,11 +87,11 @@ Block::Block(const Block &source) : m_Position(source.m_Position),
                                     m_TempPosition(source.m_TempPosition),
                                     m_DeltaPosition(source.m_DeltaPosition),
                                     m_Moveable(source.m_Moveable),
-                                    m_Speed(20.0f),
-                                    m_Falling(false),
-                                    m_HowLongCanWeFall(-1, -1),
-                                    m_PixelsWeCanFall(0),
-                                    m_Color(0)
+                                    m_Speed(source.m_Speed),
+                                    m_Falling(source.m_Falling),
+                                    m_HowLongCanWeFall(source.m_HowLongCanWeFall),
+                                    m_PixelsWeCanFall(source.m_PixelsWeCanFall),
+                                    m_Color(source.m_Color)
 {
 }
 
