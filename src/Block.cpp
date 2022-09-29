@@ -34,7 +34,11 @@ using namespace LogLib;
 using namespace GraphicsLib;
 
 
+#include "Data.h"
+
 #include "Block.h"
+
+const int BLOCK_SIZE = 32;
 
 /**
  *
@@ -134,7 +138,7 @@ void Block::update()
             m_DeltaPosition = 1.0f;
          }
          if (m_TempPosition >= (m_PixelsWeCanFall - 1.0f)) {
-            // m_TempPosition = 19.0f;
+            // m_TempPosition = (BLOCK_SIZE - 1);
             m_DeltaPosition = -1.0f;
 
             // We need to check if we cannot fall any further
@@ -159,7 +163,7 @@ void Block::update()
 
          // if (m_HowLongCanWeFall.y == -1) targetY = currentY;
 
-         m_PixelsWeCanFall = ((float)targetY - (float)currentY) * 20.0f;
+         m_PixelsWeCanFall = ((float)targetY - (float)currentY) * BLOCK_SIZE;
 
          m_Falling = true;
       }
@@ -174,8 +178,10 @@ void Block::draw()
 {
    Vector2d newTemp = Vector2d(0, m_TempPosition);
 
-   Primitives::rectFill(Rect((m_Position * Vector2d(20, 20)) + newTemp, Vector2d(20, 20)), colorRed);
-   Primitives::rect(Rect((m_Position * Vector2d(20, 20)) + newTemp, Vector2d(20, 20)), colorWhite);
+   // Primitives::rectFill(Rect((m_Position * Vector2d(BLOCK_SIZE, BLOCK_SIZE)) + newTemp, Vector2d(BLOCK_SIZE, BLOCK_SIZE)), colorRed);
+   // Primitives::rect(Rect((m_Position * Vector2d(BLOCK_SIZE, BLOCK_SIZE)) + newTemp, Vector2d(BLOCK_SIZE, BLOCK_SIZE)), colorWhite);
+
+   Data::instance().blocksBitmap->blit(Rect(0, 0, BLOCK_SIZE, BLOCK_SIZE), m_Position * Vector2d(BLOCK_SIZE, BLOCK_SIZE) + newTemp);
 }
 
 /**
