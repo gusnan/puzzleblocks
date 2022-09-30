@@ -166,6 +166,9 @@ void Map::initMap()
    createBlock(Vector2d(8, 7), 3);
    createBlock(Vector2d(8, 5), 4);
 
+   createBlock(Vector2d(6, 0), 4);
+   createBlock(Vector2d(7, 4), 4);
+
 }
 
 /**
