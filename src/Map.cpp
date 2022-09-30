@@ -39,14 +39,14 @@ using namespace GraphicsLib;
 /**
  *
  */
-Map::Map() : m_SizeX(0), m_SizeY(0), m_BlockList(nullptr)
+Map::Map() : m_Size(), m_BlockList(nullptr)
 {
 }
 
 /**
  *
  */
-Map::Map(int xsize, int ysize) : m_SizeX(xsize), m_SizeY(ysize), m_BlockList(nullptr)
+Map::Map(const Vector2d &inSize) : m_Size(inSize), m_BlockList(nullptr)
 {
    initMap();
 }
@@ -55,7 +55,7 @@ Map::Map(int xsize, int ysize) : m_SizeX(xsize), m_SizeY(ysize), m_BlockList(nul
 /**
  *
  */
-Map::Map(const Map &source) : m_SizeX(0), m_SizeY(0), m_BlockList(nullptr)
+Map::Map(const Map &source) : m_Size(source.m_Size), m_BlockList(nullptr)
 {
    LOG("Map copy constructor");
 }
@@ -71,8 +71,7 @@ Map &Map::operator=(const Map &inData)
 
    if (this != &inData) {
 
-      m_SizeX = inData.m_SizeX;
-      m_SizeY = inData.m_SizeY;
+      m_Size = inData.m_Size;
 
       m_BlockList = new std::list<std::shared_ptr<Block>>();
 
@@ -125,7 +124,10 @@ void Map::draw()
 
       std::shared_ptr<Block> temp = (*iter);
 
-      temp->draw();
+      if (temp->getPosition().y < m_Size.y) {
+
+         temp->draw();
+      }
 
       ++iter;
    }
@@ -138,7 +140,7 @@ void Map::draw()
 void Map::initMap()
 {
    LOG("Init Map");
-   int totalsize = m_SizeX * m_SizeY;
+   // int totalsize = m_SizeX * m_SizeY;
 
    m_BlockList = new std::list<std::shared_ptr<Block>>();
 
@@ -154,7 +156,7 @@ void Map::initMap()
 
    for (int co = 0; co < 10; co++) {
       std::shared_ptr<Block> tempBlock = std::make_shared<Block>();
-      tempBlock->setPosition(Vector2d(co, 9));
+      tempBlock->setPosition(Vector2d(co, 10));
       tempBlock->setMovable(false);
 
       m_BlockList->push_back(tempBlock);
@@ -225,9 +227,16 @@ Vector2d Map::howLongCanWeFall(std::shared_ptr<Block> block)
 
             Vector2d howLong = temp->getHowLongCanWeFall();
 
-            if ((howLong.x == -1) && (howLong.y == -1)) {
+
+            if ((howLong.x == -1) || (howLong.y == -1)) {
+
                howLong.x = temp->getPosition().x;
                howLong.y = temp->getPosition().y;
+
+            }
+
+            if (res.y == -1) {
+               res.y = 9;
             }
 
             if (pos.x == howLong.x) {
@@ -236,10 +245,12 @@ Vector2d Map::howLongCanWeFall(std::shared_ptr<Block> block)
                   res = howLong - Vector2d(0, 1);
                }
             }
+
          }
          ++iter;
       }
    }
+
 
    return res;
 }

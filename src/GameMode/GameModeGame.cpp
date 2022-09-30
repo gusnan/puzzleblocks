@@ -83,7 +83,7 @@ void GameModeGame::enterGameMode()
 
    EventSystem::addEventHandler(gameEventHandler);
 
-   map = std::make_shared<Map>(10, 10);
+   map = std::make_shared<Map>(Vector2d(10, 10));
 
 }
 

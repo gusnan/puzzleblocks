@@ -30,7 +30,7 @@ class Map
 {
 public:
    Map();
-   Map(int xsize, int ysize);
+   Map(const Vector2d &inSize);
 
    Map(const Map &inMap);
 
@@ -48,7 +48,8 @@ public:
 
 private:
 
-   int m_SizeX, m_SizeY;
+   // int m_SizeX, m_SizeY;
+   Vector2d m_Size;
 
    void initMap();
    void doneMap();
