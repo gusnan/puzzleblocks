@@ -162,14 +162,24 @@ void Map::initMap()
       m_BlockList->push_back(tempBlock);
    }
 
+   /*
    createBlock(Vector2d(1, 2), 0);
    createBlock(Vector2d(1, 1), 1);
    createBlock(Vector2d(3, 2), 2);
    createBlock(Vector2d(8, 7), 3);
    createBlock(Vector2d(8, 5), 4);
+   */
 
+   /*
    createBlock(Vector2d(6, 0), 4);
    createBlock(Vector2d(7, 4), 4);
+   */
+
+   for (int co1 = 0; co1 < 5; co1++)
+   for (int co2 = 0; co2 < 5; co2++) {
+
+      createBlock(Vector2d(co1 + 3, co2 + 3), 3);
+   }
 
 }
 
@@ -183,12 +193,22 @@ void Map::doneMap()
    delete m_BlockList;
 }
 
+struct compareBlocks {
+   bool operator()(std::shared_ptr<Block> left, std::shared_ptr<Block> right) {
+      if ((left->getPosition().y) > (right->getPosition().y)) {
+         return false;
+      }
+      return true;
+   }
+};
+
 
 /**
  *
  */
 void Map::update()
 {
+   m_BlockList->sort(compareBlocks());
 
    std::list<std::shared_ptr<Block> >::iterator iter;
 
@@ -196,63 +216,13 @@ void Map::update()
 
       std::shared_ptr<Block> temp = (*iter);
 
+      Vector2d pos = temp->getPosition();
+
       temp->update();
 
       ++iter;
    }
 
-}
-
-/**
- *
- */
-Vector2d Map::howLongCanWeFall(std::shared_ptr<Block> block)
-{
-   Vector2d pos;
-   Vector2d res;
-
-   if (block != nullptr) {
-      pos = block->getPosition();
-
-      res = pos;
-
-      int check_x = pos.x;
-
-      std::list<std::shared_ptr<Block> >::iterator iter;
-      for (iter = m_BlockList->begin(); iter != m_BlockList->end(); ) {
-
-         std::shared_ptr<Block> temp = (*iter);
-
-         if (temp != block) {
-
-            Vector2d howLong = temp->getHowLongCanWeFall();
-
-
-            if ((howLong.x == -1) || (howLong.y == -1)) {
-
-               howLong.x = temp->getPosition().x;
-               howLong.y = temp->getPosition().y;
-
-            }
-
-            if (res.y == -1) {
-               res.y = 9;
-            }
-
-            if (pos.x == howLong.x) {
-
-               if (res.y <= howLong.y) {
-                  res = howLong - Vector2d(0, 1);
-               }
-            }
-
-         }
-         ++iter;
-      }
-   }
-
-
-   return res;
 }
 
 
@@ -265,14 +235,6 @@ void Map::createBlock(const Vector2d &position, int inColor)
    block->setMovable(true);
    block->setPosition(position);
 
-   block->setHowLongCanWeFall(howLongCanWeFall(block));
    m_BlockList->push_back(block);
 
-   Vector2d temp = howLongCanWeFall(block);
-
-   std::stringstream st;
-
-   st << "How: " << temp;
-
-   STLOG(st);
 }

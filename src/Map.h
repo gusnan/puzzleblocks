@@ -42,8 +42,6 @@ public:
 
    void update();
 
-   Vector2d howLongCanWeFall(std::shared_ptr<Block> block);
-
    void createBlock(const Vector2d &position, int inColor);
 
 private:

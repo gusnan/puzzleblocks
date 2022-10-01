@@ -49,7 +49,6 @@ Block::Block() : m_Position(0, 0),
                  m_Moveable(true),
                  m_Speed(20.0f),
                  m_Falling(false),
-                 m_HowLongCanWeFall(-1, -1),
                  m_PixelsWeCanFall(0),
                  m_Color(0)
 {
@@ -65,7 +64,6 @@ Block::Block(int inColor) : m_Position(0, 0),
                             m_Moveable(true),
                             m_Speed(20.0f),
                             m_Falling(false),
-                            m_HowLongCanWeFall(-1, -1),
                             m_PixelsWeCanFall(0),
                             m_Color(inColor)
 {
@@ -89,7 +87,6 @@ Block::Block(const Block &source) : m_Position(source.m_Position),
                                     m_Moveable(source.m_Moveable),
                                     m_Speed(source.m_Speed),
                                     m_Falling(source.m_Falling),
-                                    m_HowLongCanWeFall(source.m_HowLongCanWeFall),
                                     m_PixelsWeCanFall(source.m_PixelsWeCanFall),
                                     m_Color(source.m_Color)
 {
@@ -140,7 +137,7 @@ bool Block::operator==(const Block &inBlock)
  */
 bool Block::operator!=(const Block &inBlock)
 {
-   return (this != &inBlock);
+   return !(this == &inBlock);
 }
 
 
@@ -157,10 +154,6 @@ void Block::update()
 
          m_Speed = m_Speed + 3.0f;
 
-         if (m_TempPosition < 0.0f) {
-            m_TempPosition = 0.0f;
-            m_DeltaPosition = 1.0f;
-         }
          if (m_TempPosition >= (m_PixelsWeCanFall - 1.0f)) {
             // m_TempPosition = (BLOCK_SIZE - 1);
             m_DeltaPosition = -1.0f;
@@ -170,7 +163,7 @@ void Block::update()
             m_Moveable = false;
 
             // m_Position = Vector2d(m_Position.x, m_Position.y + 1);
-            m_Position = Vector2d(m_HowLongCanWeFall.x, m_HowLongCanWeFall.y);
+            // m_Position = Vector2d(m_HowLongCanWeFall.x, m_HowLongCanWeFall.y);
 
             m_TempPosition = 0.0f;
 
@@ -183,11 +176,13 @@ void Block::update()
          Vector2d tempPos = m_Position;
          int currentY = tempPos.y;
 
+         /*
          int targetY = m_HowLongCanWeFall.y;
 
          // if (m_HowLongCanWeFall.y == -1) targetY = currentY;
 
          m_PixelsWeCanFall = ((float)targetY - (float)currentY) * BLOCK_SIZE;
+         */
 
          m_Falling = true;
       }
@@ -240,21 +235,4 @@ bool Block::getMovable()
 void Block::setMovable(bool moveable)
 {
    m_Moveable = moveable;
-}
-
-/**
- *
- */
-void Block::setHowLongCanWeFall(const Vector2d &pos)
-{
-   m_HowLongCanWeFall = pos;
-}
-
-
-/**
- *
- */
-Vector2d Block::getHowLongCanWeFall()
-{
-   return m_HowLongCanWeFall;
 }
