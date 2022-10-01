@@ -115,6 +115,10 @@ Block &Block::operator=(const Block &source)
    return *this;
 }
 
+
+/**
+ *
+ */
 bool Block::operator==(const Block &inBlock)
 {
    bool result = true;
@@ -241,12 +245,18 @@ void Block::setMovable(bool moveable)
 }
 
 
+/**
+ *
+ */
 bool Block::canFall()
 {
    return m_CanFall;
 }
 
 
+/**
+ *
+ */
 void Block::setCanFall(bool canFall)
 {
    m_CanFall = canFall;
