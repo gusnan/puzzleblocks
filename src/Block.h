@@ -47,6 +47,11 @@ public:
    bool canFall();
    void setCanFall(bool canFall = true);
 
+   bool getFalling();
+   void setFalling(bool inFalling = true);
+
+   double getCounter();
+
 protected:
 
    Vector2d m_Position;
@@ -65,6 +70,8 @@ protected:
    int m_Color;
 
    bool m_CanFall;
+
+   double m_Counter;
 
 };
 

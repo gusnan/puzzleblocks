@@ -44,6 +44,8 @@ public:
 
    void createBlock(const Vector2d &position, int inColor);
 
+   std::shared_ptr<Block> getBlockAtPosition(const Vector2d &position);
+
 private:
 
    // int m_SizeX, m_SizeY;
@@ -55,6 +57,8 @@ private:
    // std::shared_ptr<Block> *m_MapData;
 
    std::list<std::shared_ptr<Block>> *m_BlockList;
+
+   std::shared_ptr<Block> m_FullBlock;
 
 };
 

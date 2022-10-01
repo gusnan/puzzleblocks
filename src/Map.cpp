@@ -39,14 +39,14 @@ using namespace GraphicsLib;
 /**
  *
  */
-Map::Map() : m_Size(), m_BlockList(nullptr)
+Map::Map() : m_Size(), m_BlockList(nullptr), m_FullBlock(nullptr)
 {
 }
 
 /**
  *
  */
-Map::Map(const Vector2d &inSize) : m_Size(inSize), m_BlockList(nullptr)
+Map::Map(const Vector2d &inSize) : m_Size(inSize), m_BlockList(nullptr), m_FullBlock(nullptr)
 {
    initMap();
 }
@@ -55,7 +55,7 @@ Map::Map(const Vector2d &inSize) : m_Size(inSize), m_BlockList(nullptr)
 /**
  *
  */
-Map::Map(const Map &source) : m_Size(source.m_Size), m_BlockList(nullptr)
+Map::Map(const Map &source) : m_Size(source.m_Size), m_BlockList(nullptr), m_FullBlock(nullptr)
 {
    LOG("Map copy constructor");
 }
@@ -112,9 +112,9 @@ Map::~Map()
 void Map::draw()
 {
 
-   for (int co1 = 0; co1 < 10; co1++)
-   for (int co2 = 0; co2 < 10; co2++) {
-      Primitives::rect(Rect(co1 * 32, co2 * 32, 32, 32), colorWhite);
+   for (int co1 = 0; co1 < m_Size.x; co1++)
+   for (int co2 = 0; co2 < m_Size.y; co2++) {
+      // Primitives::rect(Rect(co1 * 32, co2 * 32, 32, 32), colorWhite);
       // m_MapData[co2 * m_SizeX + co1]->draw(co1 * 20, co2 * 20);
    }
 
@@ -124,10 +124,10 @@ void Map::draw()
 
       std::shared_ptr<Block> temp = (*iter);
 
-      if (temp->getPosition().y < m_Size.y) {
+      // if (temp->getPosition().y < m_Size.y) {
 
          temp->draw();
-      }
+      // }
 
       ++iter;
    }
@@ -154,6 +154,10 @@ void Map::initMap()
    }
    */
 
+   m_FullBlock = std::make_shared<Block>();
+   m_FullBlock->setMovable(false);
+   m_FullBlock->setFalling(false);
+
    for (int co = 0; co < 10; co++) {
       std::shared_ptr<Block> tempBlock = std::make_shared<Block>();
       tempBlock->setPosition(Vector2d(co, 10));
@@ -162,23 +166,27 @@ void Map::initMap()
       m_BlockList->push_back(tempBlock);
    }
 
-   /*
+
    createBlock(Vector2d(1, 2), 0);
    createBlock(Vector2d(1, 1), 1);
    createBlock(Vector2d(3, 2), 2);
    createBlock(Vector2d(8, 7), 3);
    createBlock(Vector2d(8, 5), 4);
-   */
 
-   /*
+
+
    createBlock(Vector2d(6, 0), 4);
    createBlock(Vector2d(7, 4), 4);
-   */
+
+
+   int q = 0;
 
    for (int co1 = 0; co1 < 5; co1++)
    for (int co2 = 0; co2 < 5; co2++) {
 
-      createBlock(Vector2d(co1 + 3, co2 + 3), 3);
+      createBlock(Vector2d(co1 + 3, co2 + 3), (q % 2));
+
+      q++;
    }
 
 }
@@ -218,6 +226,14 @@ void Map::update()
 
       Vector2d pos = temp->getPosition();
 
+      // temp->setCanFall(false);
+
+      if (temp->getCounter() == 0.0f) {
+         if (getBlockAtPosition(pos + Vector2d(0, 1)) == nullptr) {
+            temp->setFalling(true);
+         }
+      }
+
       temp->update();
 
       ++iter;
@@ -226,15 +242,43 @@ void Map::update()
 }
 
 
+std::shared_ptr<Block> Map::getBlockAtPosition(const Vector2d &position)
+{
+   std::shared_ptr<Block> result = nullptr;
+
+   if (position.x < 0 || position.y < 0 || position.x >= m_Size.x - 1 || position.y > m_Size.y - 1) {
+      return m_FullBlock;
+   }
+
+   std::list<std::shared_ptr<Block> >::iterator iter;
+
+   for (iter = m_BlockList->begin(); iter != m_BlockList->end(); ) {
+
+      std::shared_ptr<Block> temp = (*iter);
+
+      if (temp->getPosition() == position) result = temp;
+
+      ++iter;
+   }
+
+   return result;
+}
+
+
 /**
  *
  */
 void Map::createBlock(const Vector2d &position, int inColor)
 {
-   std::shared_ptr<Block> block = std::make_shared<Block>(inColor);
-   block->setMovable(true);
-   block->setPosition(position);
 
-   m_BlockList->push_back(block);
+   if (getBlockAtPosition(position) == nullptr) {
 
+      std::shared_ptr<Block> block = std::make_shared<Block>(inColor);
+      block->setMovable(true);
+      block->setCanFall(true);
+      block->setFalling(true);
+      block->setPosition(position);
+
+      m_BlockList->push_back(block);
+   }
 }

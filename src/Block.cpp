@@ -51,7 +51,8 @@ Block::Block() : m_Position(0, 0),
                  m_Falling(false),
                  m_PixelsWeCanFall(0),
                  m_Color(0),
-                 m_CanFall(false)
+                 m_CanFall(false),
+                 m_Counter(0.0f)
 {
 }
 
@@ -67,7 +68,8 @@ Block::Block(int inColor) : m_Position(0, 0),
                             m_Falling(false),
                             m_PixelsWeCanFall(0),
                             m_Color(inColor),
-                            m_CanFall(false)
+                            m_CanFall(false),
+                            m_Counter(0.0f)
 {
 }
 
@@ -91,7 +93,8 @@ Block::Block(const Block &source) : m_Position(source.m_Position),
                                     m_Falling(source.m_Falling),
                                     m_PixelsWeCanFall(source.m_PixelsWeCanFall),
                                     m_Color(source.m_Color),
-                                    m_CanFall(source.m_CanFall)
+                                    m_CanFall(source.m_CanFall),
+                                    m_Counter(0.0f)
 {
 }
 
@@ -155,6 +158,24 @@ void Block::update()
 {
    if (m_Moveable) {
 
+      // if (getFalling()) {
+
+         if (m_Counter <= 0.0f) {
+            // setPosition(getPosition() + Vector2d(0, 1));
+
+            // m_Counter -= 1.0f;
+            m_Counter = 0.0f;
+
+            // setFalling(false);
+         } else {
+
+            m_Counter -= 0.02f * m_Speed;
+         }
+
+      }
+
+
+      /*
       if (m_Falling) {
 
          m_TempPosition += m_DeltaPosition * Timer::getDeltaTime() * m_Speed;
@@ -183,17 +204,11 @@ void Block::update()
          Vector2d tempPos = m_Position;
          int currentY = tempPos.y;
 
-         /*
-         int targetY = m_HowLongCanWeFall.y;
-
-         // if (m_HowLongCanWeFall.y == -1) targetY = currentY;
-
-         m_PixelsWeCanFall = ((float)targetY - (float)currentY) * BLOCK_SIZE;
-         */
 
          m_Falling = true;
       }
-   }
+      */
+   //}
 }
 
 
@@ -202,12 +217,13 @@ void Block::update()
  */
 void Block::draw()
 {
+   int m_TempPosition = ((double)m_Counter / (double)1.0f) * (double)(BLOCK_SIZE);
    Vector2d newTemp = Vector2d(0, m_TempPosition);
 
    // Primitives::rectFill(Rect((m_Position * Vector2d(BLOCK_SIZE, BLOCK_SIZE)) + newTemp, Vector2d(BLOCK_SIZE, BLOCK_SIZE)), colorRed);
    // Primitives::rect(Rect((m_Position * Vector2d(BLOCK_SIZE, BLOCK_SIZE)) + newTemp, Vector2d(BLOCK_SIZE, BLOCK_SIZE)), colorWhite);
 
-   Data::instance().blocksBitmap->blit(Rect(m_Color * BLOCK_SIZE, 0, BLOCK_SIZE, BLOCK_SIZE), m_Position * Vector2d(BLOCK_SIZE, BLOCK_SIZE) + newTemp);
+   Data::instance().blocksBitmap->blit(Rect(m_Color * BLOCK_SIZE, 0, BLOCK_SIZE, BLOCK_SIZE), m_Position * Vector2d(BLOCK_SIZE, BLOCK_SIZE) - newTemp);
 }
 
 /**
@@ -259,5 +275,42 @@ bool Block::canFall()
  */
 void Block::setCanFall(bool canFall)
 {
-   m_CanFall = canFall;
+   m_CanFall = false;
+   if (m_Moveable) {
+      m_CanFall = canFall;
+   }
+
+}
+
+
+/**
+ *
+ */
+bool Block::getFalling()
+{
+   return m_Falling;
+}
+
+
+/**
+ *
+ */
+void Block::setFalling(bool inFalling)
+{
+   if (inFalling) {
+      setPosition(getPosition() + Vector2d(0, 1));
+      m_Counter = 1.0f;
+   }
+   m_Falling = inFalling;
+}
+
+
+/**
+ *
+ */
+double Block::getCounter()
+{
+   double result = m_Counter;
+   // if (result == 1.0f) result = 0.0f;
+   return result;
 }
