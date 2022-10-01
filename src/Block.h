@@ -44,6 +44,9 @@ public:
    bool getMovable();
    void setMovable(bool moveable);
 
+   bool canFall();
+   void setCanFall(bool canFall = true);
+
 protected:
 
    Vector2d m_Position;
@@ -60,6 +63,8 @@ protected:
    double m_PixelsWeCanFall;
 
    int m_Color;
+
+   bool m_CanFall;
 
 };
 

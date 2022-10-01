@@ -50,7 +50,8 @@ Block::Block() : m_Position(0, 0),
                  m_Speed(20.0f),
                  m_Falling(false),
                  m_PixelsWeCanFall(0),
-                 m_Color(0)
+                 m_Color(0),
+                 m_CanFall(false)
 {
 }
 
@@ -65,7 +66,8 @@ Block::Block(int inColor) : m_Position(0, 0),
                             m_Speed(20.0f),
                             m_Falling(false),
                             m_PixelsWeCanFall(0),
-                            m_Color(inColor)
+                            m_Color(inColor),
+                            m_CanFall(false)
 {
 }
 
@@ -88,7 +90,8 @@ Block::Block(const Block &source) : m_Position(source.m_Position),
                                     m_Speed(source.m_Speed),
                                     m_Falling(source.m_Falling),
                                     m_PixelsWeCanFall(source.m_PixelsWeCanFall),
-                                    m_Color(source.m_Color)
+                                    m_Color(source.m_Color),
+                                    m_CanFall(source.m_CanFall)
 {
 }
 
@@ -235,4 +238,16 @@ bool Block::getMovable()
 void Block::setMovable(bool moveable)
 {
    m_Moveable = moveable;
+}
+
+
+bool Block::canFall()
+{
+   return m_CanFall;
+}
+
+
+void Block::setCanFall(bool canFall)
+{
+   m_CanFall = canFall;
 }
