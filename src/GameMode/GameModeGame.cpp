@@ -85,6 +85,8 @@ void GameModeGame::enterGameMode()
 
    map = std::make_shared<Map>(Vector2d(10, 10));
 
+   GuiHandler::instance()->addGuiObject(map);
+
 }
 
 
@@ -98,6 +100,8 @@ void GameModeGame::leaveGameMode()
 
    EventSystem::removeEventHandler(gameEventHandler);
 
+   GuiHandler::instance()->removeGuiObject(map);
+
    map.reset();
 }
 
@@ -107,14 +111,4 @@ void GameModeGame::leaveGameMode()
  */
 void GameModeGame::draw()
 {
-   map->draw();
-}
-
-
-/**
- *
- */
-void GameModeGame::update()
-{
-   map->update();
 }
