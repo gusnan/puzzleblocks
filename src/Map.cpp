@@ -34,6 +34,12 @@ using namespace LogLib;
 
 using namespace GraphicsLib;
 
+using namespace EventLib;
+
+#include "GusGui/GusGui.h"
+
+using namespace GusGui;
+
 #include "Map.h"
 
 
@@ -47,7 +53,7 @@ Map::Map() : m_Size(), m_BlockList(nullptr), m_FullBlock(nullptr)
 /**
  *
  */
-Map::Map(const Vector2d &inSize) : m_Size(inSize), m_BlockList(nullptr), m_FullBlock(nullptr)
+Map::Map(const Vector2d &inSize) : GuiObject(),  m_Size(inSize), m_BlockList(nullptr), m_FullBlock(nullptr)
 {
    initMap();
 }
@@ -110,7 +116,7 @@ Map::~Map()
 /**
  *
  */
-void Map::draw()
+void Map::draw(const Vector2d &pos, float alpha)
 {
 
    for (int co1 = 0; co1 < m_Size.x; co1++)

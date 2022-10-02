@@ -26,7 +26,7 @@
 /**
  *
  */
-class Map
+class Map : public GuiObject
 {
 public:
    Map();
@@ -38,9 +38,9 @@ public:
 
    Map &operator=(const Map &inData);
 
-   void draw();
+   void draw(const Vector2d &pos, float alpha);
 
-   void update();
+   virtual void update() override;
 
    void createBlock(const Vector2d &position, int inColor);
 
