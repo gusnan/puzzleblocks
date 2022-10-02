@@ -57,7 +57,7 @@ using namespace GusGui;
 /**
  *
  */
-EventHandlerGame::EventHandlerGame() : EventHandler()
+EventHandlerGame::EventHandlerGame() : GuiEventHandler()
 {
 }
 
