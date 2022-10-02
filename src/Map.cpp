@@ -46,25 +46,43 @@ using namespace GusGui;
 /**
  *
  */
-Map::Map() : m_Size(), m_BlockList(nullptr), m_FullBlock(nullptr)
+Map::Map() : m_MapSize(), m_BlockList(nullptr), m_FullBlock(nullptr)
 {
-}
+   LOG("Map::Map()");
+   m_Active = true;
+   m_Rect = Rect();
+   m_Visible = true;
+   m_MouseOver = false;
 
-/**
- *
- */
-Map::Map(const Vector2d &inSize) : GuiObject(),  m_Size(inSize), m_BlockList(nullptr), m_FullBlock(nullptr)
-{
    initMap();
 }
 
+/**
+ *
+ */
+Map::Map(const Rect &inRect, const Vector2d &inSize) : GuiObject(inRect), m_MapSize(inSize), m_BlockList(nullptr), m_FullBlock(nullptr)
+{
+   LOG("Map::Map(rect, vector2d)");
+   initMap();
+
+   m_Active = true;
+   m_Rect = inRect;
+   m_MouseOver = false;
+   m_Visible = true;
+}
+
 
 /**
  *
  */
-Map::Map(const Map &source) : m_Size(source.m_Size), m_BlockList(nullptr), m_FullBlock(nullptr)
+Map::Map(const Map &source) : GuiObject(source.m_Rect), m_MapSize(source.m_MapSize), m_BlockList(nullptr), m_FullBlock(nullptr)
 {
    LOG("Map copy constructor");
+
+   m_Active = source.m_Active;
+   m_Rect = source.m_Rect;
+   m_MouseOver = source.m_MouseOver;
+   m_Visible = source.m_Visible;
 }
 
 
@@ -78,7 +96,11 @@ Map &Map::operator=(const Map &inData)
 
    if (this != &inData) {
 
-      m_Size = inData.m_Size;
+      m_Rect = inData.m_Rect;
+
+      m_MapSize = inData.m_MapSize;
+
+      m_Active = inData.m_Active;
 
       m_BlockList = new std::list<std::shared_ptr<Block>>();
 
@@ -119,9 +141,9 @@ Map::~Map()
 void Map::draw(const Vector2d &pos, float alpha)
 {
 
-   for (int co1 = 0; co1 < m_Size.x; co1++)
-   for (int co2 = 0; co2 < m_Size.y; co2++) {
-      // Primitives::rect(Rect(co1 * 32, co2 * 32, 32, 32), colorWhite);
+   for (int co1 = 0; co1 < m_MapSize.x; co1++)
+   for (int co2 = 0; co2 < m_MapSize.y; co2++) {
+      Primitives::rect(Rect(Vector2d(co1 * 32, co2 * 32) + getPosition(), Vector2d(32, 32)), colorGreen);
       // m_MapData[co2 * m_SizeX + co1]->draw(co1 * 20, co2 * 20);
    }
 
@@ -131,12 +153,24 @@ void Map::draw(const Vector2d &pos, float alpha)
 
       std::shared_ptr<Block> temp = (*iter);
 
-      if (temp->getPosition().y < m_Size.y) {
+      if (temp->getPosition().y < m_MapSize.y) {
 
          temp->draw();
       }
-
       ++iter;
+   }
+
+   Primitives::rect(Rect(Vector2d(highlightPosition.x * 32, highlightPosition.y * 32) + getPosition(),
+                    Vector2d(32, 32)),
+                    colorWhite);
+
+   if (viewBlock != nullptr) {
+      Vector2d tempPos = viewBlock->getPosition();
+
+      viewBlock->setPosition(Vector2d(25, 5));
+      viewBlock->draw();
+
+      viewBlock->setPosition(tempPos);
    }
 }
 
@@ -165,6 +199,9 @@ void Map::initMap()
    m_FullBlock->setMovable(false);
    m_FullBlock->setFalling(false);
 
+   m_FullBlock->setPosition(Vector2d(-1, -1));
+
+   /*
    for (int co = 0; co < 10; co++) {
       std::shared_ptr<Block> tempBlock = std::make_shared<Block>();
       tempBlock->setPosition(Vector2d(co, 10));
@@ -172,8 +209,11 @@ void Map::initMap()
 
       m_BlockList->push_back(tempBlock);
    }
+   */
 
 
+/*
+   createBlock(Vector2d(0, 2), 0);
    createBlock(Vector2d(1, 2), 0);
    createBlock(Vector2d(1, 1), 1);
    createBlock(Vector2d(3, 2), 2);
@@ -184,11 +224,12 @@ void Map::initMap()
 
    createBlock(Vector2d(6, 0), 4);
    createBlock(Vector2d(7, 4), 4);
+   */
 
    std::random_device device;
 
    std::default_random_engine generator(device());
-   std::uniform_int_distribution<int> distribution(1, 6);
+   std::uniform_int_distribution<int> distribution(0, 5);
 
    int q = 0;
 
@@ -227,6 +268,8 @@ struct compareBlocks {
  */
 void Map::update()
 {
+   // GusGui::GuiObject::update();
+
    m_BlockList->sort(compareBlocks());
 
    std::list<std::shared_ptr<Block> >::iterator iter;
@@ -257,7 +300,7 @@ std::shared_ptr<Block> Map::getBlockAtPosition(const Vector2d &position)
 {
    std::shared_ptr<Block> result = nullptr;
 
-   if (position.x < 0 || position.y < 0 || position.x >= m_Size.x - 1 || position.y > m_Size.y - 1) {
+   if (position.x < 0 || position.y < 0 || position.x >= m_MapSize.x || position.y >= m_MapSize.y) {
       return m_FullBlock;
    }
 
@@ -290,6 +333,49 @@ void Map::createBlock(const Vector2d &position, int inColor)
       block->setFalling(true);
       block->setPosition(position);
 
+      block->setMapPosition(getPosition());
+
       m_BlockList->push_back(block);
+   }
+}
+
+
+/**
+ *
+ */
+void Map::onMouseMove(const Vector2d &pos)
+{
+   GuiObject::onMouseMove(pos);
+
+   // LOG("onMouseMove");
+   if (m_MouseOver) {
+      Vector2d newpos= pos - getPosition();
+
+      // std::stringstream st;
+
+
+      int x = newpos.x / 32;
+      int y = newpos.y / 32;
+
+      /*
+      st << "NewPos: " << newpos << " and: (" << x << ", " << y << ")";
+
+      STLOG(st);
+      */
+
+      highlightPosition = Vector2d(x, y);
+
+      viewBlock = getBlockAtPosition(highlightPosition);
+
+      /*
+      st.str("");
+
+      st << viewBlock;
+
+      STLOG(st);
+      */
+
+      // Primitives::rect(Rect(x * 32, y * 32, 32, 32), colorWhite);
+
    }
 }

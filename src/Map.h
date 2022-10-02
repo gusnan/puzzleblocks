@@ -26,11 +26,11 @@
 /**
  *
  */
-class Map : public GuiObject
+class Map : public GusGui::GuiObject
 {
 public:
    Map();
-   Map(const Vector2d &inSize);
+   Map(const Rect &inRect, const Vector2d &inSize);
 
    Map(const Map &inMap);
 
@@ -40,16 +40,18 @@ public:
 
    void draw(const Vector2d &pos, float alpha);
 
-   virtual void update() override;
+   virtual void update();
 
    void createBlock(const Vector2d &position, int inColor);
 
    std::shared_ptr<Block> getBlockAtPosition(const Vector2d &position);
 
+   virtual void onMouseMove(const Vector2d &pos);
+
 private:
 
    // int m_SizeX, m_SizeY;
-   Vector2d m_Size;
+   Vector2d m_MapSize;
 
    void initMap();
    void doneMap();
@@ -59,6 +61,10 @@ private:
    std::list<std::shared_ptr<Block>> *m_BlockList;
 
    std::shared_ptr<Block> m_FullBlock;
+
+   Vector2d highlightPosition;
+
+   std::shared_ptr<Block> viewBlock;
 
 };
 

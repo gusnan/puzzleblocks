@@ -223,7 +223,7 @@ void Block::draw()
    // Primitives::rectFill(Rect((m_Position * Vector2d(BLOCK_SIZE, BLOCK_SIZE)) + newTemp, Vector2d(BLOCK_SIZE, BLOCK_SIZE)), colorRed);
    // Primitives::rect(Rect((m_Position * Vector2d(BLOCK_SIZE, BLOCK_SIZE)) + newTemp, Vector2d(BLOCK_SIZE, BLOCK_SIZE)), colorWhite);
 
-   Data::instance().blocksBitmap->blit(Rect(m_Color * BLOCK_SIZE, 0, BLOCK_SIZE, BLOCK_SIZE), m_Position * Vector2d(BLOCK_SIZE, BLOCK_SIZE) - newTemp);
+   Data::instance().blocksBitmap->blit(Rect(m_Color * BLOCK_SIZE, 0, BLOCK_SIZE, BLOCK_SIZE), m_Position * Vector2d(BLOCK_SIZE, BLOCK_SIZE) - newTemp + m_MapPosition);
 }
 
 /**
@@ -313,4 +313,13 @@ double Block::getCounter()
    double result = m_Counter;
    // if (result == 1.0f) result = 0.0f;
    return result;
+}
+
+
+/**
+ *
+ */
+void Block::setMapPosition(const Vector2d &pos)
+{
+   m_MapPosition = pos;
 }

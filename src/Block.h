@@ -52,6 +52,8 @@ public:
 
    double getCounter();
 
+   void setMapPosition(const Vector2d &pos);
+
 protected:
 
    Vector2d m_Position;
@@ -73,6 +75,7 @@ protected:
 
    double m_Counter;
 
+   Vector2d m_MapPosition; // the position of the map gui object on the screen
 };
 
 #endif /*__HEADER_BLOCK_*/
