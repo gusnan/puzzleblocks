@@ -24,6 +24,7 @@
 #include <iostream>
 #include <sstream>
 #include <list>
+#include <random>
 
 #include "GusGame/GusGame.h"
 
@@ -178,13 +179,17 @@ void Map::initMap()
    createBlock(Vector2d(6, 0), 4);
    createBlock(Vector2d(7, 4), 4);
 
+   std::random_device device;
+
+   std::default_random_engine generator(device());
+   std::uniform_int_distribution<int> distribution(1, 6);
 
    int q = 0;
 
    for (int co1 = 0; co1 < 5; co1++)
    for (int co2 = 0; co2 < 5; co2++) {
 
-      createBlock(Vector2d(co1 + 3, co2 + 3), (q % 2));
+      createBlock(Vector2d(co1 + 3, co2 + 3), distribution(generator)); // (q % 3));
 
       q++;
    }
