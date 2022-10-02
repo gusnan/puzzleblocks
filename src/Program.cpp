@@ -229,6 +229,8 @@ void Program::mainLoop()
       // Update the timer
       Timer::updateFrame();
 
+      GuiHandler::instance()->update();
+
       // Handle events (see the class just above this main
       EventSystem::handleEvents();
 
