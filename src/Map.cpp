@@ -124,10 +124,10 @@ void Map::draw()
 
       std::shared_ptr<Block> temp = (*iter);
 
-      // if (temp->getPosition().y < m_Size.y) {
+      if (temp->getPosition().y < m_Size.y) {
 
          temp->draw();
-      // }
+      }
 
       ++iter;
    }
