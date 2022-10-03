@@ -430,7 +430,7 @@ void Map::removeBlock(const Vector2d &pos)
    if (temp != nullptr) {
 
       auto iter = std::find_if(m_BlockList->begin(), m_BlockList->end(),
-                        [&](auto &s){ return (s == temp); }
+                        [&](auto const &s){ return (s == temp); }
       );
 
       if (iter != m_BlockList->end()) {
