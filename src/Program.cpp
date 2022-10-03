@@ -126,7 +126,7 @@ Program::Program() : m_Quit(false)
       LOG("Setting graphics mode...");
 
       // set up a screen with resolution of 640x480, and not fullscreen
-      if (GraphicsHandler::instance().setGraphicsMode(Vector2d(1280, 512), false) == SET_GRAPHICS_RESULT_NO_OPEN_GL) {
+      if (GraphicsHandler::instance().setGraphicsMode(Vector2d(1280, 1024), false) == SET_GRAPHICS_RESULT_NO_OPEN_GL) {
          LOG("Graphics Mode: No Open GL");
       } else {
          LOG("Graphics Mode: Standard");
