@@ -68,7 +68,7 @@ private:
 
    Vector2d m_HighlightPosition;
 
-   std::shared_ptr<Block> viewBlock;
+   std::shared_ptr<Block> m_ViewBlock;
 
 };
 

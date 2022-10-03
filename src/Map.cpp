@@ -167,13 +167,13 @@ void Map::draw(const Vector2d &pos, float alpha)
                     Vector2d(32, 32)),
                     colorWhite);
 
-   if (viewBlock != nullptr) {
-      Vector2d tempPos = viewBlock->getPosition();
+   if (m_ViewBlock != nullptr) {
+      Vector2d tempPos = m_ViewBlock->getPosition();
 
-      viewBlock->setPosition(Vector2d(25, 5));
-      viewBlock->draw();
+      m_ViewBlock->setPosition(Vector2d(25, 5));
+      m_ViewBlock->draw();
 
-      viewBlock->setPosition(tempPos);
+      m_ViewBlock->setPosition(tempPos);
    }
 }
 
@@ -367,7 +367,7 @@ void Map::onMouseMove(const Vector2d &pos)
 
       m_HighlightPosition = Vector2d(x, y);
 
-      viewBlock = getBlockAtPosition(m_HighlightPosition);
+      m_ViewBlock = getBlockAtPosition(m_HighlightPosition);
 
       /*
       st.str("");
