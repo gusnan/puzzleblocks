@@ -158,9 +158,11 @@ Map::~Map()
 void Map::draw(const Vector2d &pos, float alpha)
 {
 
+   GraphicsHandler::instance().setClipRect(getRect());
+
    for (int co1 = 0; co1 < m_MapSize.x; co1++)
    for (int co2 = 0; co2 < m_MapSize.y; co2++) {
-      Primitives::rect(Rect(Vector2d(co1 * 32, co2 * 32) + getPosition(), Vector2d(32, 32)), colorGreen);
+      // Primitives::rect(Rect(Vector2d(co1 * 32, co2 * 32) + getPosition(), Vector2d(32, 32)), colorGreen);
       // m_MapData[co2 * m_SizeX + co1]->draw(co1 * 20, co2 * 20);
    }
 
@@ -170,16 +172,21 @@ void Map::draw(const Vector2d &pos, float alpha)
 
       std::shared_ptr<Block> temp = (*iter);
 
-      if (temp->getPosition().y < m_MapSize.y) {
+      if (temp->getPosition().y > 0) {
 
          temp->draw();
       }
       ++iter;
    }
 
-   Primitives::rect(Rect(Vector2d(m_HighlightPosition.x * 32, m_HighlightPosition.y * 32) + getPosition(),
-                    Vector2d(32, 32)),
-                    colorWhite);
+   GraphicsHandler::instance().noClip();
+
+   // if (m_HighlightPosition.y != 0) {
+   Primitives::rect(Rect(Vector2d(m_HighlightPosition.x * 32, m_HighlightPosition.y * 32) + getPosition() - Vector2d(0, 32),
+                  Vector2d(32, 32)),
+                  colorWhite);
+   // }
+
 
    if (m_ViewBlock != nullptr) {
       Vector2d tempPos = m_ViewBlock->getPosition();
@@ -189,6 +196,10 @@ void Map::draw(const Vector2d &pos, float alpha)
 
       m_ViewBlock->setPosition(tempPos);
    }
+
+   // Primitives::rectFill(Rect(getPosition(), Vector2d(320, 32)), colorBlack);
+
+   Primitives::rect(getRect(), colorRed);
 }
 
 
