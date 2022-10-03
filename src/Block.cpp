@@ -100,6 +100,10 @@ Block &Block::operator=(const Block &source)
       m_Moveable = source.m_Moveable;
 
       m_Color = source.m_Color;
+
+      m_Counter = source.m_Counter;
+
+      m_Speed = source.m_Speed;
    }
 
    return *this;
