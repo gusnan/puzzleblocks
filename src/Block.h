@@ -44,9 +44,6 @@ public:
    bool getMovable();
    void setMovable(bool moveable);
 
-   bool canFall();
-   void setCanFall(bool canFall = true);
-
    bool getFalling();
    void setFalling(bool inFalling = true);
 
@@ -67,11 +64,9 @@ protected:
 
    bool m_Falling;
 
-   double m_PixelsWeCanFall;
+   // double m_PixelsWeCanFall;
 
    int m_Color;
-
-   bool m_CanFall;
 
    double m_Counter;
 
