@@ -165,7 +165,7 @@ void Block::update()
             // setFalling(false);
          } else {
 
-            m_Counter -= 0.015f * m_Speed;
+            m_Counter -= 0.5f * m_Speed * Timer::getDeltaTime();
          }
 
       }
