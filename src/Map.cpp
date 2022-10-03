@@ -163,7 +163,7 @@ void Map::draw(const Vector2d &pos, float alpha)
       ++iter;
    }
 
-   Primitives::rect(Rect(Vector2d(highlightPosition.x * 32, highlightPosition.y * 32) + getPosition(),
+   Primitives::rect(Rect(Vector2d(m_HighlightPosition.x * 32, m_HighlightPosition.y * 32) + getPosition(),
                     Vector2d(32, 32)),
                     colorWhite);
 
@@ -365,9 +365,9 @@ void Map::onMouseMove(const Vector2d &pos)
       STLOG(st);
       */
 
-      highlightPosition = Vector2d(x, y);
+      m_HighlightPosition = Vector2d(x, y);
 
-      viewBlock = getBlockAtPosition(highlightPosition);
+      viewBlock = getBlockAtPosition(m_HighlightPosition);
 
       /*
       st.str("");
