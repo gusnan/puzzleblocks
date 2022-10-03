@@ -50,7 +50,8 @@ Block::Block() : m_Position(0, 0),
                  m_Speed(20.0f),
                  m_Falling(false),
                  m_Color(0),
-                 m_Counter(0.0f)
+                 m_Counter(0.0f),
+                 m_MapPosition()
 {
 }
 
@@ -65,7 +66,8 @@ Block::Block(int inColor) : m_Position(0, 0),
                             m_Speed(20.0f),
                             m_Falling(false),
                             m_Color(inColor),
-                            m_Counter(0.0f)
+                            m_Counter(0.0f),
+                            m_MapPosition()
 {
 }
 
@@ -88,7 +90,8 @@ Block::Block(const Block &source) : m_Position(source.m_Position),
                                     m_Speed(source.m_Speed),
                                     m_Falling(source.m_Falling),
                                     m_Color(source.m_Color),
-                                    m_Counter(0.0f)
+                                    m_Counter(0.0f),
+                                    m_MapPosition()
 {
 }
 
