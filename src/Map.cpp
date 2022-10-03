@@ -313,11 +313,11 @@ void Map::update()
 }
 
 
-std::shared_ptr<Block> Map::getBlockAtPosition(const Vector2d &position)
+std::shared_ptr<Block> Map::getBlockAtPosition(const Vector2d &position, int minYposition)
 {
    std::shared_ptr<Block> result = nullptr;
 
-   if (position.x < 0 || position.y < 0 || position.x >= m_MapSize.x || position.y >= m_MapSize.y) {
+   if (position.x < 0 || position.y < minYposition || position.x >= m_MapSize.x || position.y > m_MapSize.y) {
       return m_FullBlock;
    }
 
@@ -462,11 +462,11 @@ void addPositionToList(Map *map, std::list<std::shared_ptr<Block> > *posList, st
 
    if (map) {
 
-      std::shared_ptr<Block> tempBlock = map->getBlockAtPosition(Vector2d(x + 1, y));
+      std::shared_ptr<Block> tempBlock = map->getBlockAtPosition(Vector2d(x + 1, y), 1);
 
       if (tempBlock != nullptr) {
          if (tempBlock->getColor() == bcolor) {
-            addPositionToList(map, posList, map->getBlockAtPosition(Vector2d(x + 1, y)));
+            addPositionToList(map, posList, map->getBlockAtPosition(Vector2d(x + 1, y), 1), result);
          }
       }
 
@@ -474,21 +474,21 @@ void addPositionToList(Map *map, std::list<std::shared_ptr<Block> > *posList, st
 
       if (tempBlock != nullptr) {
          if (tempBlock->getColor() == bcolor) {
-            addPositionToList(map, posList, map->getBlockAtPosition(Vector2d(x, y + 1)));
+            addPositionToList(map, posList, map->getBlockAtPosition(Vector2d(x, y + 1), 1), result);
          }
       }
       tempBlock = map->getBlockAtPosition(Vector2d(x - 1, y));
 
       if (tempBlock != nullptr) {
          if (tempBlock->getColor() == bcolor) {
-            addPositionToList(map, posList, map->getBlockAtPosition(Vector2d(x - 1, y)));
+            addPositionToList(map, posList, map->getBlockAtPosition(Vector2d(x - 1, y), 1), result);
          }
       }
       tempBlock = map->getBlockAtPosition(Vector2d(x, y - 1));
 
       if (tempBlock != nullptr) {
          if (tempBlock->getColor() == bcolor) {
-            addPositionToList(map, posList, map->getBlockAtPosition(Vector2d(x, y - 1)));
+            addPositionToList(map, posList, map->getBlockAtPosition(Vector2d(x, y - 1), 1), result);
          }
       }
    }

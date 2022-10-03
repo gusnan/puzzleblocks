@@ -44,7 +44,7 @@ public:
 
    void createBlock(const Vector2d &position, int inColor);
 
-   std::shared_ptr<Block> getBlockAtPosition(const Vector2d &position);
+   std::shared_ptr<Block> getBlockAtPosition(const Vector2d &position, int minYposition = 0);
 
    virtual void onMouseMove(const Vector2d &pos);
 
