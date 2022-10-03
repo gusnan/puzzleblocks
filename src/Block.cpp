@@ -76,7 +76,6 @@ Block::Block(int inColor) : m_Position(0, 0),
  */
 Block::~Block()
 {
-   LOG("Block destructor");
 }
 
 
