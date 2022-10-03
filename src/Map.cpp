@@ -321,6 +321,18 @@ void Map::update()
       ++iter;
    }
 
+   for (int co = 0; co < m_MapSize.x; co++) {
+
+      if (getBlockAtPosition(Vector2d(co, 0)) == nullptr) {
+         std::random_device device;
+
+         std::default_random_engine generator(device());
+         std::uniform_int_distribution<int> distribution(0, 3);
+
+         createBlock(Vector2d(co, 0), distribution(generator));
+      }
+   }
+
 }
 
 
@@ -390,7 +402,7 @@ void Map::onMouseMove(const Vector2d &pos)
       STLOG(st);
       */
 
-      m_HighlightPosition = Vector2d(x, y);
+      m_HighlightPosition = Vector2d(x, y + 1);
 
       m_ViewBlock = getBlockAtPosition(m_HighlightPosition);
 
@@ -442,11 +454,13 @@ std::shared_ptr<Block> Map::getFullblock()
 /**
  *
  */
-void addPositionToList(Map *map, std::list<std::shared_ptr<Block> > *posList, std::shared_ptr<Block> block)
+void addPositionToList(Map *map, std::list<std::shared_ptr<Block> > *posList, std::shared_ptr<Block> block, int *result)
 {
    if (block == nullptr) return;
 
    std::list<std::shared_ptr<Block> >::iterator iter;
+
+   if (block == map->getFullblock()) return;
 
    for (iter = posList->begin(); iter != posList->end(); ) {
 
@@ -464,6 +478,7 @@ void addPositionToList(Map *map, std::list<std::shared_ptr<Block> > *posList, st
 
    if (posList) {
       posList->push_back(block);
+      (*result)++;
    }
 
    int x = position.x;
@@ -518,27 +533,34 @@ bool Map::onLeftMouseButtonPressed(const Vector2d& pos)
       int x = newpos.x / 32;
       int y = newpos.y / 32;
 
+      y++;
+
       tempPosition = Vector2d(x, y);
 
       std::shared_ptr<Block> block = getBlockAtPosition(tempPosition);
 
       std::list<std::shared_ptr<Block> > *posList = new std::list<std::shared_ptr<Block> >();
 
+      int howmany = 0;
+
       if (block != nullptr) {
-         addPositionToList(this, posList, block);
+         addPositionToList(this, posList, block, &howmany);
       }
 
-      std::list<std::shared_ptr<Block> >::iterator iter;
+      if (howmany > 1) {
 
-      for (iter = posList->begin(); iter != posList->end(); ) {
+         std::list<std::shared_ptr<Block> >::iterator iter;
 
-         std::shared_ptr<Block> temp = (*iter);
+         for (iter = posList->begin(); iter != posList->end(); ) {
 
-         Vector2d pos = temp->getPosition();
+            std::shared_ptr<Block> temp = (*iter);
 
-         removeBlock(pos);
+            Vector2d pos = temp->getPosition();
 
-         ++iter;
+            removeBlock(pos);
+
+            ++iter;
+         }
       }
 
       delete posList;
