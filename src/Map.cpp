@@ -49,7 +49,11 @@ using namespace GusGui;
 /**
  *
  */
-Map::Map() : m_MapSize(), m_BlockList(nullptr), m_FullBlock(nullptr)
+Map::Map() : m_MapSize(),
+             m_BlockList(nullptr),
+             m_FullBlock(nullptr),
+             m_HighlightPosition(),
+             m_ViewBlock(nullptr)
 {
    LOG("Map::Map()");
    m_Active = true;
@@ -63,7 +67,12 @@ Map::Map() : m_MapSize(), m_BlockList(nullptr), m_FullBlock(nullptr)
 /**
  *
  */
-Map::Map(const Rect &inRect, const Vector2d &inSize) : GuiObject(inRect), m_MapSize(inSize), m_BlockList(nullptr), m_FullBlock(nullptr)
+Map::Map(const Rect &inRect, const Vector2d &inSize) : GuiObject(inRect), 
+                                                       m_MapSize(inSize),
+                                                       m_BlockList(nullptr),
+                                                       m_FullBlock(nullptr),
+                                                       m_HighlightPosition(),
+                                                       m_ViewBlock(nullptr)
 {
    LOG("Map::Map(rect, vector2d)");
    initMap();
@@ -78,7 +87,12 @@ Map::Map(const Rect &inRect, const Vector2d &inSize) : GuiObject(inRect), m_MapS
 /**
  *
  */
-Map::Map(const Map &source) : GuiObject(source.m_Rect), m_MapSize(source.m_MapSize), m_BlockList(nullptr), m_FullBlock(nullptr)
+Map::Map(const Map &source) : GuiObject(source.m_Rect),
+                              m_MapSize(source.m_MapSize),
+                              m_BlockList(nullptr),
+                              m_FullBlock(nullptr),
+                              m_HighlightPosition(),
+                              m_ViewBlock(nullptr)
 {
    LOG("Map copy constructor");
 
