@@ -36,7 +36,7 @@ public:
 
    void update();
 
-   void draw();
+   void draw(bool includeMinorPosition = true);
 
    void setPosition(const Vector2d &pos);
    Vector2d getPosition();

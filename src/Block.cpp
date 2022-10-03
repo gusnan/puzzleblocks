@@ -211,7 +211,7 @@ void Block::update()
 /**
  *
  */
-void Block::draw()
+void Block::draw(bool includeMinorPosition)
 {
    int m_TempPosition = ((double)m_Counter / (double)1.0f) * (double)(BLOCK_SIZE);
    Vector2d newTemp = Vector2d(0, m_TempPosition);
@@ -219,7 +219,13 @@ void Block::draw()
    // Primitives::rectFill(Rect((m_Position * Vector2d(BLOCK_SIZE, BLOCK_SIZE)) + newTemp, Vector2d(BLOCK_SIZE, BLOCK_SIZE)), colorRed);
    // Primitives::rect(Rect((m_Position * Vector2d(BLOCK_SIZE, BLOCK_SIZE)) + newTemp, Vector2d(BLOCK_SIZE, BLOCK_SIZE)), colorWhite);
 
-   Data::instance().blocksBitmap->blit(Rect(m_Color * BLOCK_SIZE, 0, BLOCK_SIZE, BLOCK_SIZE), m_Position * Vector2d(BLOCK_SIZE, BLOCK_SIZE) - newTemp + m_MapPosition);
+   Vector2d position = m_Position * Vector2d(BLOCK_SIZE, BLOCK_SIZE) + m_MapPosition - Vector2d(0, BLOCK_SIZE);
+
+   if (includeMinorPosition) {
+      position -= newTemp;
+   }
+
+   Data::instance().blocksBitmap->blit(Rect(m_Color * BLOCK_SIZE, 0, BLOCK_SIZE, BLOCK_SIZE), position);
 }
 
 /**

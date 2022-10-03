@@ -185,7 +185,7 @@ void Map::draw(const Vector2d &pos, float alpha)
       Vector2d tempPos = m_ViewBlock->getPosition();
 
       m_ViewBlock->setPosition(Vector2d(25, 5));
-      m_ViewBlock->draw();
+      m_ViewBlock->draw(false);
 
       m_ViewBlock->setPosition(tempPos);
    }
