@@ -44,8 +44,6 @@ const int BLOCK_SIZE = 32;
  *
  */
 Block::Block() : m_Position(0, 0),
-                 m_TempPosition(0.0f),
-                 m_DeltaPosition(1.0f),
                  m_Moveable(true),
                  m_Speed(20.0f),
                  m_Falling(false),
@@ -60,8 +58,6 @@ Block::Block() : m_Position(0, 0),
  *
  */
 Block::Block(int inColor) : m_Position(0, 0),
-                            m_TempPosition(0.0f),
-                            m_DeltaPosition(1.0f),
                             m_Moveable(true),
                             m_Speed(20.0f),
                             m_Falling(false),
@@ -83,8 +79,6 @@ Block::~Block()
  *
  */
 Block::Block(const Block &source) : m_Position(source.m_Position),
-                                    m_TempPosition(source.m_TempPosition),
-                                    m_DeltaPosition(source.m_DeltaPosition),
                                     m_Moveable(source.m_Moveable),
                                     m_Speed(source.m_Speed),
                                     m_Falling(source.m_Falling),
@@ -102,9 +96,6 @@ Block &Block::operator=(const Block &source)
 {
    if (this != &source) {
       m_Position = source.m_Position;
-
-      m_TempPosition = source.m_TempPosition;
-      m_DeltaPosition = source.m_DeltaPosition;
 
       m_Moveable = source.m_Moveable;
 
@@ -213,8 +204,8 @@ void Block::update()
  */
 void Block::draw(bool includeMinorPosition)
 {
-   int m_TempPosition = ((double)m_Counter / (double)1.0f) * (double)(BLOCK_SIZE);
-   Vector2d newTemp = Vector2d(0, m_TempPosition);
+   int tempPosition = ((double)m_Counter / (double)1.0f) * (double)(BLOCK_SIZE);
+   Vector2d newTemp = Vector2d(0, tempPosition);
 
    // Primitives::rectFill(Rect((m_Position * Vector2d(BLOCK_SIZE, BLOCK_SIZE)) + newTemp, Vector2d(BLOCK_SIZE, BLOCK_SIZE)), colorRed);
    // Primitives::rect(Rect((m_Position * Vector2d(BLOCK_SIZE, BLOCK_SIZE)) + newTemp, Vector2d(BLOCK_SIZE, BLOCK_SIZE)), colorWhite);

@@ -57,9 +57,6 @@ protected:
 
    Vector2d m_Position;
 
-   double m_TempPosition;
-   double m_DeltaPosition;
-
    bool m_Moveable;
 
    double m_Speed;
