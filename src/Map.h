@@ -52,6 +52,8 @@ public:
 
    virtual bool onLeftMouseButtonPressed(const Vector2d& pos);
 
+   std::shared_ptr<Block> getFullblock();
+
 private:
 
    // int m_SizeX, m_SizeY;

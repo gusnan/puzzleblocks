@@ -418,6 +418,16 @@ void Map::removeBlock(const Vector2d &pos)
    }
 }
 
+
+/**
+ *
+ */
+std::shared_ptr<Block> Map::getFullblock()
+{
+   return m_FullBlock;
+}
+
+
 /**
  *
  */
