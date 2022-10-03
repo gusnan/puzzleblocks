@@ -297,3 +297,12 @@ void Block::setMapPosition(const Vector2d &pos)
 {
    m_MapPosition = pos;
 }
+
+
+/**
+ *
+ */
+int Block::getColor()
+{
+   return m_Color;
+}

@@ -51,6 +51,8 @@ public:
 
    void setMapPosition(const Vector2d &pos);
 
+   int getColor();
+
 protected:
 
    Vector2d m_Position;
