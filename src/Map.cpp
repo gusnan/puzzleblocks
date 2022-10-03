@@ -458,6 +458,8 @@ void addPositionToList(Map *map, std::list<std::shared_ptr<Block> > *posList, st
 {
    if (block == nullptr) return;
 
+   if (!map) return;
+
    std::list<std::shared_ptr<Block> >::iterator iter;
 
    if (block == map->getFullblock()) return;
@@ -476,10 +478,8 @@ void addPositionToList(Map *map, std::list<std::shared_ptr<Block> > *posList, st
 
    Vector2d position = block->getPosition();
 
-   if (posList) {
-      posList->push_back(block);
-      (*result)++;
-   }
+   posList->push_back(block);
+   (*result)++;
 
    int x = position.x;
    int y = position.y;
@@ -555,9 +555,9 @@ bool Map::onLeftMouseButtonPressed(const Vector2d& pos)
 
             std::shared_ptr<Block> temp = (*iter);
 
-            Vector2d pos = temp->getPosition();
+            Vector2d blockpos = temp->getPosition();
 
-            removeBlock(pos);
+            removeBlock(blockpos);
 
             ++iter;
          }
