@@ -246,7 +246,7 @@ void Map::initMap()
    std::random_device device;
 
    std::default_random_engine generator(device());
-   std::uniform_int_distribution<int> distribution(0, 5);
+   std::uniform_int_distribution<int> distribution(0, 3);
 
    int q = 0;
 
@@ -421,6 +421,72 @@ void Map::removeBlock(const Vector2d &pos)
 /**
  *
  */
+void addPositionToList(Map *map, std::list<std::shared_ptr<Block> > *posList, std::shared_ptr<Block> block)
+{
+   if (block == nullptr) return;
+
+   std::list<std::shared_ptr<Block> >::iterator iter;
+
+   for (iter = posList->begin(); iter != posList->end(); ) {
+
+      std::shared_ptr<Block> temp = (*iter);
+
+      if (temp == block) {
+
+         // the block is already in the list, nothing more to do.
+         return;
+      }
+      ++iter;
+   }
+
+   Vector2d position = block->getPosition();
+
+   if (posList) {
+      posList->push_back(block);
+   }
+
+   int x = position.x;
+   int y = position.y;
+
+   int bcolor = block->getColor();
+
+   if (map) {
+
+      std::shared_ptr<Block> tempBlock = map->getBlockAtPosition(Vector2d(x + 1, y));
+
+      if (tempBlock != nullptr) {
+         if (tempBlock->getColor() == bcolor) {
+            addPositionToList(map, posList, map->getBlockAtPosition(Vector2d(x + 1, y)));
+         }
+      }
+
+      tempBlock = map->getBlockAtPosition(Vector2d(x , y + 1));
+
+      if (tempBlock != nullptr) {
+         if (tempBlock->getColor() == bcolor) {
+            addPositionToList(map, posList, map->getBlockAtPosition(Vector2d(x, y + 1)));
+         }
+      }
+      tempBlock = map->getBlockAtPosition(Vector2d(x - 1, y));
+
+      if (tempBlock != nullptr) {
+         if (tempBlock->getColor() == bcolor) {
+            addPositionToList(map, posList, map->getBlockAtPosition(Vector2d(x - 1, y)));
+         }
+      }
+      tempBlock = map->getBlockAtPosition(Vector2d(x, y - 1));
+
+      if (tempBlock != nullptr) {
+         if (tempBlock->getColor() == bcolor) {
+            addPositionToList(map, posList, map->getBlockAtPosition(Vector2d(x, y - 1)));
+         }
+      }
+   }
+}
+
+/**
+ *
+ */
 bool Map::onLeftMouseButtonPressed(const Vector2d& pos)
 {
    Vector2d tempPosition;
@@ -431,17 +497,30 @@ bool Map::onLeftMouseButtonPressed(const Vector2d& pos)
       int x = newpos.x / 32;
       int y = newpos.y / 32;
 
-      /*
-      st << "NewPos: " << newpos << " and: (" << x << ", " << y << ")";
-
-      STLOG(st);
-      */
-
       tempPosition = Vector2d(x, y);
 
-      // viewBlock = getBlockAtPosition(highlightPosition);
+      std::shared_ptr<Block> block = getBlockAtPosition(tempPosition);
 
-      removeBlock(tempPosition);
+      std::list<std::shared_ptr<Block> > *posList = new std::list<std::shared_ptr<Block> >();
+
+      if (block != nullptr) {
+         addPositionToList(this, posList, block);
+      }
+
+      std::list<std::shared_ptr<Block> >::iterator iter;
+
+      for (iter = posList->begin(); iter != posList->end(); ) {
+
+         std::shared_ptr<Block> temp = (*iter);
+
+         Vector2d pos = temp->getPosition();
+
+         removeBlock(pos);
+
+         ++iter;
+      }
+
+      delete posList;
 
       return true;
 
