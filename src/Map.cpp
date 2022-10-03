@@ -332,8 +332,7 @@ void Map::createBlock(const Vector2d &position, int inColor)
 
       std::shared_ptr<Block> block = std::make_shared<Block>(inColor);
       block->setMovable(true);
-      block->setCanFall(true);
-      block->setFalling(true);
+      block->setFalling(false);
       block->setPosition(position);
 
       block->setMapPosition(getPosition());
