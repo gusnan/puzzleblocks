@@ -25,6 +25,9 @@
 #include <sstream>
 #include <list>
 #include <random>
+#include <memory>
+#include <iterator>
+#include <algorithm>
 
 #include "GusGame/GusGame.h"
 
@@ -378,4 +381,57 @@ void Map::onMouseMove(const Vector2d &pos)
       // Primitives::rect(Rect(x * 32, y * 32, 32, 32), colorWhite);
 
    }
+}
+
+
+/**
+ *
+ */
+void Map::removeBlock(const Vector2d &pos)
+{
+   std::shared_ptr<Block> temp = getBlockAtPosition(pos);
+
+   if (temp != nullptr) {
+
+      auto iter = std::find_if(m_BlockList->begin(), m_BlockList->end(),
+                        [&](auto &s){ return (s == temp); }
+      );
+
+      if (iter != m_BlockList->end()) {
+         m_BlockList->erase(iter);
+      }
+
+      temp.reset();
+   }
+}
+
+/**
+ *
+ */
+bool Map::onLeftMouseButtonPressed(const Vector2d& pos)
+{
+   Vector2d tempPosition;
+
+   if (m_MouseOver) {
+      Vector2d newpos= pos - getPosition();
+
+      int x = newpos.x / 32;
+      int y = newpos.y / 32;
+
+      /*
+      st << "NewPos: " << newpos << " and: (" << x << ", " << y << ")";
+
+      STLOG(st);
+      */
+
+      tempPosition = Vector2d(x, y);
+
+      // viewBlock = getBlockAtPosition(highlightPosition);
+
+      removeBlock(tempPosition);
+
+      return true;
+
+   }
+   return false;
 }

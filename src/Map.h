@@ -48,6 +48,10 @@ public:
 
    virtual void onMouseMove(const Vector2d &pos);
 
+   void removeBlock(const Vector2d &pos);
+
+   virtual bool onLeftMouseButtonPressed(const Vector2d& pos);
+
 private:
 
    // int m_SizeX, m_SizeY;
