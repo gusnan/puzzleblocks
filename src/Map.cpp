@@ -259,8 +259,6 @@ void Map::initMap()
 
    std::default_random_engine generator(device());
    std::uniform_int_distribution<int> distribution(0, 3);
-
-   int q = 0;
 }
 
 /**
