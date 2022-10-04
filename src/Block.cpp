@@ -150,53 +150,17 @@ void Block::update()
    if (m_Moveable) {
 
       // if (getFalling()) {
-         m_Counter -= 0.5f * m_Speed * Timer::getDeltaTime();
+      m_Counter -= 0.5f * m_Speed * Timer::getDeltaTime();
 
-         if (m_Counter <= 0.0f) {
-            // setPosition(getPosition() + Vector2d(0, 1));
+      if (m_Counter <= 0.0f) {
+         // setPosition(getPosition() + Vector2d(0, 1));
 
-            // m_Counter -= 1.0f;
-            m_Counter = 0.0f;
+         // m_Counter -= 1.0f;
+         m_Counter = 0.0f;
 
-            // setFalling(false);
-         }
+         // setFalling(false);
       }
-
-
-      /*
-      if (m_Falling) {
-
-         m_TempPosition += m_DeltaPosition * Timer::getDeltaTime() * m_Speed;
-
-         m_Speed = m_Speed + 3.0f;
-
-         if (m_TempPosition >= (m_PixelsWeCanFall - 1.0f)) {
-            // m_TempPosition = (BLOCK_SIZE - 1);
-            m_DeltaPosition = -1.0f;
-
-            // We need to check if we cannot fall any further
-
-            m_Moveable = false;
-
-            // m_Position = Vector2d(m_Position.x, m_Position.y + 1);
-            // m_Position = Vector2d(m_HowLongCanWeFall.x, m_HowLongCanWeFall.y);
-
-            m_TempPosition = 0.0f;
-
-         }
-      } else {
-         // not falling
-
-         // we should calculate here how long we can fall
-
-         Vector2d tempPos = m_Position;
-         int currentY = tempPos.y;
-
-
-         m_Falling = true;
-      }
-      */
-   //}
+   }
 }
 
 
