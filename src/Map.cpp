@@ -229,36 +229,6 @@ void Map::initMap()
    m_FullBlock->setFalling(false);
 
    m_FullBlock->setPosition(Vector2d(-1, -1));
-
-   /*
-   for (int co = 0; co < 10; co++) {
-      std::shared_ptr<Block> tempBlock = std::make_shared<Block>();
-      tempBlock->setPosition(Vector2d(co, 10));
-      tempBlock->setMovable(false);
-
-      m_BlockList->push_back(tempBlock);
-   }
-   */
-
-
-/*
-   createBlock(Vector2d(0, 2), 0);
-   createBlock(Vector2d(1, 2), 0);
-   createBlock(Vector2d(1, 1), 1);
-   createBlock(Vector2d(3, 2), 2);
-   createBlock(Vector2d(8, 7), 3);
-   createBlock(Vector2d(8, 5), 4);
-
-
-
-   createBlock(Vector2d(6, 0), 4);
-   createBlock(Vector2d(7, 4), 4);
-   */
-
-   std::random_device device;
-
-   std::default_random_engine generator(device());
-   std::uniform_int_distribution<int> distribution(0, 3);
 }
 
 /**
