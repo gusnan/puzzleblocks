@@ -38,7 +38,7 @@ using namespace GraphicsLib;
 
 #include "Block.h"
 
-const int BLOCK_SIZE = 32;
+const int blockSize = 64;
 
 /**
  *
@@ -208,19 +208,19 @@ void Block::update()
  */
 void Block::draw(bool includeMinorPosition)
 {
-   int tempPosition = ((double)m_Counter / (double)1.0f) * (double)(BLOCK_SIZE);
+   int tempPosition = ((double)m_Counter / (double)1.0f) * (double)(blockSize);
    Vector2d newTemp = Vector2d(0, tempPosition);
 
    // Primitives::rectFill(Rect((m_Position * Vector2d(BLOCK_SIZE, BLOCK_SIZE)) + newTemp, Vector2d(BLOCK_SIZE, BLOCK_SIZE)), colorRed);
    // Primitives::rect(Rect((m_Position * Vector2d(BLOCK_SIZE, BLOCK_SIZE)) + newTemp, Vector2d(BLOCK_SIZE, BLOCK_SIZE)), colorWhite);
 
-   Vector2d position = m_Position * Vector2d(BLOCK_SIZE, BLOCK_SIZE) + m_MapPosition - Vector2d(0, BLOCK_SIZE);
+   Vector2d position = m_Position * Vector2d(blockSize, blockSize) + m_MapPosition - Vector2d(0, blockSize);
 
    if (includeMinorPosition) {
       position -= newTemp;
    }
 
-   Data::instance().blocksBitmap->blit(Rect(m_Color * BLOCK_SIZE, 0, BLOCK_SIZE, BLOCK_SIZE), position);
+   Data::instance().blocksBitmap->blit(Rect(m_Color * 32, 0, 32, 32), Rect(position, Vector2d(blockSize, blockSize)));
 }
 
 /**

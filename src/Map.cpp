@@ -45,6 +45,7 @@ using namespace GusGui;
 
 #include "Map.h"
 
+// const int blockSize = 32;
 
 /**
  *
@@ -182,8 +183,8 @@ void Map::draw(const Vector2d &pos, float alpha)
    GraphicsHandler::instance().noClip();
 
    // if (m_HighlightPosition.y != 0) {
-   Primitives::rect(Rect(Vector2d(m_HighlightPosition.x * 32, m_HighlightPosition.y * 32) + getPosition() - Vector2d(0, 32),
-                  Vector2d(32, 32)),
+   Primitives::rect(Rect(Vector2d(m_HighlightPosition.x * blockSize, m_HighlightPosition.y * blockSize) + getPosition() - Vector2d(0, blockSize),
+                  Vector2d(blockSize, blockSize)),
                   colorWhite);
    // }
 
@@ -318,7 +319,7 @@ void Map::update()
          std::random_device device;
 
          std::default_random_engine generator(device());
-         std::uniform_int_distribution<int> distribution(0, 3);
+         std::uniform_int_distribution<int> distribution(0, 5);
 
          createBlock(Vector2d(co, 0), distribution(generator));
       }
@@ -384,8 +385,8 @@ void Map::onMouseMove(const Vector2d &pos)
       // std::stringstream st;
 
 
-      int x = newpos.x / 32;
-      int y = newpos.y / 32;
+      int x = newpos.x / blockSize;
+      int y = newpos.y / blockSize;
 
       /*
       st << "NewPos: " << newpos << " and: (" << x << ", " << y << ")";
@@ -521,8 +522,8 @@ bool Map::onLeftMouseButtonPressed(const Vector2d& pos)
    if (m_MouseOver) {
       Vector2d newpos= pos - getPosition();
 
-      int x = newpos.x / 32;
-      int y = newpos.y / 32;
+      int x = newpos.x / blockSize;
+      int y = newpos.y / blockSize;
 
       y++;
 

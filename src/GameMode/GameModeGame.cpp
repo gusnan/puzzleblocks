@@ -83,7 +83,9 @@ void GameModeGame::enterGameMode()
 
    EventSystem::addEventHandler(gameEventHandler);
 
-   map = std::make_shared<Map>(Rect(Vector2d(32, 32), Vector2d(288, 288)), Vector2d(9, 9));
+   Vector2d size = Vector2d(9, 9);
+
+   map = std::make_shared<Map>(Rect(Vector2d(32, 32), Vector2d(blockSize * size.x, blockSize * size.y)), size);
 
    GuiHandler::instance()->addGuiObject(map);
 

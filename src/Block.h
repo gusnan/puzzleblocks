@@ -72,4 +72,6 @@ protected:
    Vector2d m_MapPosition; // the position of the map gui object on the screen
 };
 
+extern const int blockSize;
+
 #endif /*__HEADER_BLOCK_*/
