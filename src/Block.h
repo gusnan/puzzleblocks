@@ -47,11 +47,12 @@ public:
    bool getFalling();
    void setFalling(bool inFalling = true);
 
-   double getCounter();
+   double getCounter() const;
+   void setCounter(double inCounter);
 
    void setMapPosition(const Vector2d &pos);
 
-   int getColor();
+   int getColor() const;
 
 protected:
 

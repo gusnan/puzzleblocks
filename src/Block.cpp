@@ -283,13 +283,21 @@ void Block::setFalling(bool inFalling)
 /**
  *
  */
-double Block::getCounter()
+double Block::getCounter() const
 {
    double result = m_Counter;
    // if (result == 1.0f) result = 0.0f;
    return result;
 }
 
+
+/**
+ *
+ */
+void Block::setCounter(double inCounter)
+{
+   m_Counter = inCounter;
+}
 
 /**
  *
@@ -303,7 +311,7 @@ void Block::setMapPosition(const Vector2d &pos)
 /**
  *
  */
-int Block::getColor()
+int Block::getColor() const
 {
    return m_Color;
 }
