@@ -266,29 +266,28 @@ void Map::update()
 
       std::shared_ptr<Block> temp = (*iter);
 
-      Vector2d pos = temp->getPosition();
+      if (temp != nullptr) {
 
-      // temp->setCanFall(false);
+         Vector2d pos = temp->getPosition();
 
-      if (temp->getCounter() == 0.0f) {
-         if (getBlockAtPosition(pos + Vector2d(0, 1)) == nullptr) {
-            temp->setFalling(true);
+         if (temp->getCounter() == 0.0f) {
+            if (getBlockAtPosition(pos + Vector2d(0, 1)) == nullptr) {
+               temp->setFalling(true);
+            }
          }
-      }
 
-      std::shared_ptr<Block> blockAbove = getBlockAtPosition(pos + Vector2d(0, -1));
-      if (blockAbove != nullptr) {
+         std::shared_ptr<Block> blockAbove = getBlockAtPosition(pos + Vector2d(0, -1));
+         if (blockAbove != nullptr) {
 
-         if (blockAbove->getCounter() != 0.0f) {
-            if (temp != nullptr) {
+            if (blockAbove->getCounter() != 0.0f) {
                if (temp->getCounter() != 0.0f) {
-            blockAbove->setCounter(temp->getCounter());
+                  blockAbove->setCounter(temp->getCounter());
                }
             }
          }
-      }
 
-      temp->update();
+         temp->update();
+      }
 
       ++iter;
    }
