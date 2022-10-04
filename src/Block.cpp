@@ -38,7 +38,7 @@ using namespace GraphicsLib;
 
 #include "Block.h"
 
-const int blockSize = 64;
+const int blockSize = 48;
 
 /**
  *
@@ -150,6 +150,7 @@ void Block::update()
    if (m_Moveable) {
 
       // if (getFalling()) {
+         m_Counter -= 0.5f * m_Speed * Timer::getDeltaTime();
 
          if (m_Counter <= 0.0f) {
             // setPosition(getPosition() + Vector2d(0, 1));
@@ -158,11 +159,7 @@ void Block::update()
             m_Counter = 0.0f;
 
             // setFalling(false);
-         } else {
-
-            m_Counter -= 0.5f * m_Speed * Timer::getDeltaTime();
          }
-
       }
 
 
