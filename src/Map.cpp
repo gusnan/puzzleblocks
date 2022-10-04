@@ -260,15 +260,6 @@ void Map::initMap()
    std::uniform_int_distribution<int> distribution(0, 3);
 
    int q = 0;
-
-   for (int co1 = 0; co1 < 8; co1++)
-   for (int co2 = 0; co2 < 8; co2++) {
-
-      createBlock(Vector2d(co1 + 1, co2 + 1), distribution(generator)); // (q % 3));
-
-      q++;
-   }
-
 }
 
 /**
