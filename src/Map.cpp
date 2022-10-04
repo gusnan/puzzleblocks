@@ -258,7 +258,7 @@ void Map::update()
 {
    // GusGui::GuiObject::update();
 
-   m_BlockList->sort(compareBlocks());
+   // m_BlockList->sort(compareBlocks());
 
    std::list<std::shared_ptr<Block> >::iterator iter;
 
@@ -273,6 +273,18 @@ void Map::update()
       if (temp->getCounter() == 0.0f) {
          if (getBlockAtPosition(pos + Vector2d(0, 1)) == nullptr) {
             temp->setFalling(true);
+         }
+      }
+
+      std::shared_ptr<Block> blockAbove = getBlockAtPosition(pos + Vector2d(0, -1));
+      if (blockAbove != nullptr) {
+
+         if (blockAbove->getCounter() != 0.0f) {
+            if (temp != nullptr) {
+               if (temp->getCounter() != 0.0f) {
+            blockAbove->setCounter(temp->getCounter());
+               }
+            }
          }
       }
 
