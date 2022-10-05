@@ -226,6 +226,11 @@ void Map::doneMap()
    delete m_BlockList;
 }
 
+
+
+/**
+ *
+ */
 struct compareBlocks {
    bool operator()(std::shared_ptr<Block> left, std::shared_ptr<Block> right) {
       if ((left->getPosition().y) > (right->getPosition().y)) {
@@ -292,6 +297,9 @@ void Map::update()
 }
 
 
+/**
+ *
+ */
 std::shared_ptr<Block> Map::getBlockAtPosition(const Vector2d &position, int minYposition)
 {
    std::shared_ptr<Block> result = nullptr;
@@ -456,6 +464,7 @@ void addPositionToList(Map *map, std::list<std::shared_ptr<Block> > *posList, st
       }
    }
 }
+
 
 /**
  *
