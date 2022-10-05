@@ -53,8 +53,7 @@ using namespace GusGui;
 Map::Map() : m_MapSize(),
              m_BlockList(nullptr),
              m_FullBlock(nullptr),
-             m_HighlightPosition(),
-             m_ViewBlock(nullptr)
+             m_HighlightPosition()
 {
    LOG("Map::Map()");
    m_Active = true;
@@ -72,8 +71,7 @@ Map::Map(const Rect &inRect, const Vector2d &inSize) : GuiObject(inRect),
                                                        m_MapSize(inSize),
                                                        m_BlockList(nullptr),
                                                        m_FullBlock(nullptr),
-                                                       m_HighlightPosition(),
-                                                       m_ViewBlock(nullptr)
+                                                       m_HighlightPosition()
 {
    LOG("Map::Map(rect, vector2d)");
    initMap();
@@ -92,8 +90,7 @@ Map::Map(const Map &source) : GuiObject(source.m_Rect),
                               m_MapSize(source.m_MapSize),
                               m_BlockList(nullptr),
                               m_FullBlock(nullptr),
-                              m_HighlightPosition(),
-                              m_ViewBlock(nullptr)
+                              m_HighlightPosition()
 {
    LOG("Map copy constructor");
 
@@ -187,18 +184,6 @@ void Map::draw(const Vector2d &pos, float alpha)
                   Vector2d(blockSize, blockSize)),
                   colorWhite);
    // }
-
-
-   if (m_ViewBlock != nullptr) {
-      Vector2d tempPos = m_ViewBlock->getPosition();
-
-      m_ViewBlock->setPosition(Vector2d(25, 5));
-      m_ViewBlock->draw(false);
-
-      m_ViewBlock->setPosition(tempPos);
-   }
-
-   // Primitives::rectFill(Rect(getPosition(), Vector2d(320, 32)), colorBlack);
 
    Primitives::rect(getRect(), colorRed);
 }
@@ -367,26 +352,7 @@ void Map::onMouseMove(const Vector2d &pos)
       int x = newpos.x / blockSize;
       int y = newpos.y / blockSize;
 
-      /*
-      st << "NewPos: " << newpos << " and: (" << x << ", " << y << ")";
-
-      STLOG(st);
-      */
-
       m_HighlightPosition = Vector2d(x, y + 1);
-
-      m_ViewBlock = getBlockAtPosition(m_HighlightPosition);
-
-      /*
-      st.str("");
-
-      st << viewBlock;
-
-      STLOG(st);
-      */
-
-      // Primitives::rect(Rect(x * 32, y * 32, 32, 32), colorWhite);
-
    }
 }
 
