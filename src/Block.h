@@ -25,7 +25,7 @@ class Block
 {
 public:
    Block();
-   Block(int inColor);
+   explicit Block(int inColor);
    virtual ~Block();
 
    Block(const Block &source);
