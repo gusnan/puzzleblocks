@@ -1,6 +1,17 @@
 
 
-This program requires the gusgame library, and Allegro 5.2.
+
+BUILDING
+========
+
+This requires the libraries
+
+Gusgame (https://github.com/gusnan/gusgame)
+
+GusGui (https://github.com/gusnan/gusgui)
+
+Allegro5 (https://github.com/liballeg/allegro5)
+
 
 Program.cpp:
 
@@ -11,6 +22,7 @@ will give you a hard-debugged SIGABRT and
 
 in my case With debug information pointing into the Nvidia drivers.
 
+
 CPPCHECK
 ========
 
@@ -20,3 +32,4 @@ cppcheck --enable=all --suppressions-list=../cppcheck-suppressions.txt --check-c
 
 (not mentioned in the cppcheck-suppressions.txt file, since it cannot be done
 with comments and ruins the syntax, and makes the suppresions file not usable).
+
