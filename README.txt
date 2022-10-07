@@ -2,7 +2,8 @@
 
 
 
-You can always quit the program at once using Ctrl + Alt + X.
+You can always quit the program at once using Ctrl + Alt + X, or press the
+quit button in the main menu (which on the other hand doesn't have text yet).
 
 
 BUILDING
