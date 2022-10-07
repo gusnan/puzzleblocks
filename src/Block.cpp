@@ -83,8 +83,8 @@ Block::Block(const Block &source) : m_Position(source.m_Position),
                                     m_Speed(source.m_Speed),
                                     m_Falling(source.m_Falling),
                                     m_Color(source.m_Color),
-                                    m_Counter(0.0f),
-                                    m_MapPosition()
+                                    m_Counter(source.m_Counter),
+                                    m_MapPosition(source.m_MapPosition)
 {
 }
 
