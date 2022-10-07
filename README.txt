@@ -1,6 +1,10 @@
 
 
 
+
+You can always quit the program at once using Ctrl + Alt + X.
+
+
 BUILDING
 ========
 
