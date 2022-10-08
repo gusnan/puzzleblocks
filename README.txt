@@ -18,16 +18,6 @@ GusGui (https://github.com/gusnan/gusgui)
 Allegro5 (https://github.com/liballeg/allegro5)
 
 
-Program.cpp:
-
-You cannot delete the mouse bitmap before calling Mouse::doneMouse(), that
-will give you a hard-debugged SIGABRT and
-
-"corrupted double-linked list"
-
-in my case With debug information pointing into the Nvidia drivers.
-
-
 CPPCHECK
 ========
 
