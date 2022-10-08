@@ -469,12 +469,12 @@ void addPositionToList(Map *map, std::list<std::shared_ptr<Block> > *posList, st
 /**
  *
  */
-bool Map::onLeftMouseButtonPressed(const Vector2d& pos)
+bool Map::onLeftMouseButtonPressed(const Vector2d& clickedPosition)
 {
    Vector2d tempPosition;
 
    if (m_MouseOver) {
-      Vector2d newpos= pos - getPosition();
+      Vector2d newpos = clickedPosition - getPosition();
 
       int x = newpos.x / blockSize;
       int y = newpos.y / blockSize;
