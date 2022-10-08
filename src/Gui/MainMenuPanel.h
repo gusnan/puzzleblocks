@@ -43,6 +43,8 @@ protected:
    std::shared_ptr<MainMenu::Button> m_NewGameButton;
    std::shared_ptr<MainMenu::Button> m_QuitButton;
 
+   std::shared_ptr<MainMenu::Button> m_TempButton;
+
 };
 
 #endif /*__HEADER_MAINMENUPANEL_*/

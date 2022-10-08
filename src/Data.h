@@ -31,6 +31,9 @@ public:
 
    std::shared_ptr<Bitmap> blocksBitmap;
 
+   std::shared_ptr<Bitmap> buttonStandard;
+   std::shared_ptr<Bitmap> buttonPressed;
+
    void doneData();
 
 protected:

@@ -53,7 +53,11 @@ Data &Data::instance()
 /**
  *
  */
-Data::Data(const Data &inData) : mouseBitmap(inData.mouseBitmap->makeCopy()), font(nullptr), blocksBitmap(inData.blocksBitmap->makeCopy())
+Data::Data(const Data &inData) : mouseBitmap(inData.mouseBitmap->makeCopy()),
+                                 font(nullptr),
+                                 blocksBitmap(inData.blocksBitmap->makeCopy()),
+                                 buttonStandard(inData.buttonStandard->makeCopy()),
+                                 buttonPressed(inData.buttonPressed->makeCopy())
 {
 }
 
@@ -77,6 +81,11 @@ Data &Data::operator=(const Data &inData)
 
    font = nullptr;
 
+   blocksBitmap = inData.blocksBitmap->makeCopy();
+
+   buttonStandard = inData.buttonStandard->makeCopy();
+   buttonPressed = inData.buttonPressed->makeCopy();
+
    return *this;
 }
 
@@ -84,7 +93,11 @@ Data &Data::operator=(const Data &inData)
 /**
  *
  */
-Data::Data() : mouseBitmap(nullptr), font(nullptr), blocksBitmap(nullptr)
+Data::Data() : mouseBitmap(nullptr),
+               font(nullptr),
+               blocksBitmap(nullptr),
+               buttonStandard(nullptr),
+               buttonPressed(nullptr)
 {
    initData();
 }
@@ -102,6 +115,10 @@ void Data::initData()
    font = std::make_shared<Font>("FreeSans.ttf", 12, true);
 
    blocksBitmap = std::make_shared<Bitmap>("blocks.png");
+
+   buttonStandard = std::make_shared<Bitmap>("blue_button07.png");
+
+   buttonPressed = std::make_shared<Bitmap>("blue_button08.png");
 }
 
 
@@ -118,4 +135,7 @@ void Data::doneData()
    REMOVE(font);
 
    REMOVE(blocksBitmap);
+
+   REMOVE(buttonStandard);
+   REMOVE(buttonPressed);
 }

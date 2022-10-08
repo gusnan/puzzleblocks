@@ -45,6 +45,8 @@ using namespace GusGui;
 #include "Button.h"
 #include "MainMenuPanel.h"
 
+#include "../Data.h"
+
 namespace MainMenu {
 
 /**
@@ -71,15 +73,41 @@ Button::~Button()
 void Button::draw(const Vector2d& pos, float alpha)
 {
    // Gray for standard button
-   Primitives::rectFill(getRect() + pos, colorLightGray);
-   if (getMouseOver()) {
+   // Primitives::rectFill(getRect() + pos, colorLightGray);
+   // Data::instance().buttonStandard->blit(getPosition() + pos);
 
+   std::shared_ptr<Bitmap> pressed = Data::instance().buttonPressed;
+   std::shared_ptr<Bitmap> standard = Data::instance().buttonStandard;
+
+   Rect rect = getRect();
+
+   if (getMouseOver()) {
       // red when hovered
-      Primitives::rectFill(getRect() + pos, colorRed);
+      // Primitives::rectFill(getRect() + pos, colorRed);
+
       if (getDown()) {
          // and white when pressed
-         Primitives::rectFill(getRect() + pos, colorWhite);
+         // Primitives::rectFill(getRect() + pos, colorWhite);
+         // pressed->blit(getPosition() + pos + Vector2d(2, 2));
+         pressed->blit(Rect(0,  0, 12, 49), getPosition() + pos + Vector2d(2, 2));
+         pressed->blit(Rect(37, 0, 12, 49), getPosition() + pos + (Vector2d(rect.size.x - 12, 0)) + Vector2d(2, 2));
+         pressed->blit(Rect(12, 0, 25, 49), Rect(getPosition() + pos + Vector2d(12, 0), Vector2d(rect.size.x - 24, 49)) + Vector2d(2, 2));
+
+      } else {
+         //standard->blit(getPosition() + pos);
+
+         standard->blit(Rect(0,  0, 12, 49), getPosition() + pos);
+         standard->blit(Rect(37, 0, 12, 49), getPosition() + pos + (Vector2d(rect.size.x - 12, 0)));
+         standard->blit(Rect(12, 0, 25, 49), Rect(getPosition() + pos + Vector2d(12, 0), Vector2d(rect.size.x - 24, 49)));
       }
+   } else {
+      // standard->blit(getPosition() + pos);
+
+      Rect rect = getRect();
+
+      standard->blit(Rect(0,  0, 12, 49), getPosition() + pos);
+      standard->blit(Rect(37, 0, 12, 49), getPosition() + pos + (Vector2d(rect.size.x - 12, 0)));
+      standard->blit(Rect(12, 0, 25, 49), Rect(getPosition() + pos + Vector2d(12, 0), Vector2d(rect.size.x - 24, 49)));
    }
 }
 

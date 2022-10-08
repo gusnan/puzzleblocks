@@ -51,18 +51,23 @@ using namespace GusGui;
 /**
  *
  */
-MainMenuPanel::MainMenuPanel() : Panel(Rect(10, 10, 400, 100), "Text"), m_NewGameButton(nullptr), m_QuitButton(nullptr)
+MainMenuPanel::MainMenuPanel() : Panel(Rect(10, 10, 400, 200), "Text"),
+                                 m_NewGameButton(nullptr),
+                                 m_QuitButton(nullptr),
+                                 m_TempButton(nullptr)
 {
    LOG("MainMenuPanel constructor");
 
-   m_NewGameButton = std::make_shared<MainMenu::Button>(Rect(10, 10, 100, 20), "New Game");
+   m_NewGameButton = std::make_shared<MainMenu::Button>(Rect(10, 10, 250, 49), "New Game");
    m_NewGameButton->setPressEvent(Events::instance().eventNewGame);
    addGuiObject(m_NewGameButton);
 
-   m_QuitButton = std::make_shared<MainMenu::Button>(Rect(10, 40, 100, 20), "Quit");
+   m_QuitButton = std::make_shared<MainMenu::Button>(Rect(10, 80, 250, 49), "Quit");
    m_QuitButton->setPressEvent(Events::instance().eventQuitGame);
    addGuiObject(m_QuitButton);
 
+   m_TempButton = std::make_shared<MainMenu::Button>(Rect(10,150, 250, 49), "Test");
+   addGuiObject(m_TempButton);
 }
 
 
