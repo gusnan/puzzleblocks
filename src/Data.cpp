@@ -57,7 +57,8 @@ Data::Data(const Data &inData) : mouseBitmap(inData.mouseBitmap->makeCopy()),
                                  font(nullptr),
                                  blocksBitmap(inData.blocksBitmap->makeCopy()),
                                  buttonStandard(inData.buttonStandard->makeCopy()),
-                                 buttonPressed(inData.buttonPressed->makeCopy())
+                                 buttonPressed(inData.buttonPressed->makeCopy()),
+                                 gem(inData.gem->makeCopy())
 {
 }
 
@@ -97,7 +98,8 @@ Data::Data() : mouseBitmap(nullptr),
                font(nullptr),
                blocksBitmap(nullptr),
                buttonStandard(nullptr),
-               buttonPressed(nullptr)
+               buttonPressed(nullptr),
+               gem(nullptr)
 {
    initData();
 }
@@ -119,6 +121,8 @@ void Data::initData()
    buttonStandard = std::make_shared<Bitmap>("blue_button07.png");
 
    buttonPressed = std::make_shared<Bitmap>("blue_button08.png");
+
+   gem = std::make_shared<Bitmap>("gem1_32x32.png");
 }
 
 
@@ -138,4 +142,6 @@ void Data::doneData()
 
    REMOVE(buttonStandard);
    REMOVE(buttonPressed);
+
+   REMOVE(gem);
 }

@@ -34,6 +34,8 @@ public:
    std::shared_ptr<Bitmap> buttonStandard;
    std::shared_ptr<Bitmap> buttonPressed;
 
+   std::shared_ptr<Bitmap> gem;
+
    void doneData();
 
 protected:
