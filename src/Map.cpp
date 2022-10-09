@@ -224,6 +224,8 @@ void Map::doneMap()
    LOG("Done Map");
 
    delete m_BlockList;
+
+   m_FullBlock.reset();
 }
 
 
