@@ -49,7 +49,8 @@ Block::Block() : m_Position(0, 0),
                  m_Falling(false),
                  m_Color(0),
                  m_Counter(0.0f),
-                 m_MapPosition()
+                 m_MapPosition(),
+                 m_BlockType(0)
 {
 }
 
@@ -57,13 +58,14 @@ Block::Block() : m_Position(0, 0),
 /**
  *
  */
-Block::Block(int inColor) : m_Position(0, 0),
+Block::Block(int blockType, int inColor) : m_Position(0, 0),
                             m_Moveable(true),
                             m_Speed(20.0f),
                             m_Falling(false),
                             m_Color(inColor),
                             m_Counter(0.0f),
-                            m_MapPosition()
+                            m_MapPosition(),
+                            m_BlockType(blockType)
 {
 }
 
@@ -84,7 +86,8 @@ Block::Block(const Block &source) : m_Position(source.m_Position),
                                     m_Falling(source.m_Falling),
                                     m_Color(source.m_Color),
                                     m_Counter(source.m_Counter),
-                                    m_MapPosition(source.m_MapPosition)
+                                    m_MapPosition(source.m_MapPosition),
+                                    m_BlockType(source.m_BlockType)
 {
 }
 
@@ -104,6 +107,8 @@ Block &Block::operator=(const Block &source)
       m_Counter = source.m_Counter;
 
       m_Speed = source.m_Speed;
+
+      m_BlockType = source.m_BlockType;
    }
 
    return *this;
@@ -126,6 +131,10 @@ bool Block::operator==(const Block &inBlock)
    }
 
    if (inBlock.m_Color != this->m_Color) {
+      result = false;
+   }
+
+   if (inBlock.m_BlockType != this->m_BlockType) {
       result = false;
    }
 
@@ -181,7 +190,13 @@ void Block::draw(bool includeMinorPosition)
       position -= newTemp;
    }
 
-   Data::instance().blocksBitmap->blit(Rect(m_Color * 32, 0, 32, 32), Rect(position, Vector2d(blockSize, blockSize)));
+   if (m_BlockType == BLOCK_TYPE_COLORED_BLOCK) {
+      Data::instance().blocksBitmap->blit(Rect(m_Color * 32, 0, 32, 32), Rect(position, Vector2d(blockSize, blockSize)));
+   } else if (m_BlockType == BLOCK_TYPE_GEM) {
+      Data::instance().gem->blit(Rect(0, 0, 32, 32), Rect(position, Vector2d(blockSize, blockSize)));
+   }
+
+   // Data::instance().gem->blit(Rect(0, 0, 32, 32), Rect(position, Vector2d(blockSize, blockSize)));
 }
 
 /**
@@ -275,4 +290,13 @@ void Block::setMapPosition(const Vector2d &pos)
 int Block::getColor() const
 {
    return m_Color;
+}
+
+
+/**
+ *
+ */
+int Block::getType() const
+{
+   return m_BlockType;
 }

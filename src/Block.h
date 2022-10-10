@@ -21,11 +21,14 @@
 #ifndef __HEADER_BLOCK_
 #define __HEADER_BLOCK_
 
+const int BLOCK_TYPE_COLORED_BLOCK =   0;
+const int BLOCK_TYPE_GEM =             1;
+
 class Block
 {
 public:
    Block();
-   explicit Block(int inColor);
+   explicit Block(int type, int inColor = 0);
    virtual ~Block();
 
    Block(const Block &source);
@@ -54,6 +57,8 @@ public:
 
    int getColor() const;
 
+   int getType() const;
+
 protected:
 
    Vector2d m_Position;
@@ -69,6 +74,8 @@ protected:
    int m_Color;
 
    double m_Counter;
+
+   int m_BlockType;
 
    Vector2d m_MapPosition; // the position of the map gui object on the screen
 };

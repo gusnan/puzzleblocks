@@ -203,13 +203,13 @@ void Map::initMap()
 
    // m_MapData = new std::shared_ptr<Block>[totalsize];
 
-   /*
-   for (int co = 0; co < totalsize; co++) {
-      m_MapData[co] = std::make_shared<Block>();
+   for (int co = 0; co < m_MapSize.y; co++) {
+      // m_MapData[co] = std::make_shared<Block>();
+      createBlock(Vector2d(0, co + 1), BLOCK_TYPE_GEM, 0);
+      createBlock(Vector2d(8, co + 1), BLOCK_TYPE_GEM, 0);
    }
-   */
 
-   m_FullBlock = std::make_shared<Block>();
+   m_FullBlock = std::make_shared<Block>(BLOCK_TYPE_COLORED_BLOCK);
    m_FullBlock->setMovable(false);
    m_FullBlock->setFalling(false);
 
@@ -292,7 +292,7 @@ void Map::update()
          std::default_random_engine generator(device());
          std::uniform_int_distribution<int> distribution(0, 5);
 
-         createBlock(Vector2d(co, 0), distribution(generator));
+         createBlock(Vector2d(co, 0), BLOCK_TYPE_COLORED_BLOCK, distribution(generator));
       }
    }
 
@@ -328,12 +328,12 @@ std::shared_ptr<Block> Map::getBlockAtPosition(const Vector2d &position, int min
 /**
  *
  */
-void Map::createBlock(const Vector2d &position, int inColor)
+void Map::createBlock(const Vector2d &position, int type, int inColor)
 {
 
    if (getBlockAtPosition(position) == nullptr) {
 
-      std::shared_ptr<Block> block = std::make_shared<Block>(inColor);
+      std::shared_ptr<Block> block = std::make_shared<Block>(type, inColor);
       block->setMovable(true);
       block->setFalling(false);
       block->setPosition(position);
@@ -438,35 +438,58 @@ void addPositionToList(Map *map, std::list<std::shared_ptr<Block> > *posList, st
       std::shared_ptr<Block> tempBlock = map->getBlockAtPosition(Vector2d(x + 1, y), 1);
 
       if (tempBlock != nullptr) {
-         if (tempBlock->getColor() == bcolor) {
-            addPositionToList(map, posList, map->getBlockAtPosition(Vector2d(x + 1, y), 1), result);
+         if (tempBlock->getType() == BLOCK_TYPE_COLORED_BLOCK) {
+            if (tempBlock->getColor() == bcolor) {
+               addPositionToList(map, posList, map->getBlockAtPosition(Vector2d(x + 1, y), 1), result);
+            }
          }
       }
 
       tempBlock = map->getBlockAtPosition(Vector2d(x , y + 1));
 
       if (tempBlock != nullptr) {
-         if (tempBlock->getColor() == bcolor) {
-            addPositionToList(map, posList, map->getBlockAtPosition(Vector2d(x, y + 1), 1), result);
+         if (tempBlock->getType() == BLOCK_TYPE_COLORED_BLOCK) {
+            if (tempBlock->getColor() == bcolor) {
+               addPositionToList(map, posList, map->getBlockAtPosition(Vector2d(x, y + 1), 1), result);
+            }
          }
       }
       tempBlock = map->getBlockAtPosition(Vector2d(x - 1, y));
 
       if (tempBlock != nullptr) {
-         if (tempBlock->getColor() == bcolor) {
-            addPositionToList(map, posList, map->getBlockAtPosition(Vector2d(x - 1, y), 1), result);
+         if (tempBlock->getType() == BLOCK_TYPE_COLORED_BLOCK) {
+            if (tempBlock->getColor() == bcolor) {
+               addPositionToList(map, posList, map->getBlockAtPosition(Vector2d(x - 1, y), 1), result);
+            }
          }
       }
       tempBlock = map->getBlockAtPosition(Vector2d(x, y - 1));
 
       if (tempBlock != nullptr) {
-         if (tempBlock->getColor() == bcolor) {
-            addPositionToList(map, posList, map->getBlockAtPosition(Vector2d(x, y - 1), 1), result);
+         if (tempBlock->getType() == BLOCK_TYPE_COLORED_BLOCK) {
+            if (tempBlock->getColor() == bcolor) {
+               addPositionToList(map, posList, map->getBlockAtPosition(Vector2d(x, y - 1), 1), result);
+            }
          }
       }
    }
 }
 
+
+/**
+ *
+ */
+void Map::removeGemsAround(const Vector2d &pos)
+{
+   std::shared_ptr<Block> tempBlock = getBlockAtPosition(pos);
+
+   if (tempBlock != nullptr) {
+      int type = tempBlock->getType();
+      if (type == BLOCK_TYPE_GEM) {
+         removeBlock(pos);
+      }
+   }
+}
 
 /**
  *
@@ -487,6 +510,11 @@ bool Map::onLeftMouseButtonPressed(const Vector2d& clickedPosition)
 
       std::shared_ptr<Block> block = getBlockAtPosition(tempPosition);
 
+      // Do nothing if we click on a block
+      if (block->getType() == BLOCK_TYPE_GEM) {
+         return true;
+      }
+
       std::list<std::shared_ptr<Block> > *posList = new std::list<std::shared_ptr<Block> >();
 
       int howmany = 0;
@@ -506,6 +534,20 @@ bool Map::onLeftMouseButtonPressed(const Vector2d& clickedPosition)
             Vector2d blockpos = temp->getPosition();
 
             removeBlock(blockpos);
+
+            // remove the blocks around if they are gems
+
+            //left
+            removeGemsAround(blockpos + Vector2d(-1, 0));
+
+            // up
+            removeGemsAround(blockpos + Vector2d(0, -1));
+
+            // right
+            removeGemsAround(blockpos + Vector2d(1, 0));
+
+            // down
+            removeGemsAround(blockpos + Vector2d(0, 1));
 
             ++iter;
          }

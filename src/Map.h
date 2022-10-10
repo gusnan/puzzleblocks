@@ -42,7 +42,7 @@ public:
 
    virtual void update();
 
-   void createBlock(const Vector2d &position, int inColor);
+   void createBlock(const Vector2d &position, int type, int inColor);
 
    std::shared_ptr<Block> getBlockAtPosition(const Vector2d &position, int minYposition = 0);
 
@@ -53,6 +53,8 @@ public:
    virtual bool onLeftMouseButtonPressed(const Vector2d& pos);
 
    std::shared_ptr<Block> getFullblock();
+
+   void removeGemsAround(const Vector2d &pos);
 
 private:
 
