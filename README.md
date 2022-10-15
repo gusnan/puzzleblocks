@@ -1,6 +1,6 @@
 
-README
-======
+# PuzzleBlocks
+
 
 You can always quit the program at once using ``Ctrl + Alt + X``, or press the
 quit button in the main menu (which on the other hand doesn't have text yet).
@@ -11,11 +11,11 @@ quit button in the main menu (which on the other hand doesn't have text yet).
 
 This requires the libraries
 
-Gusgame (https://github.com/gusnan/gusgame)
+Gusgame ([link](https://github.com/gusnan/gusgame))
 
-GusGui (https://github.com/gusnan/gusgui)
+GusGui ([link](https://github.com/gusnan/gusgui))
 
-Allegro5 (https://github.com/liballeg/allegro5)
+Allegro5 ([link](https://github.com/liballeg/allegro5))
 
 
 ### CPPCHECK
