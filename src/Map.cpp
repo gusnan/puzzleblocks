@@ -180,9 +180,12 @@ void Map::draw(const Vector2d &pos, float alpha)
    GraphicsHandler::instance().noClip();
 
    // if (m_HighlightPosition.y != 0) {
-   Primitives::rect(Rect(Vector2d(m_HighlightPosition.x * blockSize, m_HighlightPosition.y * blockSize) + getPosition() - Vector2d(0, blockSize),
-                  Vector2d(blockSize, blockSize)),
-                  colorWhite);
+
+   if (getMouseOver()) {
+      Primitives::rect(Rect(Vector2d(m_HighlightPosition.x * blockSize, m_HighlightPosition.y * blockSize) + getPosition() - Vector2d(0, blockSize),
+                       Vector2d(blockSize, blockSize)),
+                       colorWhite);
+   }
    // }
 
    Primitives::rect(getRect(), colorRed);
